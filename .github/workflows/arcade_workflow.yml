@@ -56,7 +56,6 @@ jobs:
 #    - name: Run tests
 #      run: make tests_run
 #      timeout-minutes: 2
-#
 
   push_to_mirror:
     if: ${{ github.event_name == 'push' }}
