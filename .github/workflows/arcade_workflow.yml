@@ -41,7 +41,7 @@ jobs:
 #      with:
 #        fetch-depth: 0
 #    - name: Compilation test
-#      run: make
+#      run: cmake
 #      timeout-minutes: 2
 #    - name: Clean repository
 #      run: make clean
