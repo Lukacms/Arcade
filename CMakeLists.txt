@@ -7,6 +7,10 @@
 
 # ninja
 
+# if project does not compile with ninja:
+# cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+# cmake --build .
+
 # => executable should be in build file
 cmake_minimum_required(VERSION 3.16...3.23)
 
@@ -63,6 +67,9 @@ set(WARNING_FLAGS
     -Wno-padded
     -Wno-ctad-maybe-unsupported)
 
+set(CMAKE_CXX_FLAGS
+    -fno-gnu-unique)
+
 # set different flags
 set(CMAKE_BUILD_TYPE
     ${CMAKE_BUILD_TYPE}
@@ -109,6 +116,6 @@ add_executable(
   )
 
 # include directories
-target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
+target_compile_options(arcade PRIVATE ${WARNING_FLAGS} ${CMAKE_CXX_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
