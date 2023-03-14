@@ -12,16 +12,16 @@
 # cmake --build .
 
 # => executable should be in build file
-cmake_minimum_required(VERSION 3.16...3.23)
+cmake_minimum_required(VERSION 3.16)
 
 # standard version cpp
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # project name
-project(arcade)
+project(arcade VERSION 0.1 LANGUAGES CXX)
 
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
 include_directories(include/)
@@ -29,7 +29,7 @@ include_directories(include/)
 # Warning flags
 set(GCC_WARNING_FLAGS
     -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches
-    -Wlogical-op -Wnull-dereference -Wuseless-cast)
+    -Wlogical-op -Wnull-dereference -Wuseless-cast -fno-gnu-unique)
 
 set(CLANG_WARNING_FLAGS
     -Weverything
@@ -66,9 +66,6 @@ set(WARNING_FLAGS
     -Weffc++
     -Wno-padded
     -Wno-ctad-maybe-unsupported)
-
-set(CMAKE_CXX_FLAGS
-    -fno-gnu-unique)
 
 # set different flags
 set(CMAKE_BUILD_TYPE
@@ -116,6 +113,7 @@ add_executable(
   )
 
 # include directories
-target_compile_options(arcade PRIVATE ${WARNING_FLAGS} ${CMAKE_CXX_FLAGS})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
