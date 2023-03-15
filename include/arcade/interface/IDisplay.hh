@@ -19,7 +19,7 @@ class IDisplay
     private:
 };
 
-namespace Arc
+namespace arc
 {
     class IDisplay
     {
@@ -30,9 +30,9 @@ namespace Arc
             IDisplay &operator=(IDisplay const &to_copy) = delete;
             IDisplay &operator=(IDisplay const &&to_move) = delete;
             virtual ~IDisplay() = default;
-            [[nodiscard]] virtual Arc::IWindow &GetWindow() = 0;
+            [[nodiscard]] virtual arc::IWindow &GetWindow() = 0;
             [[nodiscard]] virtual bool IsDisplaySwitch() = 0;
             [[nodiscard]] virtual bool IsGameSwitch() = 0;
-            [[nodiscard]] virtual Arc::Event GetEvent() = 0;
+            [[nodiscard]] virtual arc::Event GetEvent() = 0;
     };
-} // namespace Arc
+} // namespace arc

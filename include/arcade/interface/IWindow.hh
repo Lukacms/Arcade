@@ -15,7 +15,7 @@ class IWindow
     private:
 };
 
-namespace Arc
+namespace arc
 {
     class IWindow
     {
@@ -26,10 +26,10 @@ namespace Arc
             IWindow &operator=(IWindow const &to_copy) = delete;
             IWindow &operator=(IWindow const &&to_move) = delete;
             virtual ~IWindow() = default;
-            [[nodiscard]] virtual const Arc::IWindow &GetWindow() = 0;
+            [[nodiscard]] virtual const arc::IWindow &GetWindow() = 0;
             virtual void OpenWindow() = 0;
             virtual void CloseWindow() = 0;
             virtual void CreateWindow() = 0;
             virtual void UpdateWindow() = 0;
     };
-} // namespace Arc
+} // namespace arc
