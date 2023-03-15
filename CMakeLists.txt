@@ -26,7 +26,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 # for library compilation ?
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
-include_directories(include/)
+include_directories(Core/include/)
 
 # Warning flags
 set(GCC_WARNING_FLAGS
@@ -116,7 +116,7 @@ endif()
 # adding executables
 add_executable(
   arcade
-  src/main.cpp
+  Core/src/main.cpp
   )
 
 # include directories
