@@ -7,7 +7,8 @@
 
 #pragma once
 
-#include <arcade/interface/IWindow.hh>
+#include "arcade/enum/EventEnum.hh"
+#include "arcade/interface/IWindow.hh"
 
 class IDisplay
 {
@@ -16,4 +17,5 @@ class IDisplay
         virtual IWindow &GetWindow() = 0;
         virtual bool is_display_switch() = 0;
         virtual bool is_game_switch() = 0;
+        virtual Event GetEvent() = 0;
 };
