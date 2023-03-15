@@ -7,14 +7,6 @@
 
 #pragma once
 
-class IWindow
-{
-    public:
-        IWindow() = default;
-
-    private:
-};
-
 namespace arc
 {
     class IWindow

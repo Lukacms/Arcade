@@ -10,15 +10,6 @@
 #include "arcade/enum/EventEnum.hh"
 #include "arcade/interfaces/IWindow.hh"
 
-class IDisplay
-{
-    public:
-        IDisplay() = default;
-        ~IDisplay() = default;
-
-    private:
-};
-
 namespace arc
 {
     class IDisplay
