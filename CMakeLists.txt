@@ -125,5 +125,6 @@ target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
 
-# add a subdirectory to compile
-# add_subdirectory(libs)
+# add a subdirectory to compile, to uncomment when CMakeLists will be complete
+# add_subdirectory(Games)
+# add_subdirectory(Graphics)
