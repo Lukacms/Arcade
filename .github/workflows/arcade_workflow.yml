@@ -30,37 +30,36 @@ jobs:
           exit 1
         fi
 
-# need to change a few things in compilation
-#  run_program:
-#    runs-on: ubuntu-latest
-#    needs: check_repository_cleanliness
-#    container:
-#      image: epitechcontent/epitest-docker:latest
-#    steps:
-#    - uses: actions/checkout@v2
-#      with:
-#        fetch-depth: 0
-#    - name: Compilation test
-#      run: cmake
-#      timeout-minutes: 2
-#    - name: Clean repository
-#      run: make clean
-#    - name: Check executable files exists
-#      run: |
-#        IFS=',' read -ra ADDR <<< $EXECUTABLES
-#        for i in "${ADDR[@]}"; do
-#          if [[ ! -x "./${i}" ]]; then
-#            exit 1
-#          fi
-#        done
-#    - name: Run tests
-#      run: make tests_run
-#      timeout-minutes: 2
+  run_program:
+    runs-on: ubuntu-latest
+    needs: check_repository_cleanliness
+    container:
+      image: epitechcontent/epitest-docker:latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Compilation test
+      run: |
+        mkdir build && cd build
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+        cmake  --build .
+      timeout-minutes: 2
+    - name: Back to root
+      run:  cd ..
+    - name: Check executable files exists
+      run: |
+        IFS=',' read -ra ADDR <<< $EXECUTABLES
+        for i in "${ADDR[@]}"; do
+          if [[ ! -x "./${i}" ]]; then
+            exit 1
+          fi
+        done
 
   push_to_mirror:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
-    needs: check_repository_cleanliness
+    needs: run_program
     steps:
       - uses: actions/checkout@v2
         with:
