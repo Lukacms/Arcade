@@ -1,3 +1,0 @@
-/home/kane/Epitech/2e_Année/OOP/Arcade/build/CMakeFiles/arcade.dir
-/home/kane/Epitech/2e_Année/OOP/Arcade/build/CMakeFiles/edit_cache.dir
-/home/kane/Epitech/2e_Année/OOP/Arcade/build/CMakeFiles/rebuild_cache.dir
