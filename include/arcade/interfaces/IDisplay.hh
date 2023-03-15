@@ -8,7 +8,7 @@
 #pragma once
 
 #include "arcade/enum/EventEnum.hh"
-#include "arcade/interface/IWindow.hh"
+#include "arcade/interfaces/IWindow.hh"
 
 class IDisplay
 {
