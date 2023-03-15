@@ -7,13 +7,16 @@
 
 #pragma once
 
-class IWindow
+namespace Arc
 {
-    public:
-        virtual ~IWindow() = default;
-        virtual const IWindow &GetWindow() = 0;
-        virtual void OpenWindow() = 0;
-        virtual void CloseWindow() = 0;
-        virtual void CreateWindow() = 0;
-        virtual void UpdateWindow() = 0;
-};
+    class IWindow
+    {
+        public:
+            virtual ~IWindow() = default;
+            virtual const Arc::IWindow &GetWindow() = 0;
+            virtual void OpenWindow() = 0;
+            virtual void CloseWindow() = 0;
+            virtual void CreateWindow() = 0;
+            virtual void UpdateWindow() = 0;
+    };
+} // namespace Arc
