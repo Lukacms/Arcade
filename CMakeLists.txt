@@ -22,6 +22,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 project(arcade)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
+
+# for library compilation ?
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
 include_directories(include/)
@@ -47,6 +49,10 @@ set(CLANG_WARNING_FLAGS
     -Wno-return-type-c-linkage
     -Wno-signed-enum-bitfield
     -Wno-weak-vtables)
+
+if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.0.0)
+  set(CLANG_WARNING_FLAGS ${CLANG_WARNING_FLAGS} -Wno-return-std-move-in-c++11)
+endif()
 
 set(WARNING_FLAGS
     -Wall
@@ -74,6 +80,7 @@ set(CMAKE_BUILD_TYPE
       STRING
       "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel tsan"
       FORCE)
+
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3 -fdebug-default-version=2")
 endif()
@@ -117,3 +124,6 @@ target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
 target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
+
+# add a subdirectory to compile
+# add_subdirectory(libs)
