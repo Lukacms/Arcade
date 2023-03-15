@@ -7,13 +7,26 @@
 
 #pragma once
 
+class IWindow
+{
+    public:
+        IWindow() = default;
+
+    private:
+};
+
 namespace Arc
 {
     class IWindow
     {
         public:
+            IWindow() = delete;
+            IWindow(IWindow const &to_copy) = delete;
+            IWindow(IWindow &&to_move) = delete;
+            IWindow &operator=(IWindow const &to_copy) = delete;
+            IWindow &operator=(IWindow const &&to_move) = delete;
             virtual ~IWindow() = default;
-            virtual const Arc::IWindow &GetWindow() = 0;
+            [[nodiscard]] virtual const Arc::IWindow &GetWindow() = 0;
             virtual void OpenWindow() = 0;
             virtual void CloseWindow() = 0;
             virtual void CreateWindow() = 0;
