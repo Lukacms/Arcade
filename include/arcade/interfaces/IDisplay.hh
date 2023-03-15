@@ -8,16 +8,7 @@
 #pragma once
 
 #include "arcade/enum/EventEnum.hh"
-#include "arcade/interface/IWindow.hh"
-
-class IDisplay
-{
-    public:
-        IDisplay() = default;
-        ~IDisplay() = default;
-
-    private:
-};
+#include "arcade/interfaces/IWindow.hh"
 
 namespace arc
 {

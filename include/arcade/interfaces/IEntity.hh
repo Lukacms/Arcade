@@ -7,8 +7,9 @@
 
 #pragma once
 
+#include "arcade/interfaces/IWindow.hh"
 #include <string>
-#include <arcade/Vector.hh>
+#include <arcade/Geometry.hh>
 
 namespace arc {
 
@@ -22,11 +23,14 @@ namespace arc {
             IEntity &operator=(const IEntity&);
             IEntity &operator=(IEntity &&) = delete;
 
-            virtual void createEntity(std::string) = 0;
+            virtual void createEntity(std::string str) = 0;
+            virtual void createEntity(IEntity &) = 0;
             [[nodiscard]] virtual IEntity &getEntity() = 0;
             virtual void destroyEntity() = 0;
-            virtual void moveEntity(arc::Vector) = 0;
-            virtual void setPosition(arc::Vector) = 0;
-            virtual void drawEntity() = 0;
+            virtual void moveEntity(arc::Vector vector) = 0;
+            virtual void setPosition(arc::Vector vector) = 0;
+            virtual void setSize(arc::Vector vector) = 0;
+            virtual void setRectangle(arc::Rect rectangle);
+            virtual void drawEntity(IWindow &window) = 0;
     };
 }

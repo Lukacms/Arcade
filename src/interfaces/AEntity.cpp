@@ -5,8 +5,7 @@
 ** ASprite
 */
 
-#include "arcade/interfaces/entities/IEntity.hh"
-#include <arcade/interfaces/entities/AEntity.hh>
+#include <arcade/interfaces/AEntity.hh>
 #include <utility>
 
 /* Constructor & Destructor */
@@ -29,16 +28,35 @@ void arc::AEntity::moveEntity(arc::Vector vector)
 }
 
 /**
- * Set the entity by the given vector.
- * @param vector The vector by which to move the entity.
+ * Set position of the entity by the given vector.
+ * @param position The vector by which to move the entity.
  */
-void arc::AEntity::setPosition(arc::Vector vector)
+void arc::AEntity::setPosition(arc::Vector position)
 {
-    float new_x = vector.getVectorX();
-    float new_y = vector.getVectorY();
+    this->entityPosition.setVectorX(position.getVectorX());
+    this->entityPosition.setVectorY(position.getVectorY());
+}
 
-    this->entityPosition.setVectorX(new_x);
-    this->entityPosition.setVectorY(new_y);
+/**
+ * Set the entity size by the given vector
+ * @param size The vector which represents size.
+ */
+void arc::AEntity::setSize(arc::Vector size)
+{
+    this->entityPosition.setVectorX(size.getVectorX());
+    this->entityPosition.setVectorY(size.getVectorY());
+}
+
+/**
+ * Set the entity rect by the given rectangle
+ * @param rectangle The rectangle which represents rect.
+ */
+void arc::AEntity::setRectangle(arc::Rect rectangle)
+{
+    this->entityRect.setWidth( rectangle.getWidth());
+    this->entityRect.setHeight(rectangle.getHeight());
+    this->entityRect.setTop(rectangle.getTop());
+    this->entityRect.setLeft(rectangle.getLeft());
 }
 
 /**
