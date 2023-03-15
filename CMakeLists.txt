@@ -24,7 +24,7 @@ project(arcade)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
-include_directories(include/ include/interface/)
+include_directories(include/)
 
 # Warning flags
 set(GCC_WARNING_FLAGS

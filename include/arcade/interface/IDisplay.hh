@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "window.hh"
+#include <arcade/interface/IWindow.hh>
 
 class IDisplay
 {
