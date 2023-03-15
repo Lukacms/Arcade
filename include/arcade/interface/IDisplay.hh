@@ -7,7 +7,8 @@
 
 #pragma once
 
-#include <arcade/interface/IWindow.hh>
+#include "arcade/enum/EventEnum.hh"
+#include "arcade/interface/IWindow.hh"
 
 namespace Arc
 {
