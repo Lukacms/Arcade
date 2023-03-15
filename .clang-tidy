@@ -34,7 +34,7 @@ CheckOptions:
     value:           UPPER_CASE
 
   - key:             readability-identifier-naming.NamespaceCase
-    value:           CamelCase
+    value:           camelCase
 
 
   - key:             readability-identifier-naming.TemplateParameterCase
