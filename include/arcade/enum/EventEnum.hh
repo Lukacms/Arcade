@@ -7,7 +7,7 @@
 
 #pragma once
 
-namespace Arcade
+namespace Arc
 {
     enum class Event {
         LEFT,

@@ -17,5 +17,4 @@ class IDisplay
         virtual IWindow &GetWindow() = 0;
         virtual bool is_display_switch() = 0;
         virtual bool is_game_switch() = 0;
-        virtual Arcade::Event GetEvent() = 0;
 };
