@@ -23,10 +23,15 @@ project(arcade)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
-# for library compilation ?
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
+# for library compilation => shared libraries of games and graphics
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
 
+# include directories
 include_directories(Core/include/)
+
+# add a subdirectory to compile, to uncomment when CMakeLists will be complete
+add_subdirectory(Games)
+add_subdirectory(Graphics)
 
 # Warning flags
 set(GCC_WARNING_FLAGS
@@ -113,18 +118,34 @@ else()
   error("${CMAKE_CXX_COMPILER_ID}: Unsupported compiler.")
 endif()
 
+add_library(arcade-interface INTERFACE)
+
+# link shared libraries and compile them
+# target_compile_options(arcade-interface PRIVATE ${WARNING_FLAGS})
+# target_include_directories(arcade-interface PUBLIC Core/include)
+set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
+set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
+#[[ target_link_libraries(
+    arcade-interface
+    sfml
+    sdl
+    ncurses
+    snake
+    nibbler
+    ) ]]
+
 # adding executables
 add_executable(
-  arcade
-  Core/src/main.cpp
-  )
+    arcade
+    Core/src/main.cpp
+    )
 
-# include directories
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+# rules for arcade project
+target_link_libraries(
+    arcade
+    arcade-interface
+    )
+target_link_options(arcade PRIVATE -rdynamic)
 target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
-
-# add a subdirectory to compile, to uncomment when CMakeLists will be complete
-# add_subdirectory(Games)
-# add_subdirectory(Graphics)
