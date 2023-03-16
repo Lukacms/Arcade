@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "core/arcade/arcade.hh"
+#include "Core/include/arcade/arcade.hh"
 #include <iostream>
 
 int main(int argc, const char __attribute__((unused)) * argv[])

@@ -137,6 +137,7 @@ set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
 # adding executables
 add_executable(
     arcade
+    Core/src/ADisplay.cpp
     Core/src/main.cpp
     )
 

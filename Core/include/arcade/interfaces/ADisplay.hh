@@ -7,13 +7,14 @@
 
 #pragma once
 
-#include "core/include/arcade/interfaces/IDisplay.hh"
-#include "core/include/arcade/interfaces/IWindow.hh"
+#include <arcade/interfaces/IDisplay.hh>
+#include <arcade/interfaces/IWindow.hh>
+#include <functional>
 #include <memory>
 
 namespace arc
 {
-    class ADisplay : public IDisplay
+    class ADisplay : public arc::IDisplay
     {
         protected:
             std::unique_ptr<arc::IWindow> m_window;
@@ -26,7 +27,7 @@ namespace arc
             ADisplay(ADisplay &&to_move) = delete;
             ADisplay &operator=(ADisplay const &to_copy) = delete;
             ADisplay &operator=(ADisplay const &&to_move) = delete;
-            [[nodiscard]] arc::IWindow &GetWindow() final;
+            [[nodiscard]] std::reference_wrapper<arc::IWindow> GetWindow() final;
             [[nodiscard]] bool IsDisplaySwitch() final;
             [[nodiscard]] bool IsGameSwitch() final;
     };

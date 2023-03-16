@@ -5,12 +5,13 @@
 ** ADisplay
 */
 
-#include "graphics/include/ADisplay.hh"
+#include "arcade/interfaces/IWindow.hh"
+#include <arcade/interfaces/ADisplay.hh>
 #include <functional>
 
-[[nodiscard]] arc::IWindow &arc::ADisplay::GetWindow()
+[[nodiscard]] std::reference_wrapper<arc::IWindow> arc::ADisplay::GetWindow()
 {
-    return &m_window.get();
+    return m_window->GetWindow();
 }
 
 [[nodiscard]] bool arc::ADisplay::IsDisplaySwitch()
