@@ -24,7 +24,7 @@ project(arcade)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
-include_directories(include/)
+include_directories(core/include/arcade/ core/include/arcade/enum core/include/arcade/interfaces libs/include libs/SFML/include)
 
 # Warning flags
 set(GCC_WARNING_FLAGS
@@ -109,7 +109,7 @@ endif()
 # adding executables
 add_executable(
   arcade
-  src/main.cpp
+  core/src/main.cpp
   )
 
 # include directories
