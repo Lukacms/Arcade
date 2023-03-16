@@ -9,7 +9,7 @@ on:
 
 env:
   MIRROR_URL: "git@github.com:EpitechPromo2026/B-OOP-400-BDX-4-1-arcade-luka.camus.git"
-  EXECUTABLE: "arcade"
+  EXECUTABLE: "arcade,lib/arcade_sdl.so"
 
 jobs:
   check_repository_cleanliness:

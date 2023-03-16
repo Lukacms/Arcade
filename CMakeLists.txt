@@ -22,9 +22,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 project(arcade)
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib/)
 
-include_directories(include/)
+# for library compilation => shared libraries of games and graphics
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
+
+# include directories
+include_directories(Core/include/)
+
+# add a subdirectory to compile, to uncomment when CMakeLists will be complete
+add_subdirectory(Games)
+add_subdirectory(Graphics)
 
 # Warning flags
 set(GCC_WARNING_FLAGS
@@ -47,6 +54,10 @@ set(CLANG_WARNING_FLAGS
     -Wno-return-type-c-linkage
     -Wno-signed-enum-bitfield
     -Wno-weak-vtables)
+
+if(${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 13.0.0)
+  set(CLANG_WARNING_FLAGS ${CLANG_WARNING_FLAGS} -Wno-return-std-move-in-c++11)
+endif()
 
 set(WARNING_FLAGS
     -Wall
@@ -74,6 +85,7 @@ set(CMAKE_BUILD_TYPE
       STRING
       "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel tsan"
       FORCE)
+
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3 -fdebug-default-version=2")
 endif()
@@ -106,14 +118,34 @@ else()
   error("${CMAKE_CXX_COMPILER_ID}: Unsupported compiler.")
 endif()
 
+add_library(arcade-interface INTERFACE)
+
+# link shared libraries and compile them
+# target_compile_options(arcade-interface PRIVATE ${WARNING_FLAGS})
+# target_include_directories(arcade-interface PUBLIC Core/include)
+set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
+set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
+#[[ target_link_libraries(
+    arcade-interface
+    sfml
+    sdl
+    ncurses
+    snake
+    nibbler
+    ) ]]
+
 # adding executables
 add_executable(
-  arcade
-  src/main.cpp
-  )
+    arcade
+    Core/src/main.cpp
+    )
 
-# include directories
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+# rules for arcade project
+target_link_libraries(
+    arcade
+    arcade-interface
+    )
+target_link_options(arcade PRIVATE -rdynamic)
 target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
