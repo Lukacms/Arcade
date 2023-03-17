@@ -23,9 +23,9 @@ void arc::SFMLSprite::createEntity(__attribute__((unused))  std::string str) {}
  * Create a new sprite with the texture
  * @param texture The texture to create the sprite with.
  */
-void arc::SFMLSprite::createEntity(IEntity &texture)
+void arc::SFMLSprite::createEntity(IEntity &entity)
 {
-    arc::SFMLTexture *sfml_texture = dynamic_cast<arc::SFMLTexture *>(&texture);
+    arc::SFMLTexture *sfml_texture = dynamic_cast<arc::SFMLTexture *>(&entity);
     sf::IntRect rect = sf::IntRect{this->entityRect.getLeft(), this->entityRect.getTop(),
         this->entityRect.getWidth(), this->entityRect.getHeight()};
 
@@ -43,7 +43,8 @@ void arc::SFMLSprite::destroyEntity() {}
  */
 void arc::SFMLSprite::drawEntity(__attribute__((unused))IWindow &window)
 {
-    sf::Vector2f vector = sf::Vector2f{this->entityPosition.getVectorX(), this->entityPosition.getVectorY()};
+    sf::Vector2f vector = sf::Vector2f{static_cast<float>(this->entityPosition.getVectorX()),
+        static_cast<float>(this->entityPosition.getVectorY())};
     SFMLWindow *sfml_window = dynamic_cast<SFMLWindow *>(&window);
 
     this->m_sprite.setPosition(vector);

@@ -23,7 +23,7 @@ void arc::SFMLText::createEntity(std::string str)
     this->m_text.setString(str);
 }
 
-void arc::SFMLText::createEntity(__attribute__((unused))  arc::IEntity &texture) {}
+void arc::SFMLText::createEntity(__attribute__((unused))  arc::IEntity &entity) {}
 
 void arc::SFMLText::destroyEntity() {}
 
@@ -33,7 +33,8 @@ void arc::SFMLText::destroyEntity() {}
  */
 void arc::SFMLText::drawEntity(IWindow &window)
 {
-    sf::Vector2f vector = sf::Vector2f{this->entityPosition.getVectorX(), this->entityPosition.getVectorY()};
+    sf::Vector2f vector = sf::Vector2f{static_cast<float>(this->entityPosition.getVectorX()),
+        static_cast<float>(this->entityPosition.getVectorY())};
     SFMLWindow *sfml_window = dynamic_cast<SFMLWindow *>(&window);
 
     this->m_text.setPosition(vector);

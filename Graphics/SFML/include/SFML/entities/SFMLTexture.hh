@@ -22,7 +22,7 @@ namespace arc
             SFMLTexture &operator=(const SFMLTexture&);
 
             void createEntity(std::string str) final;
-            void createEntity(IEntity &texture) final;
+            void createEntity(IEntity &entity) final;
             void destroyEntity() final;
             void drawEntity(IWindow &window) final;
             sf::Texture &getTexture();

@@ -2,33 +2,34 @@
 ** EPITECH PROJECT, 2023
 ** Arcade
 ** File description:
-** SFMLText
+** SDLFont
 */
 
 #pragma once
 
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <arcade/interfaces/IWindow.hh>
 #include <arcade/interfaces/AEntity.hh>
+#include <SDL2/SDL_ttf.h>
 
 namespace arc {
 
-    class SFMLText : public AEntity {
-        public:
-            SFMLText();
-            SFMLText(const SFMLText &);
-            ~SFMLText() override;
+    constexpr int FONT_SIZE = 24;
 
-            SFMLText &operator=(const SFMLText &);
+    class SDLFont : public AEntity {
+        public:
+            SDLFont();
+            SDLFont(const SDLFont&);
+            ~SDLFont() override;
+
+            SDLFont &operator=(const SDLFont&);
 
             void createEntity(std::string str) final;
             void createEntity(IEntity &entity) final;
             void destroyEntity() final;
             void drawEntity(IWindow &window) final;
-            void setFont(sf::Font &font);
+            [[nodiscard]] TTF_Font *getFont() const;
 
         private:
-            sf::Text m_text;
+            TTF_Font *m_font;
     };
+
 }

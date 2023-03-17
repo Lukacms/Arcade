@@ -26,7 +26,7 @@ void arc::SFMLTexture::createEntity(std::string str)
     }
 }
 
-void arc::SFMLTexture::createEntity(__attribute__((unused))IEntity &texture) {}
+void arc::SFMLTexture::createEntity(__attribute__((unused))IEntity &entity) {}
 
 void arc::SFMLTexture::destroyEntity() {}
 
