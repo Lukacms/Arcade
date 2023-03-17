@@ -22,6 +22,7 @@ namespace arc
             virtual void OpenWindow() = 0;
             virtual void CloseWindow() = 0;
             virtual void CreateWindow() = 0;
+            virtual void CreateWindow(unsigned int x_coord, unsigned int y_coord) = 0;
             virtual void UpdateWindow() = 0;
     };
 } // namespace arc
