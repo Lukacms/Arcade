@@ -7,6 +7,7 @@
 
 #include <arcade/interfaces/IEntity.hh>
 #include <SFML/entities/SFMLText.hh>
+#include <SFML/SFMLWindow.hh>
 #include <string>
 
 /* Constructor && Destructor */
@@ -30,12 +31,15 @@ void arc::SFMLText::destroyEntity() {}
  * Draw the text in the given window.
  * @param window The window in which to draw.
  */
-void arc::SFMLText::drawEntity(__attribute__((unused)) IWindow &window)
+void arc::SFMLText::drawEntity(IWindow &window)
 {
     sf::Vector2f vector = sf::Vector2f{this->entityPosition.getVectorX(), this->entityPosition.getVectorY()};
+    SFMLWindow *sfml_window = dynamic_cast<SFMLWindow *>(&window);
 
     this->m_text.setPosition(vector);
-    // Dynamic cast + vérif du dynamic cast + draw dans la window donné
+    if (sfml_window == nullptr)
+        throw;
+    sfml_window->GetWindow().draw(this->m_text);
 }
 
 void arc::SFMLText::setFont(sf::Font &font)

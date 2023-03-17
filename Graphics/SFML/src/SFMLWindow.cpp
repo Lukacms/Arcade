@@ -16,7 +16,7 @@ SFMLWindow::SFMLWindow(unsigned int x_coord, unsigned int y_coord, const std::st
 {
 }
 
-[[nodiscard]] const sf::RenderWindow &SFMLWindow::GetWindow()
+[[nodiscard]] sf::RenderWindow &SFMLWindow::GetWindow()
 {
     return m_window;
 }

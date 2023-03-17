@@ -5,6 +5,8 @@
 ** SFMLSprite
 */
 
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/SFMLWindow.hh>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -23,12 +25,12 @@ void arc::SFMLSprite::createEntity(__attribute__((unused))  std::string str) {}
  */
 void arc::SFMLSprite::createEntity(IEntity &texture)
 {
-    auto *sfml_texture = dynamic_cast<arc::SFMLTexture *>(&texture);
+    arc::SFMLTexture *sfml_texture = dynamic_cast<arc::SFMLTexture *>(&texture);
     sf::IntRect rect = sf::IntRect{this->entityRect.getLeft(), this->entityRect.getTop(),
         this->entityRect.getWidth(), this->entityRect.getHeight()};
 
-//    if (sfml_texture == nullptr)
-//        throw error;
+    if (sfml_texture == nullptr)
+        throw;
     this->m_sprite = sf::Sprite{sfml_texture->getTexture()};
     this->m_sprite.setTextureRect(rect);
 }
@@ -42,8 +44,11 @@ void arc::SFMLSprite::destroyEntity() {}
 void arc::SFMLSprite::drawEntity(__attribute__((unused))IWindow &window)
 {
     sf::Vector2f vector = sf::Vector2f{this->entityPosition.getVectorX(), this->entityPosition.getVectorY()};
+    SFMLWindow *sfml_window = dynamic_cast<SFMLWindow *>(&window);
 
     this->m_sprite.setPosition(vector);
-    // Dynamic Cast de la window + Check si nullptr + draw dans la window
+    if (sfml_window == nullptr)
+        throw;
+    sfml_window->GetWindow().draw(this->m_sprite);
 }
 

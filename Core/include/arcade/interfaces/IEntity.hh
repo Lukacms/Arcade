@@ -15,7 +15,7 @@ namespace arc {
 
     class IEntity {
         public:
-            IEntity() = delete;
+            IEntity() = default;
             IEntity(IEntity &&) = delete;
             IEntity(const IEntity &);
             virtual ~IEntity() = 0;
