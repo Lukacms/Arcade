@@ -33,4 +33,7 @@ void SFMLWindow::CloseWindow()
 
 void SFMLWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord) {}
 
-void SFMLWindow::UpdateWindow() {}
+void SFMLWindow::UpdateWindow()
+{
+    m_window.display();
+}
