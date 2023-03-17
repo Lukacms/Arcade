@@ -8,10 +8,11 @@
 #include "arcade/interfaces/IWindow.hh"
 #include <arcade/interfaces/ADisplay.hh>
 #include <functional>
+#include <memory>
 
 [[nodiscard]] std::reference_wrapper<arc::IWindow> arc::ADisplay::GetWindow()
 {
-    return m_window->GetWindow();
+    return std::reference_wrapper<arc::IWindow>{std::ref(*m_window)};
 }
 
 [[nodiscard]] bool arc::ADisplay::IsDisplaySwitch()
