@@ -16,8 +16,6 @@ namespace arc
     class IDisplay
     {
         public:
-            IDisplay(IDisplay const &to_copy) = delete;
-            IDisplay &operator=(IDisplay const &to_copy) = delete;
             virtual ~IDisplay() = default;
             [[nodiscard]] virtual std::reference_wrapper<arc::IWindow> GetWindow() = 0;
             [[nodiscard]] virtual arc::Event GetEvent() = 0;
