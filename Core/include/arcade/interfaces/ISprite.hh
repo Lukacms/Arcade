@@ -13,6 +13,12 @@
 
 namespace arc {
 
+    struct Color {
+        int red;
+        int green;
+        int blue;
+    };
+
     class ISprite {
         public:
             ISprite() = default;
@@ -31,6 +37,7 @@ namespace arc {
             virtual void setPosition(arc::Vector vector) = 0;
             virtual void setSize(arc::Vector vector) = 0;
             virtual void setRectangle(arc::Rect rectangle) = 0;
+            virtual void setColor(int red, int green, int blue) = 0;
             virtual void drawSprite(IWindow &window) = 0;
     };
 }

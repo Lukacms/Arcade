@@ -47,3 +47,8 @@ void arc::NCursesWindow::UpdateWindow()
 {
     wrefresh(this->m_window);
 }
+
+WINDOW *arc::NCursesWindow::GetWindow()
+{
+    return this->m_window;
+}

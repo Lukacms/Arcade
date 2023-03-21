@@ -16,7 +16,9 @@ namespace arc {
             Vector(int pos_x, int pos_y);
             Vector(const Vector&);
             ~Vector();
+
             Vector &operator=(const Vector&);
+            Vector &operator+=(const Vector&);
 
             [[nodiscard]] int getVectorX() const;
             [[nodiscard]] int getVectorY() const;
