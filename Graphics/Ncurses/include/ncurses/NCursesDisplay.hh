@@ -14,7 +14,7 @@ namespace arc
 
     class NCursesDisplay : public ADisplay {
         public:
-            NCursesDisplay() = delete;
+            NCursesDisplay();
             NCursesDisplay(NCursesDisplay const &to_copy) = delete;
             NCursesDisplay(NCursesDisplay &&to_move) = delete;
             NCursesDisplay &operator=(NCursesDisplay const &to_copy) = delete;
