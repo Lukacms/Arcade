@@ -19,6 +19,7 @@ namespace arc
         CHANGE_GAME_R,
         CHANGE_LIB_L,
         CHANGE_LIB_R,
-        ENTER
+        ENTER,
+        NONE
     };
 }
