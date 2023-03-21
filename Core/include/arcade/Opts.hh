@@ -10,11 +10,16 @@
 #include <arcade/Core.hh>
 #include <exception>
 #include <string>
+#include <string_view>
 #include <utility>
 
-constexpr char const *CORE_NOLIBS = "No shared libraries found";
-constexpr char const *CORE_LIB_NOT_LOADING =
-    "Libary given in argument not loading. Check the given path.";
+// utils
+constexpr std::string_view LIBS_PATHS{"./lib"};
+
+// error messages
+constexpr std::string_view CORE_NOLIBS{"No shared libraries found"};
+constexpr std::string_view CORE_LIB_NOT_LOADING{
+    "Libary given in argument not loading. Check the given path."};
 
 namespace arc
 {

@@ -26,3 +26,10 @@ arc::Core arc::Opts::getOpts()
     }
     return std::move(this->core);
 }
+
+// error class
+
+const char *arc::Opts::OptsException::what() const noexcept
+{
+    return this->error_msg.c_str();
+}
