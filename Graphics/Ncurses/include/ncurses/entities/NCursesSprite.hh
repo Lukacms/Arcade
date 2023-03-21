@@ -2,25 +2,24 @@
 ** EPITECH PROJECT, 2023
 ** Arcade
 ** File description:
-** SFMLSprite
+** NCursesSprite
 */
 
 #pragma once
 
 #include <arcade/interfaces/ASprite.hh>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <string>
+#include <curses.h>
 
 namespace arc {
 
-    class SFMLSprite : public ASprite {
+        class NCursesSprite : public ASprite {
 
         public:
-            SFMLSprite();
-            SFMLSprite(const SFMLSprite&);
-            ~SFMLSprite() override;
+            NCursesSprite();
+            NCursesSprite(const NCursesSprite&);
+            ~NCursesSprite() override;
 
-            SFMLSprite &operator=(const SFMLSprite&);
+            NCursesSprite &operator=(const NCursesSprite&);
 
             void createSprite(const std::string &str);
             void createSprite(ISprite &sprite) final;
@@ -28,7 +27,7 @@ namespace arc {
             void drawSprite(IWindow &window) final;
 
         private:
-            sf::RectangleShape m_sprite;
+            char m_sprite;
     };
 
 }

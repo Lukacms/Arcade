@@ -21,7 +21,7 @@ namespace arc
             ~Vector() = default;
             Vector &operator=(const Vector &) = default;
             Vector &operator=(Vector &&) = default;
-
+            Vector &operator+=(const Vector &);
             [[nodiscard]] int getVectorX() const;
             [[nodiscard]] int getVectorY() const;
             void setVectorX(int new_point);
