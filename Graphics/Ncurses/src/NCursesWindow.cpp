@@ -15,6 +15,7 @@ arc::NCursesWindow::NCursesWindow(unsigned int x_coord, unsigned int y_coord, co
     this->m_window = newwin(x_coord, y_coord, 0, 0);
     if (this->m_window == nullptr)
         throw;
+    nodelay(this->m_window, true);
 }
 
 /* Methods */
@@ -34,6 +35,7 @@ void arc::NCursesWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord
     this->m_window = newwin(x_coord, y_coord, 0, 0);
     if (this->m_window == nullptr)
         throw;
+    nodelay(this->m_window, true);
 }
 
 void arc::NCursesWindow::UpdateWindow()
