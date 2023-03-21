@@ -14,17 +14,17 @@
 
 constexpr char const *CORE_NOLIBS = "No shared libraries found";
 constexpr char const *CORE_LIB_NOT_LOADING =
-    "Libary given in argument not loading. Check the path.";
+    "Libary given in argument not loading. Check the given path.";
 
 namespace arc
 {
     class Opts
     {
         public:
-            Opts() = default;
+            Opts(std::string pstarting_display);
             Opts(Opts const &to_copy) = delete;
             Opts(Opts &&to_move) = delete;
-            ~Opts() = delete;
+            ~Opts() = default;
             Opts &operator=(Opts const &to_copy) = delete;
 
             // methods
@@ -34,9 +34,9 @@ namespace arc
              *
              * handle error handling of library given in parameter
              * */
-            static arc::Core getOpts(const std::string &starting_lib);
+            arc::Core getOpts();
             void loadLibs();
-            void getStartingDisplay(const std::string &starting_lib);
+            void loadStartingDisplay();
 
             // error class
             class OptsException : public std::exception
@@ -45,7 +45,7 @@ namespace arc
                     OptsException(std::string perror_msg) : error_msg{std::move(perror_msg)} {}
 
                     OptsException(OptsException const &to_copy) = delete;
-                    OptsException(OptsException &&to_move) = delete;
+                    OptsException(OptsException &&to_move) = default;
                     ~OptsException() override = default;
                     OptsException &operator=(OptsException const &to_copy) = default;
 
@@ -57,5 +57,6 @@ namespace arc
 
         private:
             std::string starting_display{};
+            arc::Core core{};
     };
 } // namespace arc

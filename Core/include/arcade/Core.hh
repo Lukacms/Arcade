@@ -23,12 +23,15 @@ namespace arc
             Core(Core &&to_move) = default;
             ~Core() = default;
             Core &operator=(Core const &to_copy) = delete;
+            Core &operator=(Core &&to_move) = default;
 
             // getter and setters
             const std::vector<std::string> getSharedLibs();
             const std::string getActiveDisplay();
             const std::string getActiveGame();
             const std::reference_wrapper<arc::IDisplay> getIDisplay();
+
+            // TODO make class methods (and implement them)
 
             // error class
             class CoreException : public std::exception
@@ -49,8 +52,10 @@ namespace arc
             // or that, idk the best way
             std::vector<std::string> shared_displays{};
             std::vector<std::string> shared_games{};
+            // NOTE is it useful ?
             std::string active_display{};
-            std::string active_game{};
+            // not implemeted yet
+            // std::unique_ptr<arc::IGame> active_game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
     };
 } // namespace arc

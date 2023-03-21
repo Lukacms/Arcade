@@ -1,17 +1,7 @@
-# to build:
+##
+## CMakeLists: Arcade / Arcade
+##
 
-# mkdir build && cd build
-
-# cmake .. -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-# -DCMAKE_EXPORT_COMPILE_COMMANDS=true
-
-# ninja
-
-# if project does not compile with ninja:
-# cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-# cmake --build .
-
-# => executable should be in build file
 cmake_minimum_required(VERSION 3.16)
 
 # standard version cpp
@@ -121,6 +111,7 @@ endif()
 add_library(arcade-interface INTERFACE)
 
 # link shared libraries and compile them
+# do not uncomment commented lines, just for personnal comprehension
 # target_compile_options(arcade-interface PRIVATE ${WARNING_FLAGS})
 # target_include_directories(arcade-interface PUBLIC Core/include)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
@@ -139,6 +130,9 @@ add_executable(
     arcade
     Core/src/ADisplay.cpp
     Core/src/main.cpp
+    Core/src/core/Core.cpp
+    Core/src/opts/Opts.cpp
+    Core/src/opts/libFactory.cpp
     )
 
 # rules for arcade project
