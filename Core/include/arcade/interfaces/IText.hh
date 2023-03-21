@@ -7,20 +7,22 @@
 
 #pragma once
 
-#include <string>
 #include <arcade/Geometry.hh>
 #include <arcade/interfaces/IWindow.hh>
+#include <string>
 
-namespace arc {
+namespace arc
+{
 
-        class IText {
+    class IText
+    {
         public:
             IText() = default;
             IText(IText &&) = delete;
             IText(const IText &) = default;
             virtual ~IText() = 0;
 
-            IText &operator=(const IText&) = default;
+            IText &operator=(const IText &) = default;
             IText &operator=(IText &&) = delete;
 
             virtual void createText(std::string str) = 0;
@@ -33,4 +35,4 @@ namespace arc {
             virtual void setRectangle(arc::Rect rectangle) = 0;
             virtual void drawText(IWindow &window) = 0;
     };
-}
+} // namespace arc
