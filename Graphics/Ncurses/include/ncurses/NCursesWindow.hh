@@ -21,7 +21,7 @@ namespace arc {
             NCursesWindow &operator=(NCursesWindow const &to_copy) = delete;
             NCursesWindow &operator=(NCursesWindow const &&to_move) = delete;
             NCursesWindow(NCursesWindow &&to_move) = delete;
-            ~NCursesWindow() override = default;
+            ~NCursesWindow() override;
 
             void OpenWindow() final;
             void CloseWindow() final;
