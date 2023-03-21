@@ -5,6 +5,8 @@
 add_library(
   arcade_sdl SHARED
   src/sdl.cpp
+  src/SDLWindow.cpp
+  src/SDLDisplay.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
