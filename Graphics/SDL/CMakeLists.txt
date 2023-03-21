@@ -7,9 +7,6 @@ add_library(
   src/sdl.cpp
   src/SDLWindow.cpp
   src/SDLDisplay.cpp
-  src/entities/SDLFont.cpp
-  src/entities/SDLSurface.cpp
-  src/entities/SDLText.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
