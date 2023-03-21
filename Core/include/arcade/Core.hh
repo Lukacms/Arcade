@@ -8,6 +8,7 @@
 #pragma once
 
 #include <arcade/interfaces/IDisplay.hh>
+#include <arcade/interfaces/IGame.hh>
 #include <exception>
 #include <memory>
 #include <string>
@@ -55,7 +56,7 @@ namespace arc
             // NOTE is it useful ?
             std::string active_display{};
             // not implemeted yet
-            // std::unique_ptr<arc::IGame> active_game{nullptr};
+            std::unique_ptr<arc::IGame> active_game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
     };
 } // namespace arc

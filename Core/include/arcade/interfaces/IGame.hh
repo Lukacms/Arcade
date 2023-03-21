@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "arcade/enum/EventEnum.hh"
+#include <arcade/enum/EventEnum.hh>
 
 namespace arc
 {
