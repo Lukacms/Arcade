@@ -9,14 +9,18 @@
 
 #include <utility>
 
-namespace arc {
+namespace arc
+{
 
-    class Vector {
+    class Vector
+    {
         public:
             Vector(int pos_x, int pos_y);
-            Vector(const Vector&);
-            ~Vector();
-            Vector &operator=(const Vector&);
+            Vector(const Vector &) = default;
+            Vector(Vector &&) = default;
+            ~Vector() = default;
+            Vector &operator=(const Vector &) = default;
+            Vector &operator=(Vector &&) = default;
 
             [[nodiscard]] int getVectorX() const;
             [[nodiscard]] int getVectorY() const;
@@ -28,13 +32,15 @@ namespace arc {
             int y;
     };
 
-    class Rect {
+    class Rect
+    {
         public:
             Rect(int width, int height, int top, int left);
-            Rect(const Rect&);
-            ~Rect();
-
-            Rect &operator=(const Rect&);
+            Rect(const Rect &) = default;
+            Rect(Rect &&) = default;
+            ~Rect() = default;
+            Rect &operator=(const Rect &) = default;
+            Rect &operator=(Rect &&) = default;
 
             [[nodiscard]] int getWidth() const;
             [[nodiscard]] int getHeight() const;
@@ -51,4 +57,4 @@ namespace arc {
             int top;
             int left;
     };
-}
+} // namespace arc
