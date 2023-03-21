@@ -23,8 +23,6 @@ namespace arc
             IDisplay &operator=(IDisplay const &&to_move) = delete;
             virtual ~IDisplay() = default;
             [[nodiscard]] virtual std::reference_wrapper<arc::IWindow> GetWindow() = 0;
-            [[nodiscard]] virtual bool IsDisplaySwitch() = 0;
-            [[nodiscard]] virtual bool IsGameSwitch() = 0;
             [[nodiscard]] virtual arc::Event GetEvent() = 0;
     };
 } // namespace arc

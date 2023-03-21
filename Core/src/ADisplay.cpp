@@ -14,13 +14,3 @@
 {
     return std::reference_wrapper<arc::IWindow>{std::ref(*m_window)};
 }
-
-[[nodiscard]] bool arc::ADisplay::IsDisplaySwitch()
-{
-    return m_is_display_switch;
-}
-
-[[nodiscard]] bool arc::ADisplay::IsGameSwitch()
-{
-    return m_is_game_switch;
-}

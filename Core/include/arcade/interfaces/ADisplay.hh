@@ -18,8 +18,6 @@ namespace arc
     {
         protected:
             std::unique_ptr<arc::IWindow> m_window;
-            bool m_is_game_switch{false};
-            bool m_is_display_switch{false};
 
         public:
             ADisplay() = delete;
@@ -28,7 +26,5 @@ namespace arc
             ADisplay &operator=(ADisplay const &to_copy) = delete;
             ADisplay &operator=(ADisplay const &&to_move) = delete;
             [[nodiscard]] std::reference_wrapper<arc::IWindow> GetWindow() final;
-            [[nodiscard]] bool IsDisplaySwitch() final;
-            [[nodiscard]] bool IsGameSwitch() final;
     };
 } // namespace arc
