@@ -7,16 +7,11 @@
 
 #pragma once
 
-#include "arcade/interfaces/IDisplay.hh"
+#include <arcade/interfaces/IDisplay.hh>
 #include <exception>
-#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
-
-constexpr char const *CORE_NOLIBS = "No shared libraries found";
-constexpr char const *CORE_LIB_NOT_LOADING =
-    "Libary given in argument not loading. Check the path.";
 
 namespace arc
 {
@@ -49,9 +44,13 @@ namespace arc
             };
 
         private:
+            // go either like that
             std::vector<std::string> shared_libs{};
+            // or that, idk the best way
+            std::vector<std::string> shared_displays{};
+            std::vector<std::string> shared_games{};
             std::string active_display{};
             std::string active_game{};
-            std::unique_ptr<arc::IDisplay> display;
+            std::unique_ptr<arc::IDisplay> display{nullptr};
     };
 } // namespace arc
