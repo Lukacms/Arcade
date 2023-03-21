@@ -24,13 +24,10 @@ namespace arc {
             IText &operator=(IText &&) = delete;
 
             virtual void createText(std::string str) = 0;
-            virtual void createText(IText &) = 0;
             [[nodiscard]] virtual IText &getText() = 0;
             virtual void destroyText() = 0;
-            virtual void moveText(arc::Vector vector) = 0;
             virtual void setPosition(arc::Vector vector) = 0;
-            virtual void setSize(arc::Vector vector) = 0;
-            virtual void setRectangle(arc::Rect rectangle) = 0;
+            virtual void setSize(int size) = 0;
             virtual void drawText(IWindow &window) = 0;
     };
 }
