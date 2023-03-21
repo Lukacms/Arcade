@@ -31,10 +31,10 @@
 *.out
 *.app
 
+
 # specific to project
 build/
 /arcade
-
 # CMake
 CMakeLists.txt.user
 CMakeCache.txt
