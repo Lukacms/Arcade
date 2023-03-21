@@ -27,7 +27,7 @@ namespace arc {
             void CloseWindow() final;
             void CreateWindow(unsigned int x_coord, unsigned int y_coord) final;
             void UpdateWindow() final;
-            [[nodiscard]] const WINDOW *GetWindow();
+            [[nodiscard]] WINDOW *GetWindow();
 
         private:
             WINDOW *m_window = nullptr;
