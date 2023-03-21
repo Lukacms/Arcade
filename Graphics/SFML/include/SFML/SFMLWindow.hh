@@ -14,9 +14,8 @@
 class SFMLWindow : public arc::IWindow
 {
     public:
-        SFMLWindow() = default;
+        SFMLWindow();
         ~SFMLWindow() override = default;
-
         SFMLWindow(unsigned int x_coord, unsigned int y_coord, const std::string &name_window);
         SFMLWindow(SFMLWindow const &to_copy) = delete;
         SFMLWindow &operator=(SFMLWindow const &to_copy) = delete;
@@ -27,7 +26,7 @@ class SFMLWindow : public arc::IWindow
         void CloseWindow() final;
         void CreateWindow(unsigned int x_coord, unsigned int y_coord) final;
         void UpdateWindow() final;
-        [[nodiscard]] const sf::RenderWindow &GetWindow();
+        [[nodiscard]] sf::RenderWindow &GetWindow();
 
     private:
         sf::RenderWindow m_window;
