@@ -17,6 +17,11 @@ namespace arc
     {
         public:
             virtual ~IDisplay() = default;
+            IDisplay() = default;
+            IDisplay(IDisplay const &to_copy) = default;
+            IDisplay(IDisplay &&to_move) = default;
+            IDisplay &operator=(IDisplay const &to_copy) = default;
+            IDisplay &operator=(IDisplay &&to_move) = default;
             [[nodiscard]] virtual std::reference_wrapper<arc::IWindow> GetWindow() = 0;
             [[nodiscard]] virtual arc::Event GetEvent() = 0;
     };
