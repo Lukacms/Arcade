@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include <arcade/interfaces/ASprite.hh>
+#include <arcade/interfaces/ISprite.hh>
 #include <curses.h>
 
 namespace arc {
 
-        class NCursesSprite : public ASprite {
+        class NCursesSprite : public ISprite {
 
         public:
             NCursesSprite();
@@ -21,13 +21,17 @@ namespace arc {
 
             NCursesSprite &operator=(const NCursesSprite&);
 
-            void createSprite(const std::string &str);
-            void createSprite(ISprite &sprite) final;
-            void destroySprite() final;
+            void setSpriteColor(int red, int green, int blue) final;
+            void moveSpritePosition(int pos_x, int pos_y) final;
+            void setSpritePosition(int pos_x, int pos_y) final;
             void drawSprite(IWindow &window) final;
+            [[nodiscard]] ISprite &getSprite() final;
 
         private:
             char m_sprite;
+            int m_x;
+            int m_y;
+            arc::Color m_color = {0, 0, 0};
     };
 
 }

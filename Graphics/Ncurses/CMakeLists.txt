@@ -8,6 +8,7 @@ add_library(
   src/NCursesDisplay.cpp
   src/NCursesWindow.cpp
   src/entities/NCursesSprite.cpp
+  src/entities/NCursesText.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)

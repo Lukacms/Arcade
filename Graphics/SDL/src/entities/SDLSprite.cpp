@@ -14,11 +14,24 @@
 
 /* Methods */
 
-void arc::SDLSprite::createSprite(const std::string &str) {}
+void arc::SDLSprite::setSpritePosition(int pos_x, int pos_y)
+{
+    this->m_sprite.x = pos_x;
+    this->m_sprite.y = pos_y;
+}
 
-void arc::SDLSprite::createSprite(ISprite &sprite) {}
+void arc::SDLSprite::setSpriteColor(int red, int green, int blue)
+{
+    this->m_color.red = red;
+    this->m_color.green = green;
+    this->m_color.blue = blue;
+}
 
-void arc::SDLSprite::destroySprite() {}
+void arc::SDLSprite::moveSpritePosition(int pos_x, int pos_y)
+{
+    this->m_sprite.x += pos_x;
+    this->m_sprite.y += pos_y;
+}
 
 void arc::SDLSprite::drawSprite(IWindow &window)
 {
@@ -28,13 +41,14 @@ void arc::SDLSprite::drawSprite(IWindow &window)
     if (nwin == nullptr)
         throw;
     renderer = nwin->GetRenderer();
-    this->m_sprite.x = this->m_position.getVectorX();
-    this->m_sprite.y = this->m_position.getVectorY();
-    this->m_sprite.w = this->m_size.getVectorX();
-    this->m_sprite.h = this->m_size.getVectorY();
-    SDL_SetRenderDrawColor(renderer, this->m_color.red,
-        this->m_color.green, this->m_color.blue, 1);
+    SDL_SetRenderDrawColor(renderer, this->m_color.red, this->m_color.green,
+        this->m_color.blue, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(renderer, &this->m_sprite);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
     SDL_RenderPresent(renderer);
+}
+
+arc::ISprite &arc::SDLSprite::getSprite()
+{
+    return *this;
 }

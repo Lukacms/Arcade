@@ -5,7 +5,8 @@
 ** SFMLSprite
 */
 
-#include "SFML/SFMLWindow.hh"
+#include <SFML/Config.hpp>
+#include <SFML/SFMLWindow.hh>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
@@ -15,24 +16,32 @@
 
 /* Methods */
 
-void arc::SFMLSprite::createSprite(const std::string &str) {}
-
-void arc::SFMLSprite::createSprite(ISprite &sprite) {}
-
-void arc::SFMLSprite::destroySprite()
+void arc::SFMLSprite::setSpritePosition(int pos_x, int pos_y)
 {
-    this->m_sprite.setSize(sf::Vector2f{0, 0});
-    this->m_sprite.setFillColor(sf::Color::Black);
+    this->m_sprite.setPosition(pos_x, pos_y);
+}
+
+void arc::SFMLSprite::moveSpritePosition(int pos_x, int pos_y)
+{
+    this->m_sprite.move(pos_x, pos_y);
+}
+
+void arc::SFMLSprite::setSpriteColor(int red, int green, int blue)
+{
+    sf::Color color{static_cast<sf::Uint8>(red), static_cast<sf::Uint8>(green), static_cast<sf::Uint8>(blue)};
+    this->m_sprite.setFillColor(color);
 }
 
 void arc::SFMLSprite::drawSprite(IWindow &window)
 {
-    sf::Vector2f pos{static_cast<float>(this->m_position.getVectorX()),
-        static_cast<float>(this->m_position.getVectorY())};
     SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(&window);
 
     if (nwin == nullptr)
         throw;
-    this->m_sprite.setPosition(pos);
     nwin->GetWindow().draw(this->m_sprite);
+}
+
+arc::ISprite &arc::SFMLSprite::getSprite()
+{
+    return *this;
 }
