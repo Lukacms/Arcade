@@ -7,12 +7,13 @@
 
 #pragma once
 
-#include <arcade/interfaces/AText.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IText.hh>
 #include <arcade/interfaces/IWindow.hh>
 
 namespace arc {
 
-    class NCursesText : public AText {
+    class NCursesText : public IText {
         public:
             NCursesText() = default;
             NCursesText(const NCursesText&) = default;
@@ -22,8 +23,17 @@ namespace arc {
             NCursesText &operator=(const NCursesText&) = default;
             NCursesText &operator=(NCursesText &&);
 
-            void destroyText() final;
+            void setText(std::string str) final;
+            void setFont(const std::string &font) final;
+            void setTextColor(int red, int green, int blue) final;
+            void setTextPosition(int pos_x, int pos_y) final;
             void drawText(IWindow &window) final;
             [[nodiscard]] IText &getText() final;
+
+        private:
+            std::string m_text;
+            arc::Color m_color;
+            int pos_x;
+            int pos_y;
     };
 }

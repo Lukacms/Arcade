@@ -5,6 +5,7 @@
 ** NCursesSprite
 */
 
+#include "arcade/interfaces/ISprite.hh"
 #include <curses.h>
 #include <ncurses/entities/NCursesSprite.hh>
 #include <ncurses/NCursesWindow.hh>
@@ -13,13 +14,23 @@
 
 /* Methods */
 
-void arc::NCursesSprite::createSprite(const std::string &str) {}
-
-void arc::NCursesSprite::createSprite(ISprite &sprite) {}
-
-void arc::NCursesSprite::destroySprite()
+void arc::NCursesSprite::setSpriteColor(int red, int green, int blue)
 {
-    this->m_sprite = '\0';
+    this->m_color.red = red;
+    this->m_color.green = green;
+    this->m_color.blue = blue;
+}
+
+void arc::NCursesSprite::setSpritePosition(int pos_x, int pos_y)
+{
+    this->m_x = pos_x;
+    this->m_y = pos_y;
+}
+
+void arc::NCursesSprite::moveSpritePosition(int pos_x, int pos_y)
+{
+    this->m_x += pos_x;
+    this->m_y += pos_y;
 }
 
 void arc::NCursesSprite::drawSprite(IWindow &window)
@@ -28,6 +39,10 @@ void arc::NCursesSprite::drawSprite(IWindow &window)
 
     if (nwin == nullptr)
         throw;
-    mvwprintw(nwin->GetWindow(), this->m_position.getVectorX(),
-        this->m_position.getVectorY(), "%c", this->m_sprite);
+    mvwprintw(nwin->GetWindow(), this->m_x, this->m_y, "%c", this->m_sprite);
+}
+
+arc::ISprite &arc::NCursesSprite::getSprite()
+{
+    return *this;
 }

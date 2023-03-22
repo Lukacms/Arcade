@@ -29,15 +29,10 @@ namespace arc {
             ISprite &operator=(const ISprite&) = default;
             ISprite &operator=(ISprite &&) = delete;
 
-            virtual void createSprite(std::string str) = 0;
-            virtual void createSprite(ISprite &) = 0;
-            [[nodiscard]] virtual ISprite &getSprite() = 0;
-            virtual void destroySprite() = 0;
-            virtual void moveSprite(arc::Vector vector) = 0;
-            virtual void setPosition(arc::Vector vector) = 0;
-            virtual void setSize(arc::Vector vector) = 0;
-            virtual void setRectangle(arc::Rect rectangle) = 0;
-            virtual void setColor(int red, int green, int blue) = 0;
+            virtual void setSpriteColor(int red, int green, int blue) = 0;
+            virtual void moveSpritePosition(int pos_x, int pos_y) = 0;
+            virtual void setSpritePosition(int pos_x, int pos_y) = 0;
             virtual void drawSprite(IWindow &window) = 0;
+            [[nodiscard]] virtual ISprite &getSprite() = 0;
     };
 }

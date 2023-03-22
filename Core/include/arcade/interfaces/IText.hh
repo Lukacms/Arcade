@@ -23,11 +23,11 @@ namespace arc {
             IText &operator=(const IText&) = default;
             IText &operator=(IText &&) = delete;
 
-            virtual void createText(std::string str) = 0;
-            [[nodiscard]] virtual IText &getText() = 0;
-            virtual void destroyText() = 0;
-            virtual void setPosition(arc::Vector vector) = 0;
-            virtual void setSize(int size) = 0;
+            virtual void setText(std::string str) = 0;
+            virtual void setFont(const std::string &font) = 0;
+            virtual void setTextColor(int red, int green, int blue) = 0;
+            virtual void setTextPosition(int pos_x, int pos_y) = 0;
             virtual void drawText(IWindow &window) = 0;
+            [[nodiscard]] virtual IText &getText() = 0;
     };
 }

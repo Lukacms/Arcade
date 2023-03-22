@@ -9,25 +9,36 @@
 
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_ttf.h>
-#include <arcade/interfaces/AText.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IText.hh>
+#include <string>
 
-namespace arc {
+namespace arc
+{
 
-    class SDLText : public AText {
+    class SDLText : public IText
+    {
         public:
             SDLText() = default;
-            SDLText(const SDLText&) = default;
+            SDLText(const SDLText &) = default;
             SDLText(SDLText &&) = delete;
-            ~SDLText() = default;
-    
-            SDLText &operator=(const SDLText&) = default;
+            ~SDLText() override;
+
+            SDLText &operator=(const SDLText &) = default;
             SDLText &operator=(SDLText &&);
 
-            void destroyText() final;
+            void setText(std::string str) final;
+            void setFont(const std::string &font) final;
+            void setTextColor(int red, int green, int blue) final;
+            void setTextPosition(int pos_x, int pos_y) final;
             void drawText(IWindow &window) final;
             [[nodiscard]] IText &getText() final;
 
         private:
+            std::string m_text;
             TTF_Font *m_font;
+            arc::Color m_color{0, 0, 0};
+            int pos_x;
+            int pos_y;
     };
-}
+} // namespace arc
