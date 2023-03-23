@@ -5,6 +5,10 @@
 add_library(
   arcade_sfml SHARED
   src/sfml.cpp
+  src/SFMLWindow.cpp
+  src/SFMLDisplay.cpp
+  src/entities/SFMLSprite.cpp
+  src/entities/SFMLText.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)

@@ -5,6 +5,7 @@
 add_library(
   arcade_snake SHARED
   src/Snake.cpp
+  src/SnakeGame.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ../${PROJECT_SOURCE_DIR}/lib/)
