@@ -29,7 +29,9 @@ class Snake
         ~Snake() = default;
         Snake &operator=(Snake const &to_copy) = default;
         Snake &operator=(Snake &&to_move) = default;
-        void move_snake(int x_coord, int y_coord);
+        void move_snake(int x_coord, int y_coord, Orient orientation);
+        void expand_snake(int x_coord, int y_coord, Orient orientation);
+        void reset_snake();
 
     private:
         Tile m_head_snake{};
