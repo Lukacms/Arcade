@@ -32,7 +32,18 @@
         throw arc::Core::CoreException(e.what());
     }
     dlclose(handle);
-} */
+}
+// est-ce que ça ok ???
+void arc::Core::isGameOrGraphic(const std::string &filepath)
+{
+    void *handle = dlopen(filepath.c_str(), RTLD_LAZY);
+    auto *loader = dlsym(handle, LOAD_METHOD.data());
+
+    if (dynamic_cast<std::unique_ptr<IDisplay>>(loader()))
+        this->shared_displays.push_back(filepath);
+    else if (dynamic_cast<std::unique_ptr<IGame>>(loader()))
+        this->shared_games.push_back(filepath);
+}*/
 
 void arc::Core::isGameOrGraphic(const std::string &filepath)
 {
