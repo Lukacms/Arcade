@@ -5,7 +5,7 @@
 ** libFactory
 */
 
-#include "arcade/Core.hh"
+#include <arcade/Core.hh>
 #include <arcade/Opts.hh>
 #include <dlfcn.h>
 #include <filesystem>

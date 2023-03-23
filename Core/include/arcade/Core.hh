@@ -50,10 +50,14 @@ namespace arc
             [[nodiscard]] std::reference_wrapper<arc::IGame> getIGame() const;
 
             // NOTE make class methods (and implement them)
-            // methods
+            // methods to load a dynamic library
             void isGameOrGraphic(const std::string &filepath);
             void changeDisplay(const std::string &filepath);
             void changeGame(const std::string &filepath);
+
+            // methods to manipulate them
+            void handDisplay();
+            void handEvents();
 
             // error class
             class CoreException : public std::exception

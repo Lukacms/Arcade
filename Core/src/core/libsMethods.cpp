@@ -5,10 +5,10 @@
 ** libsMethods
 */
 
-#include "arcade/interfaces/IDisplay.hh"
-#include "arcade/interfaces/IGame.hh"
 #include <algorithm>
 #include <arcade/Core.hh>
+#include <arcade/interfaces/IDisplay.hh>
+#include <arcade/interfaces/IGame.hh>
 #include <dlfcn.h>
 #include <iostream>
 #include <memory>
