@@ -50,3 +50,33 @@ void arc::Core::isGameOrGraphic(const std::string &filepath)
     }
     throw arc::Core::CoreException(LIB_FORMAT_ERR.data());
 }
+
+void arc::Core::changeDisplay(const std::string &filepath)
+{
+    void *handle = nullptr;
+
+    if (this->display)
+        this->display.release();
+    if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
+        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+    auto *loader =
+        reinterpret_cast<std::unique_ptr<arc::IDisplay> (*)()>(dlsym(handle, LOAD_METHOD.data()));
+    if (!loader)
+        throw arc::Core::CoreException(LIB_OBJ_LOAD_ERR.data());
+    this->display = loader();
+}
+
+void arc::Core::changeGame(const std::string &filepath)
+{
+    void *handle = nullptr;
+
+    // NOTE if well understood, release the ownership of the pointer, so call the destructor
+    // same for the above function
+    if (this->game)
+        this->game.release();
+    if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
+        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+    auto *loader =
+        reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(dlsym(handle, LOAD_METHOD.data()));
+    this->game = loader();
+}

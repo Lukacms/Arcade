@@ -13,16 +13,21 @@
 #include <exception>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <vector>
 
 const std::vector<std::string> DISPLAYS{"./lib/arcade_ncurses.so", "./lib/arcade_sdl.so",
                                         "./lib/arcade_sfml.so"};
 const std::vector<std::string> GAMES{"./lib/arcade_nibbler.so", "./lib/arcade_snake.so"};
 
+const std::string_view LOAD_METHOD = "entryPoint";
+
 // exception messages
 constexpr std::string_view WRONG_FILEPATH{"Filepath not correct."};
 constexpr std::string_view DLOPEN_ERR{"Dlopen malfunction."};
 constexpr std::string_view LIB_FORMAT_ERR{"Lib does not exists"};
+constexpr std::string_view LIB_LOADING_ERR{"Shared library can't be loaded."};
+constexpr std::string_view LIB_OBJ_LOAD_ERR{"Does not have a method to load object."};
 
 namespace arc
 {
@@ -37,18 +42,18 @@ namespace arc
             Core &operator=(Core &&to_move) = default;
 
             // getter and setters
-            [[nodiscard]] std::vector<std::string> getSharedLibs() const;
-            [[nodiscard]] std::vector<std::string> getSharedDisplays() const;
-            [[nodiscard]] std::vector<std::string> getSharedGames() const;
-            [[nodiscard]] std::string getActiveDisplay() const;
-            [[nodiscard]] std::string getActiveGame() const;
+            [[nodiscard]] const std::vector<std::string> &getSharedDisplays() const;
+            [[nodiscard]] const std::vector<std::string> &getSharedGames() const;
+            [[nodiscard]] const std::string &getActiveDisplay() const;
+            [[nodiscard]] const std::string &getActiveGame() const;
             [[nodiscard]] std::reference_wrapper<arc::IDisplay> getIDisplay() const;
             [[nodiscard]] std::reference_wrapper<arc::IGame> getIGame() const;
-            void addSharedLib(std::string filepath);
 
-            // TODO make class methods (and implement them)
+            // NOTE make class methods (and implement them)
             // methods
             void isGameOrGraphic(const std::string &filepath);
+            void changeDisplay(const std::string &filepath);
+            void changeGame(const std::string &filepath);
 
             // error class
             class CoreException : public std::exception
@@ -68,15 +73,11 @@ namespace arc
             };
 
         private:
-            // go either like that
-            std::vector<std::string> shared_libs{};
-            // or that, idk the best way
             std::vector<std::string> shared_displays{};
             std::vector<std::string> shared_games{};
             // NOTE is it useful ?
             std::string active_display{};
             std::string active_game{};
-            // not implemeted yet
             std::unique_ptr<arc::IGame> game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
     };

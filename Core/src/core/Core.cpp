@@ -14,27 +14,22 @@
 
 // getters and setters for Core
 
-std::vector<std::string> arc::Core::getSharedLibs() const
-{
-    return this->shared_libs;
-}
-
-std::vector<std::string> arc::Core::getSharedDisplays() const
+const std::vector<std::string> &arc::Core::getSharedDisplays() const
 {
     return this->shared_displays;
 }
 
-std::vector<std::string> arc::Core::getSharedGames() const
+const std::vector<std::string> &arc::Core::getSharedGames() const
 {
     return this->shared_games;
 }
 
-std::string arc::Core::getActiveDisplay() const
+const std::string &arc::Core::getActiveDisplay() const
 {
     return this->active_display;
 }
 
-std::string arc::Core::getActiveGame() const
+const std::string &arc::Core::getActiveGame() const
 {
     return this->active_game;
 }
@@ -47,15 +42,6 @@ std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
 std::reference_wrapper<arc::IGame> arc::Core::getIGame() const
 {
     return std::ref(*this->game);
-}
-
-void arc::Core::addSharedLib(std::string filepath)
-{
-    if (filepath.empty())
-        throw arc::Core::CoreException(WRONG_FILEPATH.data());
-    if (!filepath.ends_with(".so"))
-        throw arc::Core::CoreException(WRONG_FILEPATH.data());
-    this->shared_libs.push_back(std::move(filepath));
 }
 
 // methods for CoreException
