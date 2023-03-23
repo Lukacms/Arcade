@@ -8,6 +8,7 @@
 #include "arcade/interfaces/IDisplay.hh"
 #include <arcade/Core.hh>
 #include <functional>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -46,6 +47,15 @@ std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
 std::reference_wrapper<arc::IGame> arc::Core::getIGame() const
 {
     return std::ref(*this->game);
+}
+
+void arc::Core::addSharedLib(std::string filepath)
+{
+    if (filepath.empty())
+        throw arc::Core::CoreException(WRONG_FILEPATH.data());
+    if (!filepath.ends_with(".so"))
+        throw arc::Core::CoreException(WRONG_FILEPATH.data());
+    this->shared_libs.push_back(std::move(filepath));
 }
 
 // methods for CoreException

@@ -15,6 +15,15 @@
 #include <string>
 #include <vector>
 
+const std::vector<std::string> DISPLAYS{"./lib/arcade_ncurses.so", "./lib/arcade_sdl.so",
+                                        "./lib/arcade_sfml.so"};
+const std::vector<std::string> GAMES{"./lib/arcade_nibbler.so", "./lib/arcade_snake.so"};
+
+// exception messages
+constexpr std::string_view WRONG_FILEPATH{"Filepath not correct."};
+constexpr std::string_view DLOPEN_ERR{"Dlopen malfunction."};
+constexpr std::string_view LIB_FORMAT_ERR{"Lib does not exists"};
+
 namespace arc
 {
     class Core
@@ -35,8 +44,11 @@ namespace arc
             [[nodiscard]] std::string getActiveGame() const;
             [[nodiscard]] std::reference_wrapper<arc::IDisplay> getIDisplay() const;
             [[nodiscard]] std::reference_wrapper<arc::IGame> getIGame() const;
+            void addSharedLib(std::string filepath);
 
             // TODO make class methods (and implement them)
+            // methods
+            void isGameOrGraphic(const std::string &filepath);
 
             // error class
             class CoreException : public std::exception
