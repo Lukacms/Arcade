@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <arcade/interfaces/IWindow.hh>
 #include <arcade/enum/EventEnum.hh>
 
 namespace arc
@@ -21,10 +22,9 @@ namespace arc
             IGame &operator=(IGame const &to_copy) = default;
             IGame &operator=(IGame &&to_move) = default;
 
-            virtual void EventAnalisys(arc::Event) = 0;
+            virtual void EventAnalisys(const arc::Event &event) = 0;
+            virtual void DisplayGame(IWindow &window) = 0;
             virtual void PlayGame() = 0;
-            virtual void SaveGame() = 0;
-            virtual void LoadGame() = 0;
             virtual void ResetGame() = 0;
             virtual void IsExit() = 0;
             virtual void InitGame() = 0;
