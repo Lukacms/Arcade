@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <arcade/interfaces/ISprite.hh>
 #include <arcade/Geometry.hh>
 #include <vector>
 
@@ -14,6 +15,7 @@ enum class Orient { N, E, S, W, NONE };
 
 struct Tile {
         arc::Vector coord{0, 0};
+        arc::Color color{0, 0, 0};
         Orient orientation{};
 };
 
