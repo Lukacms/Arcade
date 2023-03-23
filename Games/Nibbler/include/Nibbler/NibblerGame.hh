@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <Nibbler/Nibbler.hh>
 #include <arcade/interfaces/IGame.hh>
 #include <arcade/interfaces/ISprite.hh>
 #include <arcade/interfaces/IText.hh>
@@ -35,4 +36,5 @@ class NibblerGame : arc::IGame
         std::unique_ptr<arc::IText> m_text{};
         std::unique_ptr<arc::ISprite> m_sprite{};
         std::vector<std::string> m_map{};
+        bool m_exit{false};
 };
