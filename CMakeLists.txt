@@ -11,10 +11,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # project name
 project(arcade)
 
+# change library prefix to none
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 # for library compilation => shared libraries of games and graphics
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # include directories
 include_directories(Core/include/)
@@ -112,18 +114,8 @@ add_library(arcade-interface INTERFACE)
 
 # link shared libraries and compile them
 # do not uncomment commented lines, just for personnal comprehension
-# target_compile_options(arcade-interface PRIVATE ${WARNING_FLAGS})
-# target_include_directories(arcade-interface PUBLIC Core/include)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
-#[[ target_link_libraries(
-    arcade-interface
-    sfml
-    sdl
-    ncurses
-    snake
-    nibbler
-    ) ]]
 
 # adding executables
 add_executable(
@@ -131,6 +123,7 @@ add_executable(
     Core/src/ADisplay.cpp
     Core/src/main.cpp
     Core/src/core/Core.cpp
+    Core/src/core/libsMethods.cpp
     Core/src/opts/Opts.cpp
     Core/src/opts/libFactory.cpp
     )
