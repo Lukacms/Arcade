@@ -7,7 +7,8 @@
 
 #include <arcade/Opts.hh>
 
-// methods to load shared libraries
+// TODO methods to load shared libraries
+// NOTE need to make some sort of factory ?
 
 void arc::Opts::loadLibs() {}
 
