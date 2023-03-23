@@ -40,3 +40,8 @@ void Snake::reset_snake()
     m_snake_tail.coord.x = 2;
     m_snake_tail.coord.y = 0;
 }
+
+arc::Vector Snake::get_head_position() const
+{
+    return m_head_snake.coord;
+}

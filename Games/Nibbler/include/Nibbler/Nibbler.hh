@@ -32,6 +32,7 @@ class Snake
         void move_snake(int x_coord, int y_coord, Orient orientation);
         void expand_snake(int x_coord, int y_coord, Orient orientation);
         void reset_snake();
+        [[nodiscard]] arc::Vector get_head_position() const;
 
     private:
         Tile m_head_snake{};
