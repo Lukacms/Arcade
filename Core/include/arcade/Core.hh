@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "arcade/core/Menu.hh"
 #include <algorithm>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
@@ -32,6 +33,8 @@ constexpr std::string_view LIB_OBJ_LOAD_ERR{"Does not have a method to load obje
 
 namespace arc
 {
+    enum class CoreMode { Menu, Game, Quit };
+
     class Core
     {
         public:
@@ -86,5 +89,7 @@ namespace arc
             std::size_t game_ind{0};
             std::unique_ptr<arc::IGame> game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
+            // check loop, and what to display for the Core
+            CoreMode mode{CoreMode::Menu};
     };
 } // namespace arc
