@@ -1,22 +1,21 @@
 /*
 ** EPITECH PROJECT, 2023
-** Nibbler
+** Include
 ** File description:
-** Nibbler
+** Commons
 */
 
 #pragma once
 
+#include <arcade/interfaces/ISprite.hh>
 #include <arcade/Geometry.hh>
 #include <vector>
-
-constexpr int const MAP_WIDTH = 20;
-constexpr int const MAP_HEIGHT = 20;
 
 enum class Orient { N, E, S, W, NONE };
 
 struct Tile {
         arc::Vector coord{0, 0};
+        arc::Color color{0, 0, 0};
         Orient orientation{};
 };
 
@@ -29,10 +28,7 @@ class Snake
         ~Snake() = default;
         Snake &operator=(Snake const &to_copy) = default;
         Snake &operator=(Snake &&to_move) = default;
-        void move_snake(int x_coord, int y_coord, Orient orientation);
-        void expand_snake(int x_coord, int y_coord, Orient orientation);
-        void reset_snake();
-        [[nodiscard]] arc::Vector get_head_position() const;
+        void move_snake(int x_coord, int y_coord);
 
     private:
         Tile m_head_snake{};
