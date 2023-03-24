@@ -75,6 +75,9 @@ void arc::Core::changeDisplay(const std::string &filepath)
     if (!loader)
         throw arc::Core::CoreException(LIB_OBJ_LOAD_ERR.data());
     this->display = loader();
+    for (std::size_t i = 0; i < this->shared_displays.size(); i++)
+        if (filepath == this->shared_displays[i])
+            this->display_ind = i;
 }
 
 void arc::Core::changeGame(const std::string &filepath)
@@ -90,4 +93,7 @@ void arc::Core::changeGame(const std::string &filepath)
     auto *loader =
         reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(dlsym(handle, LOAD_METHOD.data()));
     this->game = loader();
+    for (std::size_t i = 0; i < this->shared_games.size(); i++)
+        if (filepath == this->shared_games[i])
+            this->game_ind = i;
 }

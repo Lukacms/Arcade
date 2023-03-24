@@ -82,8 +82,8 @@ namespace arc
         private:
             std::vector<std::string> shared_displays{};
             std::vector<std::string> shared_games{};
-            std::size_t display_ind;
-            std::size_t game_ind;
+            std::size_t display_ind{0};
+            std::size_t game_ind{0};
             std::unique_ptr<arc::IGame> game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
     };
