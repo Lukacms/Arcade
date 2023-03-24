@@ -66,6 +66,9 @@ namespace arc
             void handDisplay();
             void handEvents();
 
+            // should be the main loop and other methods associated
+            void mainGameLoop();
+
             // error class
             class CoreException : public std::exception
             {
