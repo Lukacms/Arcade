@@ -70,6 +70,16 @@ std::reference_wrapper<arc::IGame> arc::Core::getIGame() const
     return std::ref(*this->game);
 }
 
+arc::CoreMode arc::Core::getMode() const
+{
+    return this->mode;
+}
+
+void arc::Core::setMode(CoreMode new_mode)
+{
+    this->mode = new_mode;
+}
+
 // methods for CoreException
 
 const char *arc::Core::CoreException::what() const noexcept

@@ -54,8 +54,9 @@ namespace arc
             [[nodiscard]] const std::string &getPrevGame();
             [[nodiscard]] std::reference_wrapper<arc::IDisplay> getIDisplay() const;
             [[nodiscard]] std::reference_wrapper<arc::IGame> getIGame() const;
+            [[nodiscard]] CoreMode getMode() const;
+            void setMode(CoreMode new_mode);
 
-            // NOTE make class methods (and implement them)
             // methods to load a dynamic library
             void isGameOrGraphic(const std::string &filepath);
             void changeDisplay(const std::string &filepath);
