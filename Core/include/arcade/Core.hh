@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
+#include <cstddef>
 #include <exception>
 #include <memory>
 #include <string>
@@ -44,8 +45,10 @@ namespace arc
             // getter and setters
             [[nodiscard]] const std::vector<std::string> &getSharedDisplays() const;
             [[nodiscard]] const std::vector<std::string> &getSharedGames() const;
-            [[nodiscard]] const std::string &getActiveDisplay() const;
-            [[nodiscard]] const std::string &getActiveGame() const;
+            [[nodiscard]] const std::string &getNextDisplay();
+            [[nodiscard]] const std::string &getPrevDisplay();
+            [[nodiscard]] const std::string &getNextGame();
+            [[nodiscard]] const std::string &getPrevGame();
             [[nodiscard]] std::reference_wrapper<arc::IDisplay> getIDisplay() const;
             [[nodiscard]] std::reference_wrapper<arc::IGame> getIGame() const;
 
@@ -79,9 +82,8 @@ namespace arc
         private:
             std::vector<std::string> shared_displays{};
             std::vector<std::string> shared_games{};
-            // NOTE is it useful ?
-            std::string active_display{};
-            std::string active_game{};
+            std::size_t display_ind;
+            std::size_t game_ind;
             std::unique_ptr<arc::IGame> game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
     };
