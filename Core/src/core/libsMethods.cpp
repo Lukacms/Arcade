@@ -69,12 +69,14 @@ void arc::Core::changeDisplay(const std::string &filepath)
     if (this->display)
         this->display.release();
     if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
-        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+        throw arc::Core::CoreException(dlerror());
     auto *loader =
         reinterpret_cast<std::unique_ptr<arc::IDisplay> (*)()>(dlsym(handle, LOAD_METHOD.data()));
     if (!loader)
         throw arc::Core::CoreException(LIB_OBJ_LOAD_ERR.data());
-    this->display = loader();
+    if (!(this->display = loader()))
+        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+    dlclose(handle);
     for (std::size_t i = 0; i < this->shared_displays.size(); i++)
         if (filepath == this->shared_displays[i])
             this->display_ind = i;
@@ -89,10 +91,12 @@ void arc::Core::changeGame(const std::string &filepath)
     if (this->game)
         this->game.release();
     if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
-        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+        throw arc::Core::CoreException(dlerror());
     auto *loader =
         reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(dlsym(handle, LOAD_METHOD.data()));
-    this->game = loader();
+    if (!(this->game = loader()))
+        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+    dlclose(handle);
     for (std::size_t i = 0; i < this->shared_games.size(); i++)
         if (filepath == this->shared_games[i])
             this->game_ind = i;
