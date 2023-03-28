@@ -31,8 +31,14 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
      [](arc::Core &core) -> void {
          core.setMode(arc::CoreMode::Quit);
      }},
-    // TODO last is reload game, but welp
-    // TODO add an event to go back to menu
+    {arc::Event::RESTART,
+     [](arc::Core &core) -> void {
+         core.getIGame().get().ResetGame();
+     }},
+    {arc::Event::BACK_MENU,
+     [](arc::Core &core) -> void {
+         core.setMode(arc::CoreMode::Menu);
+     }},
 };
 
 // this method should just give the display method, window to the game

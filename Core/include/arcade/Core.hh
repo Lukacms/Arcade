@@ -62,6 +62,7 @@ namespace arc
             void isGameOrGraphic(const std::string &filepath);
             void changeDisplay(const std::string &filepath);
             void changeGame(const std::string &filepath);
+            void noMoreGame();
 
             // methods to manipulate them
             void handDisplay();
