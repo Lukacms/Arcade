@@ -10,6 +10,7 @@
 #include <arcade/interfaces/ISprite.hh>
 #include <Snake/SnakeGame.hh>
 #include <chrono>
+#include <iostream>
 #include <unordered_map>
 #include <vector>
 

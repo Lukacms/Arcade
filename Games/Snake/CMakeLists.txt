@@ -4,6 +4,7 @@
 
 add_library(
   arcade_snake SHARED
+  src/EntryPoint.cpp
   src/Snake.cpp
   src/SnakeGame.cpp
 )

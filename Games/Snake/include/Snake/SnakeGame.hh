@@ -36,11 +36,11 @@ namespace arc {
             SnakeGame &operator=(const SnakeGame &) = delete;
             SnakeGame &operator=(SnakeGame &&);
 
-            void EventAnalisys(const arc::Event &event) override;
-            void DisplayGame(IWindow &window) override;
-            void ResetGame() override;
-            void InitGame() override;
-            void PlayGame() override;
+            void EventAnalisys(const arc::Event &event) final;
+            void DisplayGame(IWindow &window) final;
+            void ResetGame() final;
+            void InitGame() final;
+            void PlayGame() final;
 
         private:
             void InitSnakeMap();
