@@ -23,6 +23,7 @@ static int launch(std::string filepath)
         std::cout << e.what() << "\n";
         return EPITECH_FAILURE;
     }
+    while(1);
     return EPITECH_SUCCESS;
 }
 

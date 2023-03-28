@@ -11,7 +11,7 @@
 
 extern "C" {
 
-    std::unique_ptr<arc::IGame> entry_point() { // NOLINT
+    std::unique_ptr<arc::IGame> entryPoint() { // NOLINT
         std::unique_ptr<arc::IGame> snake_game = std::make_unique<arc::SnakeGame>();
 
         snake_game->InitGame();
