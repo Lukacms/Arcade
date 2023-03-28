@@ -98,5 +98,7 @@ namespace arc
             // check loop, and what to display for the Core
             CoreMode mode{CoreMode::Menu};
             Menu menu{};
+            void *handle_display{nullptr};
+            void *handle_game{nullptr};
     };
 } // namespace arc
