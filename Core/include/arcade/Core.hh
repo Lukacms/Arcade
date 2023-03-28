@@ -30,6 +30,7 @@ constexpr std::string_view DLOPEN_ERR{"Dlopen malfunction."};
 constexpr std::string_view LIB_FORMAT_ERR{"Lib does not exists"};
 constexpr std::string_view LIB_LOADING_ERR{"Shared library can't be loaded."};
 constexpr std::string_view LIB_OBJ_LOAD_ERR{"Does not have a method to load object."};
+constexpr std::string_view NO_PARAM_ERR{"Null param"};
 
 namespace arc
 {
@@ -68,6 +69,7 @@ namespace arc
 
             // should be the main loop and other methods associated
             void mainGameLoop();
+            void displayGameOrMenu();
 
             // error class
             class CoreException : public std::exception
@@ -95,5 +97,6 @@ namespace arc
             std::unique_ptr<arc::IDisplay> display{nullptr};
             // check loop, and what to display for the Core
             CoreMode mode{CoreMode::Menu};
+            Menu menu{};
     };
 } // namespace arc
