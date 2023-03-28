@@ -5,6 +5,7 @@
 ** NCursesDisplay
 */
 
+#include <memory>
 #include <ncurses/NCursesWindow.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <curses.h>
@@ -14,6 +15,13 @@
 #include <exception>
 
 /* Constructor && Destructor */
+
+arc::NCursesDisplay::NCursesDisplay()
+{
+    std::unique_ptr<NCursesWindow> window = std::make_unique<NCursesWindow>(20, 20);
+
+    this->m_window = std::move(window);
+}
 
 /* Methods */
 

@@ -5,6 +5,7 @@
 ** Core
 */
 
+#include "arcade/enum/EventEnum.hh"
 #include <arcade/Core.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <functional>

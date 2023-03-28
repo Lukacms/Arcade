@@ -9,6 +9,7 @@
 #include <arcade/Core.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
+#include <cstdio>
 #include <dlfcn.h>
 #include <iostream>
 #include <memory>
@@ -76,7 +77,6 @@ void arc::Core::changeDisplay(const std::string &filepath)
         throw arc::Core::CoreException(LIB_OBJ_LOAD_ERR.data());
     if (!(this->display = loader()))
         throw arc::Core::CoreException(LIB_LOADING_ERR.data());
-    dlclose(handle);
     for (std::size_t i = 0; i < this->shared_displays.size(); i++)
         if (filepath == this->shared_displays[i])
             this->display_ind = i;
@@ -96,7 +96,6 @@ void arc::Core::changeGame(const std::string &filepath)
         reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(dlsym(handle, LOAD_METHOD.data()));
     if (!(this->game = loader()))
         throw arc::Core::CoreException(LIB_LOADING_ERR.data());
-    dlclose(handle);
     for (std::size_t i = 0; i < this->shared_games.size(); i++)
         if (filepath == this->shared_games[i])
             this->game_ind = i;

@@ -16,11 +16,8 @@ namespace arc
 {
     class ADisplay : public arc::IDisplay
     {
-        protected:
-            std::unique_ptr<arc::IWindow> m_window;
 
         public:
-            [[nodiscard]] std::reference_wrapper<arc::IWindow> GetWindow() final;
             ADisplay() = default;
             ADisplay(ADisplay const &to_copy) = delete;
             ADisplay(ADisplay &&to_move) = default;
@@ -28,5 +25,10 @@ namespace arc
 
             ADisplay &operator=(ADisplay const &to_copy) = delete;
             ADisplay &operator=(ADisplay &&to_move) = default;
+
+            [[nodiscard]] std::reference_wrapper<arc::IWindow> GetWindow() final;
+
+        protected:
+            std::unique_ptr<arc::IWindow> m_window;
     };
 } // namespace arc
