@@ -9,6 +9,8 @@ add_library(
   src/SFMLDisplay.cpp
   src/entities/SFMLSprite.cpp
   src/entities/SFMLText.cpp
+  src/SFMLDisplay.cpp
+  src/SFMLWindow.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
