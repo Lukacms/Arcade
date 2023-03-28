@@ -8,6 +8,7 @@
 #pragma once
 
 #include <string_view>
+
 constexpr int const EPITECH_FAILURE = 84;
 constexpr int const EPITECH_SUCCESS = 0;
 

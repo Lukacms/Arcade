@@ -7,7 +7,9 @@
 
 #pragma once
 
+#include <arcade/interfaces/IWindow.hh>
 #include <arcade/interfaces/ADisplay.hh>
+#include <functional>
 #include <memory>
 
 namespace arc

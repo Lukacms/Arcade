@@ -5,19 +5,27 @@
 ** NCursesDisplay
 */
 
-#include "arcade/interfaces/ISprite.hh"
-#include "ncurses/entities/NCursesSprite.hh"
-#include "ncurses/entities/NCursesText.hh"
+#include <arcade/interfaces/ISprite.hh>
+#include <ncurses/entities/NCursesSprite.hh>
+#include <ncurses/entities/NCursesText.hh>
 #include <arcade/Opts.hh>
+#include <memory>
+#include <ncurses/NCursesWindow.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <curses.h>
 #include <map>
 #include <ncurses.h>
 #include <ncurses/NCursesDisplay.hh>
-#include <ncurses/NCursesWindow.hh>
 #include <unordered_map>
 
 /* Constructor && Destructor */
+
+arc::NCursesDisplay::NCursesDisplay()
+{
+    std::unique_ptr<NCursesWindow> window = std::make_unique<NCursesWindow>(20, 20);
+
+    this->m_window = std::move(window);
+}
 
 /* Methods */
 

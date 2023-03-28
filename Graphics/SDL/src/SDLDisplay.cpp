@@ -13,9 +13,18 @@
 #include <SDL2/SDL_keycode.h>
 #include <SDL2/SDL_ttf.h>
 #include <arcade/enum/EventEnum.hh>
+#include <SDL/SDLDisplay.hh>
+#include <memory>
 #include <unordered_map>
 
 /* Constructor && Destructor */
+
+arc::SDLDisplay::SDLDisplay()
+{
+    std::unique_ptr<SDLWindow> window = std::make_unique<SDLWindow>();
+
+    this->m_window = std::make_unique<arc::SDLWindow>(800, 600, "Arcade");
+}
 
 /* Methods */
 

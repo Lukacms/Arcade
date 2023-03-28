@@ -24,10 +24,10 @@ namespace arc
             SDLWindow(unsigned int x_coord, unsigned int y_coord, const std::string &name_window);
             ~SDLWindow() override;
 
-            void OpenWindow() final = 0;
-            void CloseWindow() final = 0;
-            void CreateWindow(unsigned int x_coord, unsigned int y_coord) final = 0;
-            void UpdateWindow() final = 0;
+            void OpenWindow() final;
+            void CloseWindow() final;
+            void CreateWindow(unsigned int x_coord, unsigned int y_coord) final;
+            void UpdateWindow() final;
             [[nodiscard]] SDL_Renderer *GetRenderer();
             [[nodiscard]] SDL_Window *GetWindow();
 

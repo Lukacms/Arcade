@@ -19,8 +19,7 @@ namespace arc
     {
         public:
             NCursesWindow() = default;
-            NCursesWindow(unsigned int x_coord, unsigned int y_coord,
-                          const std::string &name_window);
+            NCursesWindow(unsigned int x_coord, unsigned int y_coord);
             NCursesWindow(NCursesWindow const &to_copy) = delete;
             NCursesWindow &operator=(NCursesWindow const &to_copy) = delete;
             NCursesWindow &operator=(NCursesWindow const &&to_move) = delete;
