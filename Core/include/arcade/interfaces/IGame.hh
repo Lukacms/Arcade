@@ -24,9 +24,8 @@ namespace arc
 
             virtual void EventAnalisys(const arc::Event &event) = 0;
             virtual void DisplayGame(IWindow &window) = 0;
-            virtual void PlayGame() = 0;
             virtual void ResetGame() = 0;
-            virtual void IsExit() = 0;
+            virtual void PlayGame() = 0;
             virtual void InitGame() = 0;
     };
 } // namespace arc

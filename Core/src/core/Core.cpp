@@ -5,6 +5,7 @@
 ** Core
 */
 
+#include "arcade/enum/EventEnum.hh"
 #include <arcade/Core.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <functional>
@@ -24,14 +25,40 @@ const std::vector<std::string> &arc::Core::getSharedGames() const
     return this->shared_games;
 }
 
-const std::string &arc::Core::getActiveDisplay() const
+const std::string &arc::Core::getNextDisplay()
 {
-    return this->active_display;
+    if (this->display_ind >= this->shared_displays.size() - 1)
+        this->display_ind = 0;
+    else
+        this->display_ind++;
+    return this->shared_displays[this->display_ind];
 }
 
-const std::string &arc::Core::getActiveGame() const
+const std::string &arc::Core::getPrevDisplay()
 {
-    return this->active_game;
+    if (this->display_ind == 0)
+        this->display_ind = this->shared_displays.size() - 1;
+    else
+        this->display_ind--;
+    return this->shared_displays[this->display_ind];
+}
+
+const std::string &arc::Core::getNextGame()
+{
+    if (this->game_ind >= this->shared_games.size() - 1)
+        this->game_ind = 0;
+    else
+        this->game_ind++;
+    return this->shared_games[this->game_ind];
+}
+
+const std::string &arc::Core::getPrevGame()
+{
+    if (this->game_ind == 0)
+        this->game_ind = this->shared_games.size() - 1;
+    else
+        this->game_ind--;
+    return this->shared_games[this->game_ind];
 }
 
 std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
@@ -42,6 +69,16 @@ std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
 std::reference_wrapper<arc::IGame> arc::Core::getIGame() const
 {
     return std::ref(*this->game);
+}
+
+arc::CoreMode arc::Core::getMode() const
+{
+    return this->mode;
+}
+
+void arc::Core::setMode(CoreMode new_mode)
+{
+    this->mode = new_mode;
 }
 
 // methods for CoreException

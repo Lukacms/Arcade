@@ -5,12 +5,12 @@
 ** NCursesWindow
 */
 
-#include <curses.h>
+#include <ncurses.h>
 #include <ncurses/NCursesWindow.hh>
 
 /* Constructor && Destructor */
 
-arc::NCursesWindow::NCursesWindow(unsigned int x_coord, unsigned int y_coord, const std::string &name)
+arc::NCursesWindow::NCursesWindow(unsigned int x_coord, unsigned int y_coord)
 {
     initscr();
     this->m_window = newwin(x_coord, y_coord, 0, 0);
@@ -32,7 +32,6 @@ void arc::NCursesWindow::OpenWindow() {}
 void arc::NCursesWindow::CloseWindow()
 {
     delwin(this->m_window);
-    endwin();
 }
 
 void arc::NCursesWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord)

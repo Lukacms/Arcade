@@ -19,10 +19,15 @@ static int launch(std::string filepath)
 
     try {
         core = opts.getOpts();
+        core.mainGameLoop();
     } catch (arc::Opts::OptsException &e) {
         std::cout << e.what() << "\n";
         return EPITECH_FAILURE;
+    } catch (arc::Core::CoreException &e) {
+        std::cout << e.what() << "\n";
+        return EPITECH_FAILURE;
     }
+    core.mainGameLoop();
     return EPITECH_SUCCESS;
 }
 

@@ -7,7 +7,10 @@
 
 #pragma once
 
+#include <arcade/interfaces/IWindow.hh>
 #include <arcade/interfaces/ADisplay.hh>
+#include <functional>
+#include <memory>
 
 namespace arc
 {
@@ -21,6 +24,6 @@ namespace arc
             NCursesDisplay &operator=(NCursesDisplay const &&to_move) = delete;
             ~NCursesDisplay() override = default;
 
-            [[nodiscard]] arc::Event GetEvent() final = 0;
+            [[nodiscard]] arc::Event GetEvent() final;
     };
 }

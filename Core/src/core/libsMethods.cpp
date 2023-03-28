@@ -9,6 +9,7 @@
 #include <arcade/Core.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
+#include <cstdio>
 #include <dlfcn.h>
 #include <iostream>
 #include <memory>
@@ -64,30 +65,38 @@ void arc::Core::isGameOrGraphic(const std::string &filepath)
 
 void arc::Core::changeDisplay(const std::string &filepath)
 {
-    void *handle = nullptr;
-
-    if (this->display)
+    if (this->display) {
         this->display.release();
-    if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
-        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
-    auto *loader =
-        reinterpret_cast<std::unique_ptr<arc::IDisplay> (*)()>(dlsym(handle, LOAD_METHOD.data()));
+        dlclose(this->handle_display);
+    }
+    if (!(this->handle_display = dlopen(filepath.c_str(), RTLD_LAZY)))
+        throw arc::Core::CoreException(dlerror());
+    auto *loader = reinterpret_cast<std::unique_ptr<arc::IDisplay> (*)()>(
+        dlsym(this->handle_display, LOAD_METHOD.data()));
     if (!loader)
         throw arc::Core::CoreException(LIB_OBJ_LOAD_ERR.data());
-    this->display = loader();
+    if (!(this->display = loader()))
+        throw arc::Core::CoreException(LIB_LOADING_ERR.data());
+    for (std::size_t i = 0; i < this->shared_displays.size(); i++)
+        if (filepath == this->shared_displays[i])
+            this->display_ind = i;
 }
 
+// NOTE if well understood, release the ownership of the pointer, so call the destructor
+// same for the above function
 void arc::Core::changeGame(const std::string &filepath)
 {
-    void *handle = nullptr;
-
-    // NOTE if well understood, release the ownership of the pointer, so call the destructor
-    // same for the above function
-    if (this->game)
+    if (this->game) {
         this->game.release();
-    if (!(handle = dlopen(filepath.c_str(), RTLD_LAZY)))
+        dlclose(this->handle_game);
+    }
+    if (!(this->handle_game = dlopen(filepath.c_str(), RTLD_LAZY)))
+        throw arc::Core::CoreException(dlerror());
+    auto *loader = reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(
+        dlsym(this->handle_game, LOAD_METHOD.data()));
+    if (!(this->game = loader()))
         throw arc::Core::CoreException(LIB_LOADING_ERR.data());
-    auto *loader =
-        reinterpret_cast<std::unique_ptr<arc::IGame> (*)()>(dlsym(handle, LOAD_METHOD.data()));
-    this->game = loader();
+    for (std::size_t i = 0; i < this->shared_games.size(); i++)
+        if (filepath == this->shared_games[i])
+            this->game_ind = i;
 }

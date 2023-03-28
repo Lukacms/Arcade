@@ -79,7 +79,7 @@ set(CMAKE_BUILD_TYPE
       FORCE)
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3 -fdebug-default-version=2")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3")
 endif()
 
 # Clang-tidy
@@ -122,10 +122,13 @@ add_executable(
     arcade
     Core/src/ADisplay.cpp
     Core/src/main.cpp
-    Core/src/core/Core.cpp
-    Core/src/core/libsMethods.cpp
     Core/src/opts/Opts.cpp
     Core/src/opts/libFactory.cpp
+    Core/src/core/Core.cpp
+    Core/src/core/gameLoop.cpp
+    Core/src/core/coreHandingInfos.cpp
+    Core/src/core/libsMethods.cpp
+    Core/src/core/menu/Menu.cpp
     )
 
 # rules for arcade project
