@@ -123,6 +123,8 @@ add_executable(
     Core/src/ADisplay.cpp
     Core/src/main.cpp
     Core/src/core/Core.cpp
+    Core/src/core/gameLoop.cpp
+    Core/src/core/coreHandingInfos.cpp
     Core/src/core/libsMethods.cpp
     Core/src/opts/Opts.cpp
     Core/src/opts/libFactory.cpp
