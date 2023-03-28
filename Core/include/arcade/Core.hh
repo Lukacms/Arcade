@@ -69,7 +69,6 @@ namespace arc
 
             // should be the main loop and other methods associated
             void mainGameLoop();
-            void displayGameOrMenu();
 
             // error class
             class CoreException : public std::exception
