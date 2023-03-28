@@ -20,6 +20,8 @@ namespace arc
         CHANGE_LIB_L,
         CHANGE_LIB_R,
         ENTER,
+        RESTART,
+        BACK_MENU,
         NONE
     };
 }
