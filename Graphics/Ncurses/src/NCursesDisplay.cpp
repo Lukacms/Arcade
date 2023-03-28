@@ -30,9 +30,10 @@ arc::Event arc::NCursesDisplay::GetEvent()
     std::unordered_map<int, arc::Event> events = {
         {KEY_UP, arc::Event::UP}, {KEY_DOWN, arc::Event::DOWN},
         {KEY_LEFT, arc::Event::LEFT}, {KEY_RIGHT, arc::Event::RIGHT},
-        {KEY_EXIT, arc::Event::QUIT}, {KEY_ENTER, arc::Event::ENTER},
+        {'q', arc::Event::QUIT}, {KEY_ENTER, arc::Event::ENTER},
         {KEY_F(1), arc::Event::CHANGE_GAME_L}, {KEY_F(2), arc::Event::CHANGE_GAME_R},
-        {KEY_F(3), arc::Event::CHANGE_LIB_L}, {KEY_F(4), arc::Event::CHANGE_LIB_R}
+        {KEY_F(3), arc::Event::CHANGE_LIB_L}, {KEY_F(4), arc::Event::CHANGE_LIB_R},
+        {'r', arc::Event::RESTART}, {'m', arc::Event::BACK_MENU}
     };
     int event_key = 0;
     WINDOW *win;

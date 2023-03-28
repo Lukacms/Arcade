@@ -29,6 +29,8 @@ arc::SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F2});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_L, sf::Keyboard::F3});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
+    m_event_list.push_back(EventLink{arc::Event::RESTART, sf::Keyboard::R});
+    m_event_list.push_back(EventLink{arc::Event::BACK_MENU, sf::Keyboard::M});
     this->m_window = std::make_unique<SFMLWindow>(800, 600, "Arcade");
 }
 
