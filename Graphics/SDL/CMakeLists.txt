@@ -4,7 +4,7 @@
 
 add_library(
   arcade_sdl2 SHARED
-  src/sdl.cpp
+  src/SDL.cpp
   src/SDLWindow.cpp
   src/SDLDisplay.cpp
   src/entities/SDLSprite.cpp
