@@ -52,10 +52,8 @@ void arc::Core::handDisplay()
 }
 
 // this method should analyse if an event should change library, quit or be analysed by the game
-void arc::Core::handEvents()
+void arc::Core::handEvents(arc::Event graphic_event)
 {
-    arc::Event graphic_event = this->display->GetEvent();
-
     for (auto event : EVENT_MAP) {
         if (event.first == graphic_event) {
             event.second(*this);
