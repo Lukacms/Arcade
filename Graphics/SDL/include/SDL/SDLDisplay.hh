@@ -9,10 +9,13 @@
 
 #include <arcade/enum/EventEnum.hh>
 #include <arcade/interfaces/IDisplay.hh>
+#include <memory>
 
-namespace arc {
+namespace arc
+{
 
-    class SDLDisplay : public IDisplay {
+    class SDLDisplay : public IDisplay
+    {
         public:
             SDLDisplay();
             SDLDisplay(SDLDisplay const &to_copy) = delete;
@@ -20,8 +23,11 @@ namespace arc {
             SDLDisplay &operator=(SDLDisplay const &to_copy) = delete;
             SDLDisplay &operator=(SDLDisplay const &&to_move) = delete;
             ~SDLDisplay() override = default;
+            std::unique_ptr<arc::ISprite> createSprite() final;
+            std::unique_ptr<arc::IText> createText() final;
 
-            [[nodiscard]] arc::Event GetEvent() final = 0;
+            [[nodiscard]] arc::Event GetEvent() final;
+            [[nodiscard]] std::string GetUserName() final;
     };
 
-}
+} // namespace arc

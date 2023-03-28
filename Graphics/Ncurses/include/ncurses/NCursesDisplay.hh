@@ -8,11 +8,12 @@
 #pragma once
 
 #include <arcade/interfaces/ADisplay.hh>
+#include <memory>
 
 namespace arc
 {
-
-    class NCursesDisplay : public ADisplay {
+    class NCursesDisplay : public ADisplay
+    {
         public:
             NCursesDisplay();
             NCursesDisplay(NCursesDisplay const &to_copy) = delete;
@@ -20,7 +21,10 @@ namespace arc
             NCursesDisplay &operator=(NCursesDisplay const &to_copy) = delete;
             NCursesDisplay &operator=(NCursesDisplay const &&to_move) = delete;
             ~NCursesDisplay() override = default;
+            std::unique_ptr<arc::ISprite> createSprite() override;
+            std::unique_ptr<arc::IText> createText() override;
 
-            [[nodiscard]] arc::Event GetEvent() final = 0;
+            [[nodiscard]] arc::Event GetEvent() final;
+            [[nodiscard]] std::string GetUserName() final;
     };
-}
+} // namespace arc

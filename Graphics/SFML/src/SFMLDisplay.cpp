@@ -7,8 +7,13 @@
 
 #include "SFML/SFMLDisplay.hh"
 #include "SFML/SFMLWindow.hh"
+#include "SFML/entities/SFMLSprite.hh"
+#include "SFML/entities/SFMLText.hh"
+#include "arcade/interfaces/ISprite.hh"
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <algorithm>
+#include <arcade/Opts.hh>
 #include <exception>
 
 arc::Event SFMLDisplay::analyse_key_pressed()
@@ -27,7 +32,7 @@ arc::Event SFMLDisplay::GetEvent()
     arc::Event tmp{arc::Event::NONE};
 
     if (!dynamic_cast<SFMLWindow *>(m_window.get())) {
-        // Trhow error
+        throw arc::Opts{"SFML window cast error"};
     }
     auto *test = dynamic_cast<sf::RenderWindow *>(m_window.get());
     if (test->pollEvent(m_event)) {
@@ -54,4 +59,55 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F2});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_L, sf::Keyboard::F3});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
+}
+
+std::string SFMLDisplay::GetUserName()
+{
+    std::string name{};
+    sf::Event event{};
+    sf::Font font{};
+    sf::Text text{};
+    int tmp{-1};
+
+    if (!font.loadFromFile("./graphics_assets/font.tff"))
+        throw arc::Opts{"Cant load ./graphics_assets/font.tff"};
+    if (!dynamic_cast<SFMLWindow *>(m_window.get()))
+        throw arc::Opts{"SFML window cast error"};
+    text.setFont(font);
+    text.setPosition(400, 300);
+    text.setScale(4, 4);
+    auto *test = dynamic_cast<sf::RenderWindow *>(m_window.get());
+    test->pollEvent(m_event);
+    tmp = event.type;
+    while (tmp != '\n') {
+        if (tmp == SFML_KEY::BACKSPACE && !name.empty()) {
+            test->clear();
+            name.pop_back();
+            text.setString(name);
+            test->draw(text);
+            test->display();
+        }
+        if (tmp >= 'a' && tmp <= 'z') {
+            test->clear();
+            name.push_back(tmp);
+            text.setString(name);
+            test->draw(text);
+            test->display();
+        }
+        tmp = event.type;
+    }
+    if (name.empty()) {
+        return std::string{"Arcade Sucks"};
+    }
+    return name;
+}
+
+std::unique_ptr<arc::IText> createText()
+{
+    return std::make_unique<arc::SFMLText>();
+}
+
+std::unique_ptr<arc::ISprite> createSprite()
+{
+    return std::make_unique<arc::SFMLSprite>();
 }

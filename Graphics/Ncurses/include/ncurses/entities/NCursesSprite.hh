@@ -10,16 +10,19 @@
 #include <arcade/interfaces/ISprite.hh>
 #include <curses.h>
 
-namespace arc {
+namespace arc
+{
 
-        class NCursesSprite : public ISprite {
+    class NCursesSprite : public ISprite
+    {
 
         public:
-            NCursesSprite();
-            NCursesSprite(const NCursesSprite&);
+            NCursesSprite() = default;
+            NCursesSprite(char sprite);
+            NCursesSprite(const NCursesSprite &);
             ~NCursesSprite() override;
 
-            NCursesSprite &operator=(const NCursesSprite&);
+            NCursesSprite &operator=(const NCursesSprite &);
 
             void setSpriteColor(int red, int green, int blue) final;
             void moveSpritePosition(int pos_x, int pos_y) final;
@@ -34,4 +37,4 @@ namespace arc {
             arc::Color m_color = {0, 0, 0};
     };
 
-}
+} // namespace arc

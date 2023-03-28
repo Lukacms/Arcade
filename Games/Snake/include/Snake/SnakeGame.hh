@@ -7,32 +7,34 @@
 
 #pragma once
 
-#include <arcade/interfaces/IWindow.hh>
+#include <Snake/Snake.hh>
 #include <arcade/interfaces/IGame.hh>
 #include <arcade/interfaces/ISprite.hh>
 #include <arcade/interfaces/IText.hh>
-#include <Snake/Snake.hh>
+#include <arcade/interfaces/IWindow.hh>
+#include <chrono>
 #include <memory>
 #include <vector>
-#include <chrono>
 
-namespace arc {
+namespace arc
+{
 
     constexpr arc::Vector STARTING_POINT{10, 16};
-    constexpr arc::Color HEAD_COLOR{50,205,50};
-    constexpr arc::Color BODY_COLOR{0,128,0};
-    constexpr arc::Color WALL_COLOR{255,69,0};
-    constexpr arc::Color FRUIT_COLOR{255,0,0};
-    constexpr arc::Vector FRUIT_STARTING_POS{3,14};
+    constexpr arc::Color HEAD_COLOR{50, 205, 50};
+    constexpr arc::Color BODY_COLOR{0, 128, 0};
+    constexpr arc::Color WALL_COLOR{255, 69, 0};
+    constexpr arc::Color FRUIT_COLOR{255, 0, 0};
+    constexpr arc::Vector FRUIT_STARTING_POS{3, 14};
     constexpr int MAP_SIZE = 20;
 
-    class SnakeGame : public IGame {
+    class SnakeGame : public IGame
+    {
         public:
             SnakeGame() = default;
             SnakeGame(const SnakeGame &) = delete;
             SnakeGame(SnakeGame &&) = default;
             ~SnakeGame() override = default;
-    
+
             SnakeGame &operator=(const SnakeGame &) = delete;
             SnakeGame &operator=(SnakeGame &&);
 
@@ -57,4 +59,4 @@ namespace arc {
             int m_score = 0;
     };
 
-}
+} // namespace arc
