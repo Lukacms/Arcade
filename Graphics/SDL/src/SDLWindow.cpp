@@ -36,7 +36,10 @@ arc::SDLWindow::~SDLWindow()
 
 /* Methods */
 
-void arc::SDLWindow::OpenWindow() {}
+void arc::SDLWindow::OpenWindow()
+{
+    SDL_ShowWindow(this->m_window);
+}
 
 void arc::SDLWindow::CloseWindow()
 {
