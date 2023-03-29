@@ -22,7 +22,8 @@
 
 arc::SDLDisplay::SDLDisplay()
 {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
     this->m_window = std::make_unique<arc::SDLWindow>(800, 600, "Arcade");
 }
 

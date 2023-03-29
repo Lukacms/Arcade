@@ -17,7 +17,6 @@
 
 void arc::SFMLText::setText(std::string str)
 {
-    std::cout << str << std::endl;
     this->m_text.setString(str);
 }
 
