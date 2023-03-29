@@ -10,7 +10,7 @@
 
 void arc::Core::mainGameLoop()
 {
-    arc::Event graphic_event = this->display->GetEvent();
+    arc::Event graphic_event = arc::Event::NONE;
 
     if (!this->display)
         throw Core::CoreException(NO_PARAM_ERR.data());
