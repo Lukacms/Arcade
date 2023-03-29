@@ -56,12 +56,11 @@ arc::Event SFMLDisplay::analyse_key_pressed()
 arc::Event SFMLDisplay::GetEvent()
 {
     arc::Event tmp{arc::Event::NONE};
+    SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(m_window.get());
 
-    if (!dynamic_cast<SFMLWindow *>(m_window.get())) {
-        throw arc::Opts{"SFML window cast error"};
-    }
-    auto *test = dynamic_cast<sf::RenderWindow *>(m_window.get());
-    if (test->pollEvent(m_event)) {
+    if (nwin == nullptr)
+        throw;
+    if (nwin->GetWindow().pollEvent(m_event)) {
         if (sf::Event::Closed)
             return arc::Event::QUIT;
         tmp = analyse_key_pressed();

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "arcade/core/Menu.hh"
+#include "arcade/enum/EventEnum.hh"
 #include <algorithm>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
@@ -62,10 +63,11 @@ namespace arc
             void isGameOrGraphic(const std::string &filepath);
             void changeDisplay(const std::string &filepath);
             void changeGame(const std::string &filepath);
+            void noMoreGame();
 
             // methods to manipulate them
             void handDisplay();
-            void handEvents();
+            void handEvents(arc::Event graphic_event);
 
             // should be the main loop and other methods associated
             void mainGameLoop();

@@ -55,7 +55,6 @@ void arc::SDLSprite::drawSprite(IWindow &window)
     this->m_sprite.y *= this->m_sprite.h;
     SDL_RenderFillRect(renderer, &this->m_sprite);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
-    SDL_RenderPresent(renderer);
 }
 
 arc::ISprite &arc::SDLSprite::getSprite()

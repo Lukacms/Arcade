@@ -1,9 +1,9 @@
 /*
- ** interface
- ** EPITECH PROJECT, 2023
- ** File description:
- ** EventEnum
- */
+** interface
+** EPITECH PROJECT, 2023
+** File description:
+** EventEnum
+*/
 
 #pragma once
 
