@@ -55,6 +55,7 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
 {
     std::vector<Tile> snake = this->m_snake.getSnakeTiles();
 
+    window.UpdateWindow();
     for (auto tile : snake) {
         this->m_sprite->setSpritePosition(tile.coord.x, tile.coord.y);
         this->m_sprite->setSpriteColor(tile.color.red, tile.color.green, tile.color.blue);
@@ -68,6 +69,7 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
     this->m_sprite->setSpritePosition(this->m_fruit.coord.x, this->m_fruit.coord.y);
     this->m_sprite->setSpriteColor(this->m_fruit.color.red, this->m_fruit.color.green, this->m_fruit.color.blue);
     this->m_sprite->drawSprite(window);
+    window.OpenWindow();
 }
 
 void arc::SnakeGame::EventAnalisys(const arc::Event &event)
@@ -160,4 +162,16 @@ bool arc::SnakeGame::isFruitPositionOkay(int pos_x, int pos_y)
             return false;
     }
     return true;
+}
+
+void arc::SnakeGame::SetSprite(arc::IDisplay &display)
+{
+    std::cout << "Setting sprite\n";
+    this->m_sprite = display.createSprite();
+    std::cout << "Set sprite :D\n";
+}
+
+void arc::SnakeGame::SetText(arc::IDisplay &display)
+{
+    this->m_text = display.createText();
 }

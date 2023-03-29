@@ -19,6 +19,8 @@ static int launch(std::string filepath)
 
     try {
         core = opts.getOpts();
+        std::cout << "Before\n";
+        std::cout << "After\n";
         core.mainGameLoop();
     } catch (arc::Opts::OptsException &e) {
         std::cout << e.what() << "\n";

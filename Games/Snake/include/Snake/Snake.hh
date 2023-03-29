@@ -7,8 +7,9 @@
 
 #pragma once
 
-#include <arcade/interfaces/ISprite.hh>
+#include "arcade/interfaces/IDisplay.hh"
 #include <arcade/Geometry.hh>
+#include <arcade/interfaces/ISprite.hh>
 #include <vector>
 
 enum class Orient { N, E, S, W, NONE };

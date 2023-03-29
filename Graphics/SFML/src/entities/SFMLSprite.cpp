@@ -18,7 +18,7 @@
 
 void arc::SFMLSprite::setSpritePosition(int pos_x, int pos_y)
 {
-    this->m_sprite.setPosition(pos_x, pos_y);
+    this->m_sprite.setPosition(pos_x * 40, pos_y * 30);
 }
 
 void arc::SFMLSprite::moveSpritePosition(int pos_x, int pos_y)
@@ -38,6 +38,7 @@ void arc::SFMLSprite::drawSprite(IWindow &window)
 
     if (nwin == nullptr)
         throw;
+    this->m_sprite.setSize(sf::Vector2f{40, 30});
     nwin->GetWindow().draw(this->m_sprite);
 }
 

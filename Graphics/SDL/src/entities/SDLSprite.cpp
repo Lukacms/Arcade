@@ -5,12 +5,20 @@
 ** SDLSprite
 */
 
-#include <SDL/entities/SDLSprite.hh>
 #include <SDL/SDLWindow.hh>
+#include <SDL/entities/SDLSprite.hh>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_render.h>
 
 /* Constructor && Destructor */
+
+arc::SDLSprite::SDLSprite()
+{
+    m_sprite.x = 0;
+    m_sprite.y = 0;
+    m_sprite.w = 40;
+    m_sprite.h = 30;
+}
 
 /* Methods */
 
@@ -41,8 +49,10 @@ void arc::SDLSprite::drawSprite(IWindow &window)
     if (nwin == nullptr)
         throw;
     renderer = nwin->GetRenderer();
-    SDL_SetRenderDrawColor(renderer, this->m_color.red, this->m_color.green,
-        this->m_color.blue, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(renderer, this->m_color.red, this->m_color.green, this->m_color.blue,
+                           SDL_ALPHA_OPAQUE);
+    this->m_sprite.x *= this->m_sprite.w;
+    this->m_sprite.y *= this->m_sprite.h;
     SDL_RenderFillRect(renderer, &this->m_sprite);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
     SDL_RenderPresent(renderer);
