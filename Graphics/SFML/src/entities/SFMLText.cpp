@@ -9,6 +9,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/SFMLWindow.hh>
 #include <SFML/entities/SFMLText.hh>
+#include <iostream>
 
 /* Constructor && Destructor */
 
@@ -16,6 +17,7 @@
 
 void arc::SFMLText::setText(std::string str)
 {
+    std::cout << str << std::endl;
     this->m_text.setString(str);
 }
 
@@ -36,19 +38,19 @@ void arc::SFMLText::setTextColor(int red, int green, int blue)
 
 void arc::SFMLText::setTextPosition(int pos_x, int pos_y)
 {
-    this->m_text.setPosition(pos_x, pos_y);
+    this->m_text.setPosition(pos_x * 40, pos_y * 30);
 }
 
 void arc::SFMLText::drawText(arc::IWindow &window)
 {
     SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(&window);
-    sf::Text text;
 
     if (nwin == nullptr)
         throw;
-    text.setFont(this->m_font);
-    text.setFillColor(sf::Color::White);
-    nwin->GetWindow().draw(text);
+    this->m_text.setCharacterSize(12);
+    this->m_text.setFont(this->m_font);
+    this->m_text.setFillColor(sf::Color::White);
+    nwin->GetWindow().draw(this->m_text);
 }
 
 arc::IText &arc::SFMLText::getText()

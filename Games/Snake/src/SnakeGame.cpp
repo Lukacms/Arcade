@@ -11,6 +11,7 @@
 #include <arcade/interfaces/ISprite.hh>
 #include <chrono>
 #include <iostream>
+#include <string>
 #include <unordered_map>
 #include <vector>
 
@@ -42,6 +43,7 @@ void arc::SnakeGame::InitSnakeMap()
 void arc::SnakeGame::InitGame()
 {
     Snake new_snake{};
+    Tile text_tile;
 
     std::srand(std::time(nullptr));
     this->InitSnakeMap();
@@ -49,11 +51,22 @@ void arc::SnakeGame::InitGame()
     this->m_fruit.color = arc::FRUIT_COLOR;
     this->m_fruit.coord = FRUIT_STARTING_POS;
     this->m_fruit.orientation = Orient::NONE;
+    text_tile.orientation = Orient::NONE;
+    text_tile.color = TEXT_COLOR;
+    text_tile.coord = SCORE_POSITION;
+    this->m_texts.push_back(text_tile);
+    text_tile.coord = HIGHSCORE_POSITION;
+    this->m_texts.push_back(text_tile);
+    this->m_score_number.emplace_back(0);
+    this->m_score_number.emplace_back(0);
+    this->m_score.emplace_back("SCORE : ");
+    this->m_score.emplace_back("HI-SCORE : ");
 }
 
 void arc::SnakeGame::DisplayGame(IWindow &window)
 {
     std::vector<Tile> snake = this->m_snake.getSnakeTiles();
+    std::string text;
 
     window.UpdateWindow();
     for (auto tile : snake) {
@@ -70,6 +83,15 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
     this->m_sprite->setSpriteColor(this->m_fruit.color.red, this->m_fruit.color.green,
                                    this->m_fruit.color.blue);
     this->m_sprite->drawSprite(window);
+    this->m_text->setFont("./assets/font/arcade.ttf");
+    for (int iterator = 0; iterator < 2; iterator += 1) {
+        this->m_text->setTextPosition(this->m_texts[iterator].coord.x, this->m_texts[iterator].coord.y);
+        this->m_text->setTextColor(this->m_texts[iterator].color.red, this->m_texts[iterator].color.green, this->m_texts[iterator].color.blue);
+        text = std::to_string(this->m_score_number[iterator]);
+        text.insert(0, 9 - text.size(), '0');
+        this->m_text->setText(this->m_score[iterator] + text);
+        this->m_text->drawText(window);
+    }
     window.OpenWindow();
 }
 
@@ -90,7 +112,7 @@ void arc::SnakeGame::EventAnalisys(const arc::Event &event)
 void arc::SnakeGame::ResetGame()
 {
     this->m_snake.resetSnake();
-    m_score = 0;
+    this->m_score_number[0] = 0;
 }
 
 void arc::SnakeGame::PlayGame()
@@ -150,6 +172,7 @@ void arc::SnakeGame::GenerateFruit()
         if (this->isFruitPositionOkay(pos_x, pos_y))
             is_correct = true;
     }
+    this->m_score_number[0] += NEW_POINT;
     this->m_fruit.coord = {pos_x, pos_y};
 }
 

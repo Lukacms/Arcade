@@ -60,10 +60,10 @@ void arc::SDLText::drawText(IWindow &window)
     if (nwin == nullptr)
         throw;
     renderer = nwin->GetRenderer();
-    rect.x = this->pos_x;
-    rect.y = this->pos_y;
-    rect.w = 100;
-    rect.h = 100;
+    rect.w = 40;
+    rect.h = 30;
+    rect.x *= rect.w;
+    rect.y *= rect.h;
     surface = TTF_RenderText_Solid(this->m_font, this->m_text.c_str(), color);
     texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_RenderCopy(renderer, texture, nullptr, &rect);
