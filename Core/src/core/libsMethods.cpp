@@ -109,4 +109,5 @@ void arc::Core::noMoreGame()
     dlclose(this->handle_game);
     this->game = nullptr;
     this->handle_game = nullptr;
+    this->setMode(arc::CoreMode::Menu);
 }

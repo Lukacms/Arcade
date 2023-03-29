@@ -38,7 +38,6 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
     {arc::Event::BACK_MENU,
      [](arc::Core &core) -> void {
          core.noMoreGame();
-         core.setMode(arc::CoreMode::Menu);
      }},
 };
 
