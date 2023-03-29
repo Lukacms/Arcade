@@ -7,6 +7,7 @@
 
 #include <arcade/core/CoreClock.hh>
 #include <chrono>
+#include <iostream>
 
 std::chrono::duration<double> arc::CoreClock::getElapsedTime()
 {

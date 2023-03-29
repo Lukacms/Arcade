@@ -8,6 +8,7 @@
 #include <arcade/Core.hh>
 #include <arcade/core/CoreClock.hh>
 #include <arcade/enum/EventEnum.hh>
+#include <iostream>
 
 void arc::Core::getEvents()
 {
@@ -28,6 +29,7 @@ void arc::Core::mainGameLoop()
         if (this->clock.getElapsedTimeInS() > arc::CLOCK_UPDATE_TIME) {
             this->handDisplay();
             this->getEvents();
+            this->game->PlayGame();
             this->clock.reset();
         }
     }
