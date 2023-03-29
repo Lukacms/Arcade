@@ -6,9 +6,12 @@
 */
 
 #include <arcade/Core.hh>
+#include <arcade/enum/EventEnum.hh>
 
 void arc::Core::mainGameLoop()
 {
+    arc::Event graphic_event = this->display->GetEvent();
+
     if (!this->display)
         throw Core::CoreException(NO_PARAM_ERR.data());
     this->changeGame("./lib/arcade_snake.so");
@@ -16,6 +19,7 @@ void arc::Core::mainGameLoop()
     this->game->SetText(this->getIDisplay().get());
     while (this->mode != CoreMode::Quit) {
         this->handDisplay();
- //       this->handEvents();
+        while ((graphic_event = this->display->GetEvent()) != arc::Event::NONE)
+            this->handEvents(graphic_event);
     }
 }

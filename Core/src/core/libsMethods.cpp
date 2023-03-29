@@ -101,3 +101,13 @@ void arc::Core::changeGame(const std::string &filepath)
             this->game_ind = i;
     std::cout << this->game << "\n";
 }
+
+void arc::Core::noMoreGame()
+{
+    if (!this->game)
+        return;
+    this->game.release();
+    dlclose(this->handle_game);
+    this->game = nullptr;
+    this->handle_game = nullptr;
+}
