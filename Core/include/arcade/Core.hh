@@ -18,7 +18,7 @@
 #include <string_view>
 #include <vector>
 
-const std::vector<std::string> DISPLAYS{"./lib/arcade_ncurses.so", "./lib/arcade_sdl.so",
+const std::vector<std::string> DISPLAYS{"./lib/arcade_ncurses.so", "./lib/arcade_sdl2.so",
                                         "./lib/arcade_sfml.so"};
 const std::vector<std::string> GAMES{"./lib/arcade_nibbler.so", "./lib/arcade_snake.so"};
 

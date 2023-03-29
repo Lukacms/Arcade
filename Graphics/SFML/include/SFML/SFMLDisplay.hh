@@ -29,11 +29,11 @@ class SFMLDisplay : public arc::ADisplay
         ~SFMLDisplay() override = default;
         SFMLDisplay &operator=(SFMLDisplay const &to_copy) = delete;
         SFMLDisplay &operator=(SFMLDisplay &&to_move) = default;
-        std::unique_ptr<arc::IText> createText() final;
-        std::unique_ptr<arc::ISprite> createSprite() final;
 
         arc::Event GetEvent() final;
         std::string GetUserName() final;
+        std::unique_ptr<arc::IText> createText() final;
+        std::unique_ptr<arc::ISprite> createSprite() final;
 
     private:
         arc::Event analyse_key_pressed();

@@ -9,6 +9,7 @@
 #include <SDL/SDLWindow.hh>
 #include <SDL/entities/SDLSprite.hh>
 #include <SDL/entities/SDLText.hh>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_keycode.h>
 #include <SDL2/SDL_ttf.h>
@@ -21,8 +22,7 @@
 
 arc::SDLDisplay::SDLDisplay()
 {
-    std::unique_ptr<SDLWindow> window = std::make_unique<SDLWindow>();
-
+    SDL_Init(SDL_INIT_VIDEO);
     this->m_window = std::make_unique<arc::SDLWindow>(800, 600, "Arcade");
 }
 

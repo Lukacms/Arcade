@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IWindow.hh>
 #include <arcade/enum/EventEnum.hh>
 
@@ -27,5 +28,7 @@ namespace arc
             virtual void ResetGame() = 0;
             virtual void PlayGame() = 0;
             virtual void InitGame() = 0;
+            virtual void SetSprite(arc::IDisplay &display) = 0;
+            virtual void SetText(arc::IDisplay &display) = 0;
     };
 } // namespace arc

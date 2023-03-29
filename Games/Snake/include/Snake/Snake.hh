@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "arcade/interfaces/IDisplay.hh"
 #include <arcade/Geometry.hh>
 #include <arcade/interfaces/ISprite.hh>
 #include <vector>
