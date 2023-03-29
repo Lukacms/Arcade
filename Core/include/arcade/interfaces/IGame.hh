@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <arcade/interfaces/IWindow.hh>
 #include <arcade/enum/EventEnum.hh>
+#include <arcade/interfaces/IWindow.hh>
 
 namespace arc
 {
@@ -22,10 +22,10 @@ namespace arc
             IGame &operator=(IGame const &to_copy) = default;
             IGame &operator=(IGame &&to_move) = default;
 
-            virtual void EventAnalisys(const arc::Event &event) = 0;
+            virtual void EventAnalisys(const arc::Event &event) = 0; // Analysis
             virtual void DisplayGame(IWindow &window) = 0;
             virtual void ResetGame() = 0;
             virtual void PlayGame() = 0;
-            virtual void InitGame() = 0;
+            virtual void InitGame() = 0; // constructeur (ou methode privé dans l'implémentation)
     };
 } // namespace arc
