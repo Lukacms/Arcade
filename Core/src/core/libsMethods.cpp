@@ -66,6 +66,7 @@ void arc::Core::isGameOrGraphic(const std::string &filepath)
 void arc::Core::changeDisplay(const std::string &filepath)
 {
     if (this->display) {
+        this->display->GetWindow().get().CloseWindow();
         this->display.reset();
         dlclose(this->handle_display);
     }
@@ -80,6 +81,10 @@ void arc::Core::changeDisplay(const std::string &filepath)
     for (std::size_t i = 0; i < this->shared_displays.size(); i++)
         if (filepath == this->shared_displays[i])
             this->display_ind = i;
+    if (this->game) {
+        this->game->SetSprite(this->getIDisplay().get());
+        this->game->SetText(this->getIDisplay().get());
+    }
 }
 
 // NOTE if well understood, release the ownership of the pointer, so call the destructor

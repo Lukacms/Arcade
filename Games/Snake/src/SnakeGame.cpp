@@ -5,10 +5,10 @@
 ** SnakeGame
 */
 
-#include <arcade/enum/EventEnum.hh>
 #include <Snake/Snake.hh>
-#include <arcade/interfaces/ISprite.hh>
 #include <Snake/SnakeGame.hh>
+#include <arcade/enum/EventEnum.hh>
+#include <arcade/interfaces/ISprite.hh>
 #include <chrono>
 #include <iostream>
 #include <unordered_map>
@@ -67,7 +67,8 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
         this->m_sprite->drawSprite(window);
     }
     this->m_sprite->setSpritePosition(this->m_fruit.coord.x, this->m_fruit.coord.y);
-    this->m_sprite->setSpriteColor(this->m_fruit.color.red, this->m_fruit.color.green, this->m_fruit.color.blue);
+    this->m_sprite->setSpriteColor(this->m_fruit.color.red, this->m_fruit.color.green,
+                                   this->m_fruit.color.blue);
     this->m_sprite->drawSprite(window);
     window.OpenWindow();
 }
@@ -129,7 +130,8 @@ void arc::SnakeGame::CheckCollisions()
         return;
     }
     for (int iterator = 1; iterator < size; iterator += 1) {
-        if (snake[0].coord.x == snake[iterator].coord.x && snake[0].coord.y == snake[iterator].coord.y) {
+        if (snake[0].coord.x == snake[iterator].coord.x &&
+            snake[0].coord.y == snake[iterator].coord.y) {
             this->ResetGame();
             return;
         }
@@ -166,10 +168,14 @@ bool arc::SnakeGame::isFruitPositionOkay(int pos_x, int pos_y)
 
 void arc::SnakeGame::SetSprite(arc::IDisplay &display)
 {
+    if (this->m_sprite)
+        this->m_sprite.release();
     this->m_sprite = display.createSprite();
 }
 
 void arc::SnakeGame::SetText(arc::IDisplay &display)
 {
+    if (this->m_text)
+        this->m_text.release();
     this->m_text = display.createText();
 }

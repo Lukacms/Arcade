@@ -8,6 +8,7 @@
 #include <arcade/Core.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <functional>
+#include <iostream>
 #include <map>
 
 static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_MAP = {
@@ -45,7 +46,7 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
 void arc::Core::handDisplay()
 {
     // if (this->mode == CoreMode::Game)
-        this->game->DisplayGame(this->display->GetWindow().get());
+    this->game->DisplayGame(this->display->GetWindow().get());
     // else
     //     this->menu.display(this->display->GetWindow());
 }

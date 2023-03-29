@@ -14,7 +14,7 @@
 #include <SDL2/SDL_keycode.h>
 #include <SDL2/SDL_ttf.h>
 #include <arcade/enum/EventEnum.hh>
-#include <SDL/SDLDisplay.hh>
+#include <iostream>
 #include <memory>
 #include <unordered_map>
 
