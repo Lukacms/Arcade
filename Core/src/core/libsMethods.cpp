@@ -66,7 +66,7 @@ void arc::Core::isGameOrGraphic(const std::string &filepath)
 void arc::Core::changeDisplay(const std::string &filepath)
 {
     if (this->display) {
-        this->display.release();
+        this->display.reset();
         dlclose(this->handle_display);
     }
     if (!(this->handle_display = dlopen(filepath.c_str(), RTLD_LAZY)))
@@ -87,7 +87,7 @@ void arc::Core::changeDisplay(const std::string &filepath)
 void arc::Core::changeGame(const std::string &filepath)
 {
     if (this->game) {
-        this->game.release();
+        this->game.reset();
         dlclose(this->handle_game);
     }
     if (!(this->handle_game = dlopen(filepath.c_str(), RTLD_LAZY)))
@@ -109,4 +109,5 @@ void arc::Core::noMoreGame()
     dlclose(this->handle_game);
     this->game = nullptr;
     this->handle_game = nullptr;
+    this->setMode(arc::CoreMode::Menu);
 }

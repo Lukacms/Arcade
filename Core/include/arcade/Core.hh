@@ -7,9 +7,10 @@
 
 #pragma once
 
-#include "arcade/core/Menu.hh"
-#include "arcade/enum/EventEnum.hh"
 #include <algorithm>
+#include <arcade/core/CoreClock.hh>
+#include <arcade/core/Menu.hh>
+#include <arcade/enum/EventEnum.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
 #include <cstddef>
@@ -71,6 +72,7 @@ namespace arc
 
             // should be the main loop and other methods associated
             void mainGameLoop();
+            void getEvents();
 
             // error class
             class CoreException : public std::exception
@@ -97,8 +99,10 @@ namespace arc
             std::unique_ptr<arc::IGame> game{nullptr};
             std::unique_ptr<arc::IDisplay> display{nullptr};
             // check loop, and what to display for the Core
-            CoreMode mode{CoreMode::Menu};
-            Menu menu{};
+            arc::CoreMode mode{CoreMode::Menu};
+            arc::Menu menu{};
+            // clock
+            arc::CoreClock clock{};
             void *handle_display{nullptr};
             void *handle_game{nullptr};
     };
