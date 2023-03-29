@@ -12,7 +12,7 @@ std::chrono::duration<double> arc::CoreClock::getElapsedTime()
 {
     this->updated = std::chrono::steady_clock::now();
 
-    return start - updated;
+    return updated - start;
 }
 
 double arc::CoreClock::getElapsedTimeInS()
