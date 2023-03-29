@@ -63,10 +63,8 @@ const std::string &arc::Core::getPrevGame()
 
 std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
 {
-    std::cout << "oui\n";
-    auto disslay = std::ref(*(this->display));
-    std::cout << "oui\n";
-    return disslay;
+    auto dis = std::ref(*(this->display));
+    return dis;
 }
 
 std::reference_wrapper<arc::IGame> arc::Core::getIGame() const

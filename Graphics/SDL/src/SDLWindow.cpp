@@ -39,6 +39,7 @@ arc::SDLWindow::~SDLWindow()
 void arc::SDLWindow::OpenWindow()
 {
     SDL_ShowWindow(this->m_window);
+    SDL_RenderPresent(m_renderer);
 }
 
 void arc::SDLWindow::CloseWindow()
@@ -51,8 +52,7 @@ void arc::SDLWindow::CloseWindow()
 
 void arc::SDLWindow::UpdateWindow()
 {
-    if (this->m_renderer != nullptr)
-        SDL_RenderPresent(this->m_renderer);
+    SDL_RenderClear(this->m_renderer);
 }
 
 void arc::SDLWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord)
@@ -60,6 +60,7 @@ void arc::SDLWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord)
     this->CloseWindow();
     this->m_window = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, x_coord, y_coord, SDL_WINDOW_SHOWN);
+    this->m_renderer = SDL_CreateRenderer(this->m_window, -1, SDL_RENDERER_ACCELERATED);
 }
 
 SDL_Window *arc::SDLWindow::GetWindow()

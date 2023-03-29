@@ -166,9 +166,7 @@ bool arc::SnakeGame::isFruitPositionOkay(int pos_x, int pos_y)
 
 void arc::SnakeGame::SetSprite(arc::IDisplay &display)
 {
-    std::cout << "Setting sprite\n";
     this->m_sprite = display.createSprite();
-    std::cout << "Set sprite :D\n";
 }
 
 void arc::SnakeGame::SetText(arc::IDisplay &display)

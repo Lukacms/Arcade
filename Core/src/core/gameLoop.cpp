@@ -7,10 +7,11 @@
 
 #include <arcade/Core.hh>
 #include <arcade/enum/EventEnum.hh>
+#include <iostream>
 
 void arc::Core::mainGameLoop()
 {
-    arc::Event graphic_event = this->display->GetEvent();
+    arc::Event graphic_event;
 
     if (!this->display)
         throw Core::CoreException(NO_PARAM_ERR.data());
@@ -21,5 +22,6 @@ void arc::Core::mainGameLoop()
         this->handDisplay();
         while ((graphic_event = this->display->GetEvent()) != arc::Event::NONE)
             this->handEvents(graphic_event);
+        this->game->PlayGame();
     }
 }
