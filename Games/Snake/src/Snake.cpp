@@ -17,10 +17,12 @@ Snake::Snake() noexcept
 
     this->m_snake_head.coord = arc::STARTING_POINT;
     this->m_snake_head.color = arc::HEAD_COLOR;
-    this->m_snake_head.orientation = Orient::N;
+    this->m_snake_head.orientation = Orient::W;
     snake_body.color = arc::BODY_COLOR;
     snake_body.orientation = Orient::NONE;
     snake_body.coord = arc::STARTING_POINT;
+    snake_body.coord.x -= 1;
+    this->m_snake.push_back(snake_body);
     snake_body.coord.x -= 1;
     this->m_snake.push_back(snake_body);
     snake_body.coord.x -= 1;
@@ -55,12 +57,12 @@ void Snake::resetSnake()
 
     this->m_snake_head.coord = arc::STARTING_POINT;
     this->m_snake_head.color = arc::HEAD_COLOR;
-    this->m_snake_head.orientation = Orient::N;
+    this->m_snake_head.orientation = Orient::E;
     snake_body.color = arc::BODY_COLOR;
     snake_body.orientation = Orient::NONE;
     snake_body.coord = arc::STARTING_POINT;
-    for (int iterator = 1; iterator <= 3 ; iterator += 1) {
-        snake_body.coord.x -= iterator;
+    for (int iterator = 1; iterator <= 4 ; iterator += 1) {
+        snake_body.coord.x = arc::STARTING_POINT.x - iterator;
         this->m_snake.push_back(snake_body);
     }
 }
