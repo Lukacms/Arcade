@@ -107,9 +107,9 @@ void arc::SnakeGame::MoveSnake()
     if (snake_head.orientation == Orient::S)
         this->m_snake.moveSnake(0, -1, Orient::S);
     if (snake_head.orientation == Orient::E)
-        this->m_snake.moveSnake(-1, 0, Orient::E);
+        this->m_snake.moveSnake(1, 0, Orient::E);
     if (snake_head.orientation == Orient::W)
-        this->m_snake.moveSnake(1, 0, Orient::N);
+        this->m_snake.moveSnake(-1, 0, Orient::W);
 }
 
 void arc::SnakeGame::CheckCollisions()
