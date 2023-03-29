@@ -24,5 +24,6 @@ namespace arc
             virtual ~IFactory();
             virtual std::unique_ptr<ISprite> CreateISprite(const std::string &path) = 0;
             virtual std::unique_ptr<IText> CreateIText(const std::string &path) = 0;
+            // créé la window
     };
 } // namespace arc

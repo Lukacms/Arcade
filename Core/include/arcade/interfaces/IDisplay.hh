@@ -26,10 +26,11 @@ namespace arc
             IDisplay(IDisplay &&to_move) = default;
             IDisplay &operator=(IDisplay const &to_copy) = default;
             IDisplay &operator=(IDisplay &&to_move) = default;
-            virtual std::unique_ptr<arc::ISprite> createSprite() = 0;
-            virtual std::unique_ptr<arc::IText> createText() = 0;
-            [[nodiscard]] virtual std::reference_wrapper<arc::IWindow> GetWindow() = 0;
-            [[nodiscard]] virtual arc::Event GetEvent() = 0;
-            [[nodiscard]] virtual std::string GetUserName() = 0;
+            virtual std::unique_ptr<arc::ISprite> createSprite() = 0; // factory
+            virtual std::unique_ptr<arc::IText> createText() = 0;     // factory
+            [[nodiscard]] virtual std::reference_wrapper<arc::IWindow>
+            GetWindow() = 0;                                     // create window
+            [[nodiscard]] virtual arc::Event GetEvent() = 0;     // window
+            [[nodiscard]] virtual std::string GetUserName() = 0; // dans les jeux
     };
 } // namespace arc
