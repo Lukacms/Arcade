@@ -15,6 +15,11 @@ std::chrono::duration<double> arc::CoreClock::getElapsedTime()
     return start - updated;
 }
 
+double arc::CoreClock::getElapsedTimeInS()
+{
+    return this->getElapsedTime().count();
+}
+
 /**
  * reset the clock
  */

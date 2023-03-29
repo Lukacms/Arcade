@@ -11,6 +11,8 @@
 
 namespace arc
 {
+    constexpr double CLOCK_UPDATE_TIME = 0.1;
+
     class CoreClock
     {
         public:
@@ -24,6 +26,7 @@ namespace arc
 
             // function methods
             [[nodiscard]] std::chrono::duration<double> getElapsedTime();
+            [[nodiscard]] double getElapsedTimeInS();
             void reset();
 
         private:
