@@ -33,10 +33,11 @@ void Snake::moveSnake(int x_coord, int y_coord, Orient orientation)
 {
     int size = this->m_snake.size();
 
-    for (; size < 0; size -= 1)
+    for (; size >= 1; size -= 1)
         this->m_snake[size].coord = this->m_snake[size - 1].coord;
     this->m_snake[0].coord = this->m_snake_head.coord;
-    this->m_snake_head.coord = {x_coord, y_coord};
+    this->m_snake_head.coord.x += x_coord;
+    this->m_snake_head.coord.y += y_coord * -1;
     this->m_snake_head.orientation = orientation;
 }
 

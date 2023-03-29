@@ -63,12 +63,13 @@ const std::string &arc::Core::getPrevGame()
 
 std::reference_wrapper<arc::IDisplay> arc::Core::getIDisplay() const
 {
-    return std::ref(*this->display);
+    auto dis = std::ref(*(this->display));
+    return dis;
 }
 
 std::reference_wrapper<arc::IGame> arc::Core::getIGame() const
 {
-    return std::ref(*this->game);
+    return std::ref(*(this->game));
 }
 
 arc::CoreMode arc::Core::getMode() const

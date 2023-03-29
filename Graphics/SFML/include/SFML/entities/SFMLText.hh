@@ -8,21 +8,23 @@
 #pragma once
 
 #include <SFML/Graphics/Font.hpp>
-#include <arcade/interfaces/ISprite.hh>
 #include <SFML/Graphics/Text.hpp>
+#include <arcade/interfaces/ISprite.hh>
 #include <arcade/interfaces/IText.hh>
 #include <string>
 
-namespace arc {
-    
-    class SFMLText : public IText {
+namespace arc
+{
+
+    class SFMLText : public IText
+    {
         public:
             SFMLText() = default;
-            SFMLText(const SFMLText&) = default;
+            SFMLText(const SFMLText &) = default;
             SFMLText(SFMLText &&) = delete;
             ~SFMLText() override = default;
-    
-            SFMLText &operator=(const SFMLText&) = default;
+
+            SFMLText &operator=(const SFMLText &) = default;
             SFMLText &operator=(SFMLText &&);
 
             void setText(std::string str) final;
@@ -39,4 +41,4 @@ namespace arc {
             int pos_y;
     };
 
-}
+} // namespace arc

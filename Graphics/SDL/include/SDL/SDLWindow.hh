@@ -7,14 +7,16 @@
 
 #pragma once
 
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
 #include <arcade/interfaces/IWindow.hh>
 #include <string>
-#include <SDL2/SDL.h>
 
 namespace arc
 {
+    constexpr const int BACKSPACE = 127;
+
     class SDLWindow : public IWindow
     {
         public:
@@ -33,4 +35,4 @@ namespace arc
             SDL_Window *m_window = nullptr;
             SDL_Renderer *m_renderer = nullptr;
     };
-}
+} // namespace arc

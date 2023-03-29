@@ -12,6 +12,7 @@
 
 constexpr int const MAP_WIDTH = 20;
 constexpr int const MAP_HEIGHT = 20;
+constexpr int POS_SNAKE_BASE_X = 19;
 
 enum class Orient { N, E, S, W, NONE };
 
@@ -30,8 +31,9 @@ class Snake
         Snake &operator=(Snake const &to_copy) = default;
         Snake &operator=(Snake &&to_move) = default;
         void move_snake(int x_coord, int y_coord, Orient orientation);
-        void expand_snake(int x_coord, int y_coord, Orient orientation);
+        void expand_snake();
         void reset_snake();
+        bool is_cell_snake(int x_coord, int y_coord);
         [[nodiscard]] arc::Vector get_head_position() const;
 
     private:

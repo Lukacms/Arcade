@@ -7,10 +7,12 @@
 
 #include "arcade/interfaces/ISprite.hh"
 #include <curses.h>
-#include <ncurses/entities/NCursesSprite.hh>
 #include <ncurses/NCursesWindow.hh>
+#include <ncurses/entities/NCursesSprite.hh>
 
 /* Constructor && Destructor */
+
+arc::NCursesSprite::NCursesSprite(char sprite) : m_sprite(sprite) {}
 
 /* Methods */
 

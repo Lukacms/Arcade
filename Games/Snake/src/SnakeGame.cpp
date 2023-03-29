@@ -55,6 +55,7 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
 {
     std::vector<Tile> snake = this->m_snake.getSnakeTiles();
 
+    window.UpdateWindow();
     for (auto tile : snake) {
         this->m_sprite->setSpritePosition(tile.coord.x, tile.coord.y);
         this->m_sprite->setSpriteColor(tile.color.red, tile.color.green, tile.color.blue);
@@ -68,6 +69,7 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
     this->m_sprite->setSpritePosition(this->m_fruit.coord.x, this->m_fruit.coord.y);
     this->m_sprite->setSpriteColor(this->m_fruit.color.red, this->m_fruit.color.green, this->m_fruit.color.blue);
     this->m_sprite->drawSprite(window);
+    window.OpenWindow();
 }
 
 void arc::SnakeGame::EventAnalisys(const arc::Event &event)
@@ -105,9 +107,9 @@ void arc::SnakeGame::MoveSnake()
     if (snake_head.orientation == Orient::S)
         this->m_snake.moveSnake(0, -1, Orient::S);
     if (snake_head.orientation == Orient::E)
-        this->m_snake.moveSnake(-1, 0, Orient::E);
+        this->m_snake.moveSnake(1, 0, Orient::E);
     if (snake_head.orientation == Orient::W)
-        this->m_snake.moveSnake(1, 0, Orient::N);
+        this->m_snake.moveSnake(-1, 0, Orient::W);
 }
 
 void arc::SnakeGame::CheckCollisions()
@@ -160,4 +162,14 @@ bool arc::SnakeGame::isFruitPositionOkay(int pos_x, int pos_y)
             return false;
     }
     return true;
+}
+
+void arc::SnakeGame::SetSprite(arc::IDisplay &display)
+{
+    this->m_sprite = display.createSprite();
+}
+
+void arc::SnakeGame::SetText(arc::IDisplay &display)
+{
+    this->m_text = display.createText();
 }
