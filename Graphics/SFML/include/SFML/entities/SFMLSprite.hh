@@ -16,9 +16,9 @@ namespace arc {
     class SFMLSprite : public ISprite {
 
         public:
-            SFMLSprite();
+            SFMLSprite() = default;
             SFMLSprite(const SFMLSprite&);
-            ~SFMLSprite() override;
+            ~SFMLSprite() override = default;
 
             SFMLSprite &operator=(const SFMLSprite&);
 

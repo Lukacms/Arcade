@@ -43,6 +43,8 @@ namespace arc
             void ResetGame() final;
             void InitGame() final;
             void PlayGame() final;
+            void SetSprite(arc::IDisplay &display) final;
+            void SetText(arc::IDisplay &display) final;
 
         private:
             void InitSnakeMap();

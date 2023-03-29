@@ -65,3 +65,13 @@ void NibblerGame::EventAnalisys(const arc::Event &event)
     if (event == arc::Event::LEFT)
         move_snake_analyse(snake_head_position, -1, 0, Orient::W);
 }
+
+void NibblerGame::SetSprite(arc::IDisplay &display)
+{
+    this->m_sprite = display.createSprite();
+}
+
+void NibblerGame::SetText(arc::IDisplay &display)
+{
+    this->m_text = display.createText();
+}

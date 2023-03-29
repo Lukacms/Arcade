@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <arcade/Opts.hh>
 #include <exception>
+#include <iostream>
 #include <memory>
 
 /* Constructor && Destructor */
@@ -109,12 +110,12 @@ std::string SFMLDisplay::GetUserName()
     return name;
 }
 
-std::unique_ptr<arc::IText> createText()
+std::unique_ptr<arc::IText> SFMLDisplay::createText()
 {
     return std::make_unique<arc::SFMLText>();
 }
 
-std::unique_ptr<arc::ISprite> createSprite()
+std::unique_ptr<arc::ISprite> SFMLDisplay::createSprite()
 {
     return std::make_unique<arc::SFMLSprite>();
 }

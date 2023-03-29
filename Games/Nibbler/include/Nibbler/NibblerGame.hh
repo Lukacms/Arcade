@@ -29,12 +29,15 @@ class NibblerGame : arc::IGame
         ~NibblerGame() override = default;
         NibblerGame &operator=(NibblerGame const &to_copy) = delete;
         NibblerGame &operator=(NibblerGame &&to_move) = default;
+
         void move_snake_analyse(const arc::Vector &snake_head_position, int x_add, int y_add,
                                 Orient orient);
         void EventAnalisys(const arc::Event &event) final;
         void PlayGame() final; // TODO
         void ResetGame() final;
         void InitGame() final; // TODO
+        void SetSprite(arc::IDisplay &display) final;
+        void SetText(arc::IDisplay &display) final;
 
     private:
         Snake m_snake{};

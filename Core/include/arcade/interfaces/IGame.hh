@@ -8,6 +8,7 @@
 #pragma once
 
 #include <arcade/enum/EventEnum.hh>
+#include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IWindow.hh>
 
 namespace arc
@@ -26,6 +27,8 @@ namespace arc
             virtual void DisplayGame(IWindow &window) = 0;
             virtual void ResetGame() = 0;
             virtual void PlayGame() = 0;
-            virtual void InitGame() = 0; // constructeur (ou methode privé dans l'implémentation)
+            virtual void InitGame() = 0;
+            virtual void SetSprite(arc::IDisplay &display) = 0;
+            virtual void SetText(arc::IDisplay &display) = 0;
     };
 } // namespace arc
