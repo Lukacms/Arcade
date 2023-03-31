@@ -2,8 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** Arcade
 ** File description:
-** SnakeGame
-*/
+** SnakeGame */
 
 #include <Snake/Snake.hh>
 #include <Snake/SnakeGame.hh>
@@ -85,8 +84,11 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
     this->m_sprite->drawSprite(window);
     this->m_text->setFont("./assets/font/arcade.ttf");
     for (int iterator = 0; iterator < 2; iterator += 1) {
-        this->m_text->setTextPosition(this->m_texts[iterator].coord.x, this->m_texts[iterator].coord.y);
-        this->m_text->setTextColor(this->m_texts[iterator].color.red, this->m_texts[iterator].color.green, this->m_texts[iterator].color.blue);
+        this->m_text->setTextPosition(this->m_texts[iterator].coord.x,
+                                      this->m_texts[iterator].coord.y);
+        this->m_text->setTextColor(this->m_texts[iterator].color.red,
+                                   this->m_texts[iterator].color.green,
+                                   this->m_texts[iterator].color.blue);
         text = std::to_string(this->m_score_number[iterator]);
         text.insert(0, 9 - text.size(), '0');
         this->m_text->setText(this->m_score[iterator] + text);

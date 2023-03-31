@@ -6,8 +6,8 @@
 */
 
 #include "arcade/Geometry.hh"
-#include <Snake/SnakeGame.hh>
 #include <Snake/Snake.hh>
+#include <Snake/SnakeGame.hh>
 
 /* Constructor && Destructor */
 
@@ -61,7 +61,7 @@ void Snake::resetSnake()
     snake_body.color = arc::BODY_COLOR;
     snake_body.orientation = Orient::NONE;
     snake_body.coord = arc::STARTING_POINT;
-    for (int iterator = 1; iterator <= 4 ; iterator += 1) {
+    for (int iterator = 1; iterator <= 4; iterator += 1) {
         snake_body.coord.x = arc::STARTING_POINT.x - iterator;
         this->m_snake.push_back(snake_body);
     }
