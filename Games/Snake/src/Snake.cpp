@@ -17,7 +17,7 @@ Snake::Snake() noexcept
 
     this->m_snake_head.coord = arc::STARTING_POINT;
     this->m_snake_head.color = arc::HEAD_COLOR;
-    this->m_snake_head.orientation = Orient::W;
+    this->m_snake_head.orientation = Orient::E;
     snake_body.color = arc::BODY_COLOR;
     snake_body.orientation = Orient::NONE;
     snake_body.coord = arc::STARTING_POINT;

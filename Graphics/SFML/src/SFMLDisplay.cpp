@@ -35,6 +35,8 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F2});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_L, sf::Keyboard::F3});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
+    m_event_list.push_back(EventLink{arc::Event::RESTART, sf::Keyboard::R});
+    m_event_list.push_back(EventLink{arc::Event::BACK_MENU, sf::Keyboard::Q});
     this->m_window = std::make_unique<SFMLWindow>(800, 600, "Arcade");
 }
 
@@ -66,47 +68,6 @@ arc::Event SFMLDisplay::GetEvent()
             return tmp;
     }
     return arc::Event::NONE;
-}
-
-std::string SFMLDisplay::GetUserName()
-{
-    std::string name{};
-    sf::Event event{};
-    sf::Font font{};
-    sf::Text text{};
-    int tmp{-1};
-
-    if (!font.loadFromFile("./graphics_assets/font.tff"))
-        throw arc::Opts{"Cant load ./graphics_assets/font.tff"};
-    if (!dynamic_cast<SFMLWindow *>(m_window.get()))
-        throw arc::Opts{"SFML window cast error"};
-    text.setFont(font);
-    text.setPosition(400, 300);
-    text.setScale(4, 4);
-    auto *test = dynamic_cast<sf::RenderWindow *>(m_window.get());
-    test->pollEvent(m_event);
-    tmp = event.type;
-    while (tmp != '\n') {
-        if (tmp == SFML_KEY::BACKSPACE && !name.empty()) {
-            test->clear();
-            name.pop_back();
-            text.setString(name);
-            test->draw(text);
-            test->display();
-        }
-        if (tmp >= 'a' && tmp <= 'z') {
-            test->clear();
-            name.push_back(tmp);
-            text.setString(name);
-            test->draw(text);
-            test->display();
-        }
-        tmp = event.type;
-    }
-    if (name.empty()) {
-        return std::string{"Arcade Sucks"};
-    }
-    return name;
 }
 
 std::unique_ptr<arc::IText> SFMLDisplay::createText()
