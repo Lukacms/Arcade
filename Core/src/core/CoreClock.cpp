@@ -18,7 +18,9 @@ std::chrono::duration<double> arc::CoreClock::getElapsedTime()
 
 double arc::CoreClock::getElapsedTimeInS()
 {
-    return this->getElapsedTime().count();
+    auto tmp = this->getElapsedTime();
+    tmp.count();
+    return tmp.count();
 }
 
 /**

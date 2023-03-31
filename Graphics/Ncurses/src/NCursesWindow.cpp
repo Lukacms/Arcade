@@ -6,6 +6,7 @@
 */
 
 #include <curses.h>
+#include <iostream>
 #include <ncurses.h>
 #include <ncurses/NCursesWindow.hh>
 

@@ -27,6 +27,5 @@ namespace arc
             std::unique_ptr<arc::IText> createText() override;
 
             [[nodiscard]] arc::Event GetEvent() final;
-            [[nodiscard]] std::string GetUserName() final;
     };
 } // namespace arc

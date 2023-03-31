@@ -46,7 +46,8 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
 void arc::Core::handDisplay()
 {
     // if (this->mode == CoreMode::Game)
-    this->game->DisplayGame(this->display->GetWindow().get());
+    //if (this->display)
+        this->game->DisplayGame(this->display->GetWindow().get());
     // else
     //     this->menu.display(this->display->GetWindow());
 }
