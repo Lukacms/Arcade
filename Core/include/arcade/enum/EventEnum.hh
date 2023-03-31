@@ -1,9 +1,9 @@
 /*
- ** interface
- ** EPITECH PROJECT, 2023
- ** File description:
- ** EventEnum
- */
+** interface
+** EPITECH PROJECT, 2023
+** File description:
+** EventEnum
+*/
 
 #pragma once
 
@@ -20,6 +20,8 @@ namespace arc
         CHANGE_LIB_L,
         CHANGE_LIB_R,
         ENTER,
+        RESTART,
+        BACK_MENU,
         NONE
     };
 }

@@ -66,7 +66,8 @@ void arc::Core::isGameOrGraphic(const std::string &filepath)
 void arc::Core::changeDisplay(const std::string &filepath)
 {
     if (this->display) {
-        this->display.release();
+        this->display->GetWindow().get().CloseWindow();
+        this->display.reset();
         dlclose(this->handle_display);
     }
     if (!(this->handle_display = dlopen(filepath.c_str(), RTLD_LAZY)))
@@ -80,6 +81,10 @@ void arc::Core::changeDisplay(const std::string &filepath)
     for (std::size_t i = 0; i < this->shared_displays.size(); i++)
         if (filepath == this->shared_displays[i])
             this->display_ind = i;
+    if (this->game) {
+        this->game->SetSprite(this->getIDisplay().get());
+        this->game->SetText(this->getIDisplay().get());
+    }
 }
 
 // NOTE if well understood, release the ownership of the pointer, so call the destructor
@@ -87,7 +92,7 @@ void arc::Core::changeDisplay(const std::string &filepath)
 void arc::Core::changeGame(const std::string &filepath)
 {
     if (this->game) {
-        this->game.release();
+        this->game.reset();
         dlclose(this->handle_game);
     }
     if (!(this->handle_game = dlopen(filepath.c_str(), RTLD_LAZY)))
@@ -99,4 +104,15 @@ void arc::Core::changeGame(const std::string &filepath)
     for (std::size_t i = 0; i < this->shared_games.size(); i++)
         if (filepath == this->shared_games[i])
             this->game_ind = i;
+}
+
+void arc::Core::noMoreGame()
+{
+    if (!this->game)
+        return;
+    this->game.release();
+    dlclose(this->handle_game);
+    this->game = nullptr;
+    this->handle_game = nullptr;
+    this->setMode(arc::CoreMode::Menu);
 }

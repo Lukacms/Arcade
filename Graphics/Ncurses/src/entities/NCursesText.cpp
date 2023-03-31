@@ -38,7 +38,7 @@ void arc::NCursesText::drawText(IWindow &window)
 
     if (nwin == nullptr)
         throw;
-    mvwprintw(nwin->GetWindow(), this->pos_x, this->pos_y, "%s", this->m_text.c_str());
+    mvwprintw(nwin->GetWindow(), this->pos_y * 2, this->pos_x * 4,"%s", this->m_text.c_str());
 }
 
 arc::IText &arc::NCursesText::getText()

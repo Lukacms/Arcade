@@ -8,6 +8,7 @@
 #include <arcade/Core.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <functional>
+#include <iostream>
 #include <map>
 
 static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_MAP = {
@@ -31,24 +32,29 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
      [](arc::Core &core) -> void {
          core.setMode(arc::CoreMode::Quit);
      }},
-    // TODO last is reload game, but welp
-    // TODO add an event to go back to menu
+    {arc::Event::RESTART,
+     [](arc::Core &core) -> void {
+         core.getIGame().get().ResetGame();
+     }},
+    {arc::Event::BACK_MENU,
+     [](arc::Core &core) -> void {
+         core.noMoreGame();
+     }},
 };
 
 // this method should just give the display method, window to the game
 void arc::Core::handDisplay()
 {
-    if (this->mode == CoreMode::Game)
+    // if (this->mode == CoreMode::Game)
+    //if (this->display)
         this->game->DisplayGame(this->display->GetWindow().get());
-    else
-        this->menu.display(this->display->GetWindow());
+    // else
+    //     this->menu.display(this->display->GetWindow());
 }
 
 // this method should analyse if an event should change library, quit or be analysed by the game
-void arc::Core::handEvents()
+void arc::Core::handEvents(arc::Event graphic_event)
 {
-    arc::Event graphic_event = this->display->GetEvent();
-
     for (auto event : EVENT_MAP) {
         if (event.first == graphic_event) {
             event.second(*this);

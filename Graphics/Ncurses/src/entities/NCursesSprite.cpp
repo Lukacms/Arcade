@@ -7,10 +7,12 @@
 
 #include "arcade/interfaces/ISprite.hh"
 #include <curses.h>
-#include <ncurses/entities/NCursesSprite.hh>
 #include <ncurses/NCursesWindow.hh>
+#include <ncurses/entities/NCursesSprite.hh>
 
 /* Constructor && Destructor */
+
+arc::NCursesSprite::NCursesSprite(char sprite) : m_sprite(sprite) {}
 
 /* Methods */
 
@@ -39,7 +41,15 @@ void arc::NCursesSprite::drawSprite(IWindow &window)
 
     if (nwin == nullptr)
         throw;
-    mvwprintw(nwin->GetWindow(), this->m_x, this->m_y, "%c", this->m_sprite);
+    init_color(COLOR_CYAN, this->m_color.red, this->m_color.green, this->m_color.blue);
+    init_pair(1, COLOR_CYAN, COLOR_CYAN);
+    wattron(nwin->GetWindow(), COLOR_PAIR(1));
+    for (int offset_y = 0; offset_y < 2; offset_y += 1) {
+        for (int offset_x = 0; offset_x < 4; offset_x += 1) {
+            mvwprintw(nwin->GetWindow(), (this->m_y * 2) + offset_y, (this->m_x * 4) + offset_x, "%c", this->m_sprite);
+        }
+    }
+    wattroff(nwin->GetWindow(), COLOR_PAIR(1));
 }
 
 arc::ISprite &arc::NCursesSprite::getSprite()

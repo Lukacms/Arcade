@@ -5,17 +5,23 @@
 ** SFMLDisplay
 */
 
-#include "arcade/interfaces/IWindow.hh"
 #include <SFML/SFMLDisplay.hh>
 #include <SFML/SFMLWindow.hh>
+#include <SFML/entities/SFMLSprite.hh>
+#include <SFML/entities/SFMLText.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <SFML/Graphics/Font.hpp>
+#include <arcade/interfaces/IWindow.hh>
 #include <SFML/Window/Keyboard.hpp>
 #include <algorithm>
+#include <arcade/Opts.hh>
 #include <exception>
+#include <iostream>
 #include <memory>
 
 /* Constructor && Destructor */
 
-arc::SFMLDisplay::SFMLDisplay()
+SFMLDisplay::SFMLDisplay()
 {
     m_event = sf::Event{};
 
@@ -29,12 +35,14 @@ arc::SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F2});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_L, sf::Keyboard::F3});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
+    m_event_list.push_back(EventLink{arc::Event::RESTART, sf::Keyboard::R});
+    m_event_list.push_back(EventLink{arc::Event::BACK_MENU, sf::Keyboard::Q});
     this->m_window = std::make_unique<SFMLWindow>(800, 600, "Arcade");
 }
 
 /* Methods */
 
-arc::Event arc::SFMLDisplay::analyse_key_pressed()
+arc::Event SFMLDisplay::analyse_key_pressed()
 {
     auto lambda = [&](EventLink &event_link) -> bool {
         return event_link.s_key_code == m_event.key.code;
@@ -45,15 +53,14 @@ arc::Event arc::SFMLDisplay::analyse_key_pressed()
     return arc::Event::NONE;
 }
 
-arc::Event arc::SFMLDisplay::GetEvent()
+arc::Event SFMLDisplay::GetEvent()
 {
     arc::Event tmp{arc::Event::NONE};
+    SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(m_window.get());
 
-    if (!dynamic_cast<SFMLWindow *>(m_window.get())) {
-        // Trhow error
-    }
-    auto *test = dynamic_cast<sf::RenderWindow *>(m_window.get());
-    if (test->pollEvent(m_event)) {
+    if (nwin == nullptr)
+        throw;
+    if (nwin->GetWindow().pollEvent(m_event)) {
         if (sf::Event::Closed)
             return arc::Event::QUIT;
         tmp = analyse_key_pressed();
@@ -61,4 +68,14 @@ arc::Event arc::SFMLDisplay::GetEvent()
             return tmp;
     }
     return arc::Event::NONE;
+}
+
+std::unique_ptr<arc::IText> SFMLDisplay::createText()
+{
+    return std::make_unique<arc::SFMLText>();
+}
+
+std::unique_ptr<arc::ISprite> SFMLDisplay::createSprite()
+{
+    return std::make_unique<arc::SFMLSprite>();
 }

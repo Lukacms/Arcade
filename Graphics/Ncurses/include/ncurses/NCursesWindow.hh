@@ -7,13 +7,16 @@
 
 #pragma once
 
-#include <string>
-#include <ncurses.h>
 #include <arcade/interfaces/IWindow.hh>
+#include <ncurses.h>
+#include <string>
 
-namespace arc {
+namespace arc
+{
+    constexpr const int BACKSPACE = 127;
 
-    class NCursesWindow : public IWindow {
+    class NCursesWindow : public IWindow
+    {
         public:
             NCursesWindow() = default;
             NCursesWindow(unsigned int x_coord, unsigned int y_coord);
@@ -32,4 +35,4 @@ namespace arc {
         private:
             WINDOW *m_window = nullptr;
     };
-}
+} // namespace arc
