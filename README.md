@@ -4,7 +4,7 @@ A retro platform
 ## Project
 Arcade is a gaming platform: a program that lets the user choose a game to play and keeps a register of player scores.\
 To be able to deal with the elements of the gaming plate-form at run-time, the graphics libraries and the games must be implemented as dynamic libraries, loaded at run-time.\
-Each GUI available for the program must be used as a shared library that will be loaded and used dynamically by the main program.
+Each GUI available for the program must be used as a [shared library](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html) that will be loaded and used dynamically by the main program.
 
 ### Dependencies
 The project is done in [C++](https://en.wikipedia.org/wiki/C%2B%2B), and build using [CMake](https://cmake.org/)
