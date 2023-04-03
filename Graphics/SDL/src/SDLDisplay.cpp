@@ -35,7 +35,7 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {SDLK_DOWN, arc::Event::DOWN},
                                                   {SDLK_LEFT, arc::Event::LEFT},
                                                   {SDLK_RIGHT, arc::Event::RIGHT},
-                                                  {SDLK_ESCAPE, arc::Event::QUIT},
+                                                  {'x', arc::Event::QUIT},
                                                   {SDLK_KP_ENTER, arc::Event::ENTER},
                                                   {SDLK_F1, arc::Event::CHANGE_GAME_L},
                                                   {SDLK_F2, arc::Event::CHANGE_GAME_R},

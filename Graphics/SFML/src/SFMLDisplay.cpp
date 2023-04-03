@@ -5,16 +5,16 @@
 ** SFMLDisplay
 */
 
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/SFMLDisplay.hh>
 #include <SFML/SFMLWindow.hh>
+#include <SFML/Window/Keyboard.hpp>
 #include <SFML/entities/SFMLSprite.hh>
 #include <SFML/entities/SFMLText.hh>
-#include <arcade/interfaces/ISprite.hh>
-#include <SFML/Graphics/Font.hpp>
-#include <arcade/interfaces/IWindow.hh>
-#include <SFML/Window/Keyboard.hpp>
 #include <algorithm>
 #include <arcade/Opts.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IWindow.hh>
 #include <exception>
 #include <iostream>
 #include <memory>
@@ -29,7 +29,7 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::DOWN, sf::Keyboard::Down});
     m_event_list.push_back(EventLink{arc::Event::LEFT, sf::Keyboard::Left});
     m_event_list.push_back(EventLink{arc::Event::RIGHT, sf::Keyboard::Right});
-    m_event_list.push_back(EventLink{arc::Event::QUIT, sf::Keyboard::Escape});
+    m_event_list.push_back(EventLink{arc::Event::QUIT, sf::Keyboard::X});
     m_event_list.push_back(EventLink{arc::Event::ENTER, sf::Keyboard::Enter});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F1});
     m_event_list.push_back(EventLink{arc::Event::CHANGE_GAME_L, sf::Keyboard::F2});
