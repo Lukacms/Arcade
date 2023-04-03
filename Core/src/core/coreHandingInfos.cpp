@@ -45,9 +45,10 @@ static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_
 // this method should just give the display method, window to the game
 void arc::Core::handDisplay()
 {
-    if (this->mode == CoreMode::Game)
+    if (this->mode == CoreMode::Game) {
         this->game->DisplayGame(this->display->GetWindow().get());
-    else
+        this->game->PlayGame();
+    } else
         this->menu.display(this->display->GetWindow());
 }
 

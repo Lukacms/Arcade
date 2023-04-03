@@ -26,7 +26,6 @@ void arc::Core::mainGameLoop()
         if (this->clock.getElapsedTimeInS() > arc::CLOCK_UPDATE_TIME) {
             this->handDisplay();
             this->getEvents();
-            this->game->PlayGame();
             this->clock.reset();
         }
     }
