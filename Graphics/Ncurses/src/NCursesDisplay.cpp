@@ -5,18 +5,18 @@
 ** NCursesDisplay
 */
 
-#include <arcade/interfaces/ISprite.hh>
-#include <iostream>
-#include <ncurses/entities/NCursesSprite.hh>
-#include <ncurses/entities/NCursesText.hh>
 #include <arcade/Opts.hh>
-#include <memory>
-#include <ncurses/NCursesWindow.hh>
 #include <arcade/enum/EventEnum.hh>
+#include <arcade/interfaces/ISprite.hh>
 #include <curses.h>
+#include <iostream>
 #include <map>
+#include <memory>
 #include <ncurses.h>
 #include <ncurses/NCursesDisplay.hh>
+#include <ncurses/NCursesWindow.hh>
+#include <ncurses/entities/NCursesSprite.hh>
+#include <ncurses/entities/NCursesText.hh>
 #include <unordered_map>
 
 /* Constructor && Destructor */
@@ -36,7 +36,7 @@ arc::Event arc::NCursesDisplay::GetEvent()
                                                   {KEY_DOWN, arc::Event::DOWN},
                                                   {KEY_LEFT, arc::Event::LEFT},
                                                   {KEY_RIGHT, arc::Event::RIGHT},
-                                                  {'\27', arc::Event::QUIT},
+                                                  {'x', arc::Event::QUIT},
                                                   {KEY_ENTER, arc::Event::ENTER},
                                                   {KEY_F(1), arc::Event::CHANGE_GAME_L},
                                                   {KEY_F(2), arc::Event::CHANGE_GAME_R},
