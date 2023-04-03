@@ -9,16 +9,24 @@
 #include <Nibbler/Nibbler.hh>
 #include <Nibbler/NibblerGame.hh>
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <string>
 
 void NibblerGame::ResetGame()
 {
-    if (m_score.highscore < m_score.current_score)
+    if (m_score.highscore < m_score.current_score) {
         m_score.highscore = m_score.current_score;
+        std::ofstream hiscore_stream{"./.nibbler_save"};
+        hiscore_stream << std::to_string(m_score.highscore) << std::endl;
+        hiscore_stream.close();
+    }
     m_map_tile = m_level[0];
     m_fruits = m_fruits_level[0];
+    m_state = GameState::Play;
+    m_timer.reset();
     m_snake.reset_snake();
+    m_score.current_score = 0;
 }
 
 void NibblerGame::EventAnalisys(const arc::Event &event)
@@ -33,6 +41,8 @@ void NibblerGame::EventAnalisys(const arc::Event &event)
         this->m_snake.changeOrientation(Orient::N);
     if (event == arc::Event::DOWN && snake_head.orientation != Orient::N)
         this->m_snake.changeOrientation(Orient::S);
+    if (event == arc::Event::RESTART)
+        this->ResetGame();
 }
 
 void NibblerGame::SetSprite(arc::IDisplay &display)
@@ -212,41 +222,64 @@ void NibblerGame::check_colision()
             this->m_snake.expand_snake(0, 0, Orient::NONE);
             fruit.coord.x = -1;
             fruit.coord.y = -1;
+            m_score.current_score += SCORE_WHEN_APPLE_EAT;
             return;
         }
     }
     for (int iterator = 1; iterator < size; iterator += 1) {
         if (snake[0].coord.x == snake[iterator].coord.x &&
             snake[0].coord.y == snake[iterator].coord.y) {
-            this->ResetGame();
+            m_state = GameState::GameOver;
             return;
         }
     }
 }
 
+static std::string state_to_char(GameState stae)
+{
+    if (stae == GameState::Play)
+        return "play";
+    if (stae == GameState::GameOver)
+        return "game over";
+    if (stae == GameState::Pause)
+        return "pause";
+    return "00";
+}
+
 void NibblerGame::PlayGame()
 {
-    check_colision();
-    move_snake();
+    auto lambda = [](Tile tile) -> bool {
+        return tile.coord.x == -1 && tile.coord.y == -1;
+    };
+    if (std::all_of(m_fruits.begin(), m_fruits.end(), lambda)) {
+        m_level_index++;
+        if (m_level_index >= 3)
+            m_level_index = 0;
+        m_map_tile = m_level[m_level_index];
+        m_fruits = m_fruits_level[m_level_index];
+        m_timer.reset();
+    }
+    if (m_timer.getElapsedTimeInS() > CLOCK_UPDATE_TIME) {
+        m_state = GameState::GameOver;
+        return;
+    }
+    if (m_state == GameState::Play) {
+        check_colision();
+        move_snake();
+    }
 }
 
 void NibblerGame::DisplayGame(arc::IWindow &window)
 {
     std::vector<Tile> snake = this->m_snake.get_snake_tiles();
     std::string text;
-
     window.UpdateWindow();
     for (auto tile : snake) {
-        std::cout << "snake tile: (" << tile.coord.x << ", " << tile.coord.y << ")\n";
         m_sprite->setSpritePosition(tile.coord.x, tile.coord.y);
         m_sprite->setSpriteColor(BODY_COLOR.red, BODY_COLOR.green, BODY_COLOR.blue);
         m_sprite->drawSprite(window);
     }
-    std::cout << '\n';
-    std::cout << '\n';
-    std::cout << '\n';
     for (auto tile : m_map_tile) {
-        //        std::cout << "map tile: (" << tile.coord.x << ", " << tile.coord.y << ")\n";
         m_sprite->setSpritePosition(tile.coord.x, tile.coord.y);
         m_sprite->setSpriteColor(WALL_COLOR.red, WALL_COLOR.green, WALL_COLOR.blue);
         m_sprite->drawSprite(window);
@@ -256,16 +289,22 @@ void NibblerGame::DisplayGame(arc::IWindow &window)
         m_sprite->setSpriteColor(FRUIT_COLOR.red, FRUIT_COLOR.green, FRUIT_COLOR.blue);
         m_sprite->drawSprite(window);
     }
-    /* this->m_text->setFont("./assets/font/arcade.ttf");
-     for (int iterator = 0; iterator < 2; iterator += 1) {
-         this->m_text->setTextPosition(this->m_texts[iterator].coord.x,
-                                       this->m_texts[iterator].coord.y);
-         this->m_text->setTextColor(TEXT_COLOR.red, TEXT_COLOR.green, TEXT_COLOR.blue);
-         text = std::to_string(m_score.current_score);
-         text.insert(0, 9 - text.size(), '0');
-         this->m_text->setText(std::to_string(m_score.current_score) + text);
-         this->m_text->drawText(window);
-     }
-     */
+    for (int iterator = 0; iterator < 2; iterator += 1) {
+        m_text->setTextPosition(m_texts[iterator].coord.x, m_texts[iterator].coord.y);
+        m_text->setTextColor(TEXT_COLOR.red, TEXT_COLOR.green, TEXT_COLOR.blue);
+        text = std::to_string(m_score.current_score);
+        text.insert(0, 9 - text.size(), '0');
+        if (iterator == 0)
+            m_text->setText(std::to_string(m_score.current_score) + text);
+        if (iterator == 1)
+            m_text->setText(std::to_string(m_score.highscore) + text);
+        m_text->drawText(window);
+    }
+    if (m_state == GameState::GameOver) {
+        m_text->setText("Press R to restart");
+        m_text->setTextColor(TEXT_COLOR.red, TEXT_COLOR.green, TEXT_COLOR.blue);
+        m_text->setTextPosition(GAME_OVER_POSITION.x, GAME_OVER_POSITION.y);
+        m_text->drawText(window);
+    }
     window.OpenWindow();
 }

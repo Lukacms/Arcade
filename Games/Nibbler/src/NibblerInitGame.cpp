@@ -86,19 +86,38 @@ void NibblerGame::init_level()
     m_level.emplace_back(get_file("./assets/map/map3", 2));
 }
 
+void NibblerGame::get_highscore()
+{
+    std::ifstream hiscore_stream{"./.nibbler_save"};
+    std::string hiscore;
+
+    if (!hiscore_stream.is_open()) {
+        m_score.highscore = 0;
+        return;
+    }
+    hiscore_stream >> hiscore;
+    for (auto character : hiscore) {
+        if (character < '0' || character > '9') {
+            m_score.highscore = 0;
+            return;
+        }
+    }
+    m_score.highscore = std::stoi(hiscore);
+    hiscore_stream.close();
+}
+
 void NibblerGame::InitGame()
 {
-    std::ifstream save{"./.nibbler_save"};
-    std::vector<std::string> info_save{};
+    Tile text_tile;
+
+    text_tile.coord = SCORE_POSITION;
+    this->m_texts.push_back(text_tile);
+    text_tile.coord = HIGHSCORE_POSITION;
+    this->m_texts.push_back(text_tile);
 
     m_snake.reset_snake();
     m_score.current_score = 0;
-    if (save.is_open()) {
-        info_save = get_save_info(save);
-        m_score.highscore = std::atoi(info_save[0].c_str());
-        if (m_score.highscore < 0)
-            throw Error{"score shouldn't be under 0"};
-    }
+    get_highscore();
     init_level();
     m_map_tile = m_level[0];
     m_fruits = m_fruits_level[0];

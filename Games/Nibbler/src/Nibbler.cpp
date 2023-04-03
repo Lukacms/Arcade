@@ -32,6 +32,7 @@ Snake::Snake()
 void Snake::move_snake(int x_coord, int y_coord, Orient orientation)
 {
     int size = m_snake_body.size();
+    size--;
 
     for (; size >= 1; size -= 1)
         m_snake_body[size].coord = m_snake_body[size - 1].coord;

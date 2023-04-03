@@ -5,6 +5,7 @@
 ** NibblerGame
 */
 #pragma once
+#include "Nibbler/ClockNibbler.hh"
 #include <Nibbler/Nibbler.hh>
 #include <arcade/interfaces/IGame.hh>
 #include <arcade/interfaces/ISprite.hh>
@@ -17,6 +18,13 @@
 constexpr arc::Color const WALL_COLOR{255, 69, 0};
 constexpr arc::Color const TEXT_COLOR{255, 255, 255};
 constexpr int const NUMBER_APPLE{5};
+constexpr arc::Vector GAME_OVER_POSITION{8, 10};
+
+enum class GameState {
+    Play,
+    Pause,
+    GameOver,
+};
 
 struct Score {
         int highscore;
@@ -51,14 +59,18 @@ class NibblerGame : public arc::IGame
         void check_colision();
         void move_snake();
         void init_level();
+        void get_highscore();
         std::vector<Tile> get_file(const std::string &filepath, int fruit_index);
 
         bool m_wait_restart{false};
         int m_apple_number_needed{NUMBER_APPLE};
+        int m_level_index{0};
         Score m_score{0, 0};
         std::unique_ptr<arc::IText> m_text{};
         std::unique_ptr<arc::ISprite> m_sprite{};
+        NibblerClock m_timer{};
         Snake m_snake{};
+        GameState m_state{GameState::Play};
         std::vector<Tile> m_map_tile{};
         std::vector<Tile> m_texts{};
         std::vector<Tile> m_fruits{};

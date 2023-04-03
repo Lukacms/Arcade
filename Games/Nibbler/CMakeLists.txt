@@ -9,6 +9,7 @@ add_library(
   src/Error.cpp
   src/NibblerGame.cpp
   src/NibblerInitGame.cpp
+  src/ClockNibbler.cpp
 )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
