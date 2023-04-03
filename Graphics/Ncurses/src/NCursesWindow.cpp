@@ -6,6 +6,7 @@
 */
 
 #include <curses.h>
+#include <iostream>
 #include <ncurses.h>
 #include <ncurses/NCursesWindow.hh>
 
@@ -17,9 +18,11 @@ arc::NCursesWindow::NCursesWindow(unsigned int x_coord, unsigned int y_coord)
     if (has_colors() == FALSE)
         throw;
     start_color();
-    this->m_window = newwin(x_coord, y_coord, 0, 0);
+    curs_set(0);
+    this->m_window = newwin(y_coord * 2, x_coord * 4, 0, 0);
     if (this->m_window == nullptr)
         throw;
+    keypad(this->m_window, true);
     nodelay(this->m_window, true);
 }
 
@@ -48,8 +51,7 @@ void arc::NCursesWindow::CreateWindow(unsigned int x_coord, unsigned int y_coord
 
 void arc::NCursesWindow::UpdateWindow()
 {
-    wrefresh(this->m_window);
-    refresh();
+    wclear(this->m_window);
 }
 
 WINDOW *arc::NCursesWindow::GetWindow()

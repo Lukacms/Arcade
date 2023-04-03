@@ -22,7 +22,8 @@
 
 arc::SDLDisplay::SDLDisplay()
 {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_EVERYTHING);
+    TTF_Init();
     this->m_window = std::make_unique<arc::SDLWindow>(800, 600, "Arcade");
 }
 
@@ -39,7 +40,9 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {SDLK_F1, arc::Event::CHANGE_GAME_L},
                                                   {SDLK_F2, arc::Event::CHANGE_GAME_R},
                                                   {SDLK_F3, arc::Event::CHANGE_LIB_L},
-                                                  {SDLK_F4, arc::Event::CHANGE_LIB_R}};
+                                                  {SDLK_F4, arc::Event::CHANGE_LIB_R},
+                                                  {'r', arc::Event::RESTART},
+                                                  {'q', arc::Event::BACK_MENU}};
     SDL_Event event;
 
     SDL_PollEvent(&event);
@@ -52,28 +55,6 @@ arc::Event arc::SDLDisplay::GetEvent()
             return iterator.second;
     }
     return arc::Event::NONE;
-}
-
-std::string arc::SDLDisplay::GetUserName()
-{
-    std::string name{};
-    SDL_Event event;
-    int event_key{-1};
-    TTF_Font *font = TTF_OpenFont("./graphics_assets/font.tff", 24);
-    SDL_Color color = {255, 255, 255};
-    SDL_Surface *text = TTF_RenderText_Solid(font, "test", color);
-
-    SDL_PollEvent(&event);
-    event_key = event.type;
-    while (event_key != '\n') {
-        if (event_key == arc::BACKSPACE && !name.empty())
-            name.pop_back();
-        if (event_key >= 'a' && event_key <= 'z')
-            name.push_back(event_key);
-    }
-    if (name.empty())
-        return std::string{"Arcade Sucks"};
-    return name;
 }
 
 std::unique_ptr<arc::ISprite> arc::SDLDisplay::createSprite()

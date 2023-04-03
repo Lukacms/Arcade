@@ -31,7 +31,6 @@ class SFMLDisplay : public arc::ADisplay
         SFMLDisplay &operator=(SFMLDisplay &&to_move) = default;
 
         arc::Event GetEvent() final;
-        std::string GetUserName() final;
         std::unique_ptr<arc::IText> createText() final;
         std::unique_ptr<arc::ISprite> createSprite() final;
 

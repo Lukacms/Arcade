@@ -15,6 +15,6 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/)
 
 target_include_directories(arcade_sdl2 PRIVATE include)
 target_compile_options(arcade_sdl2 PRIVATE ${WARNING_FLAGS})
-target_link_libraries(arcade_sdl2 PRIVATE arcade-interface SDL2)
+target_link_libraries(arcade_sdl2 PRIVATE arcade-interface SDL2 SDL2_ttf)
 set_property(TARGET arcade_sdl2 PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade_sdl2 PROPERTY CXX_STANDARD_REQUIRED ON)

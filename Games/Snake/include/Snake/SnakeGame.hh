@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include "arcade/Geometry.hh"
 #include <Snake/Snake.hh>
 #include <arcade/interfaces/IGame.hh>
 #include <arcade/interfaces/ISprite.hh>
@@ -14,6 +15,7 @@
 #include <arcade/interfaces/IWindow.hh>
 #include <chrono>
 #include <memory>
+#include <string_view>
 #include <vector>
 
 namespace arc
@@ -25,7 +27,18 @@ namespace arc
     constexpr arc::Color WALL_COLOR{255, 69, 0};
     constexpr arc::Color FRUIT_COLOR{255, 0, 0};
     constexpr arc::Vector FRUIT_STARTING_POS{3, 14};
+    constexpr arc::Vector SCORE_POSITION{2, 0};
+    constexpr arc::Vector HIGHSCORE_POSITION{12, 0};
+    constexpr arc::Vector GAME_OVER_POSITION{8, 10};
     constexpr int MAP_SIZE = 20;
+    constexpr int NEW_POINT = 100;
+    constexpr arc::Color TEXT_COLOR{255, 255, 255};
+
+    enum class GameState {
+        Play,
+        Pause,
+        GameOver,
+    };
 
     class SnakeGame : public IGame
     {
@@ -50,15 +63,22 @@ namespace arc
             void InitSnakeMap();
             void MoveSnake();
             void CheckCollisions();
-            void GenerateFruit();
+            void GenerateFruit(bool is_point);
+            void getHighScore();
+            void saveHighScore();
+            void setGameOverTile();
             bool isFruitPositionOkay(int pos_x, int pos_y);
 
             Snake m_snake{};
             std::unique_ptr<ISprite> m_sprite;
             std::unique_ptr<IText> m_text;
             std::vector<Tile> m_map;
+            std::vector<Tile> m_texts;
+            std::vector<std::string> m_score;
+            std::vector<int> m_score_number;
+            Tile m_game_over;
             Tile m_fruit;
-            int m_score = 0;
+            GameState m_state = GameState::Play;
     };
 
 } // namespace arc
