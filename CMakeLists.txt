@@ -15,6 +15,9 @@ project(arcade)
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
+# set option to build tests
+option(ARCADE_BUILD_TESTS "Build the tests" ON)
+
 # for library compilation => shared libraries of games and graphics
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
@@ -80,6 +83,10 @@ set(CMAKE_BUILD_TYPE
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3")
+endif()
+# execute tests
+if (CMAKE_BUILD_TYPE MATCHES "Test")
+    add_subdirectory(tests)
 endif()
 
 # Clang-tidy
