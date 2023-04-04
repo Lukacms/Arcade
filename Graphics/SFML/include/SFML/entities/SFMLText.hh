@@ -25,7 +25,7 @@ namespace arc
             ~SFMLText() override = default;
 
             SFMLText &operator=(const SFMLText &) = default;
-            SFMLText &operator=(SFMLText &&);
+            SFMLText &operator=(SFMLText &&) = delete;
 
             void setText(std::string str) final;
             void setFont(const std::string &font) final;

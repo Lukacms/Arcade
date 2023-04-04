@@ -19,7 +19,7 @@ namespace arc
         public:
             NCursesSprite() = default;
             NCursesSprite(char sprite);
-            NCursesSprite(const NCursesSprite &);
+            NCursesSprite(const NCursesSprite &) = default;
             ~NCursesSprite() override = default;
 
             NCursesSprite &operator=(const NCursesSprite &);

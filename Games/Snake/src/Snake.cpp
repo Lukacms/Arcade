@@ -33,7 +33,7 @@ Snake::Snake() noexcept
 
 void Snake::moveSnake(int x_coord, int y_coord, Orient orientation)
 {
-    int size = this->m_snake.size();
+    int size = this->m_snake.size() - 1;
 
     for (; size >= 1; size -= 1)
         this->m_snake[size].coord = this->m_snake[size - 1].coord;

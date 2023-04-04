@@ -17,10 +17,12 @@ namespace arc {
 
         public:
             SFMLSprite() = default;
-            SFMLSprite(const SFMLSprite&);
+            SFMLSprite(const SFMLSprite&) = default;
+            SFMLSprite(SFMLSprite &&) = delete;
             ~SFMLSprite() override = default;
 
-            SFMLSprite &operator=(const SFMLSprite&);
+            SFMLSprite &operator=(const SFMLSprite&) = default;
+            SFMLSprite &operator=(SFMLSprite &&) = delete;
 
             void setSpriteColor(int red, int green, int blue) final;
             void moveSpritePosition(int pos_x, int pos_y) final;

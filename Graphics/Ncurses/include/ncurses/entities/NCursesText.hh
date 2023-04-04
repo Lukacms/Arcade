@@ -21,7 +21,7 @@ namespace arc {
             ~NCursesText() override = default;
     
             NCursesText &operator=(const NCursesText&) = default;
-            NCursesText &operator=(NCursesText &&);
+            NCursesText &operator=(NCursesText &&) = delete;
 
             void setText(std::string str) final;
             void setFont(const std::string &font) final;

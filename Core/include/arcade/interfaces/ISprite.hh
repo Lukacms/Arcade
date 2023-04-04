@@ -24,7 +24,7 @@ namespace arc {
             ISprite() = default;
             ISprite(ISprite &&) = delete;
             ISprite(const ISprite &) = default;
-            virtual ~ISprite() = 0;
+            virtual ~ISprite() = default;
 
             ISprite &operator=(const ISprite&) = default;
             ISprite &operator=(ISprite &&) = delete;

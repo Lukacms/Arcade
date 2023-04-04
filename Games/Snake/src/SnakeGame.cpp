@@ -166,7 +166,7 @@ void arc::SnakeGame::MoveSnake()
 void arc::SnakeGame::CheckCollisions()
 {
     std::vector<Tile> snake = this->m_snake.getSnakeTiles();
-    int size = snake.size();
+    int size = snake.size() - 1;
 
     for (auto iterator : m_map) {
         if (iterator.coord.x == snake[0].coord.x && iterator.coord.y == snake[0].coord.y) {

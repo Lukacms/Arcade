@@ -104,6 +104,9 @@ void arc::Core::changeGame(const std::string &filepath)
     for (std::size_t i = 0; i < this->shared_games.size(); i++)
         if (filepath == this->shared_games[i])
             this->game_ind = i;
+    this->game->InitGame();
+    this->game->SetSprite(this->getIDisplay().get());
+    this->game->SetText(this->getIDisplay().get());
 }
 
 void arc::Core::noMoreGame()

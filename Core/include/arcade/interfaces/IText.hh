@@ -20,7 +20,7 @@ namespace arc
             IText() = default;
             IText(IText &&) = delete;
             IText(const IText &) = default;
-            virtual ~IText() = 0;
+            virtual ~IText() = default;
 
             IText &operator=(const IText &) = default;
             IText &operator=(IText &&) = delete;

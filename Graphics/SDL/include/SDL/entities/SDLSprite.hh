@@ -20,10 +20,11 @@ namespace arc
 
         public:
             SDLSprite();
-            SDLSprite(const SDLSprite &);
+            SDLSprite(const SDLSprite &) = default;
             ~SDLSprite() override = default;
 
-            SDLSprite &operator=(const SDLSprite &);
+            SDLSprite &operator=(const SDLSprite &) = default;
+            SDLSprite &operator=(SDLSprite &&) = delete;
 
             void setSpriteColor(int red, int green, int blue) final;
             void moveSpritePosition(int pos_x, int pos_y) final;
