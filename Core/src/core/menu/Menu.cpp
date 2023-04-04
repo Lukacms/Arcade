@@ -86,12 +86,18 @@ void arc::Menu::SetText(arc::IDisplay &display)
 
 [[nodiscard]] std::string arc::Menu::get_lib_graph() const
 {
-    return m_graphic_lib[m_player_selection.index_lib_grah];
+    if (m_player_selection.index_lib_grah == -1)
+        return {};
+    std::cout << m_graphic_lib[static_cast<size_t>(m_player_selection.index_lib_grah)]
+              << "getter\n";
+    return m_graphic_lib[static_cast<size_t>(m_player_selection.index_lib_grah)];
 }
 
 [[nodiscard]] std::string arc::Menu::get_lib_game() const
 {
-    return m_game_lib[m_player_selection.index_lib_game];
+    if (m_player_selection.index_lib_game == -1)
+        return {};
+    return m_game_lib[static_cast<size_t>(m_player_selection.index_lib_game)];
 }
 
 void arc::Menu::move_up()
@@ -102,27 +108,39 @@ void arc::Menu::move_up()
 
 void arc::Menu::move_down()
 {
-    if (m_cursor_tile.y_coord < CURSOR_BASE_POSITION.y + static_cast<int>(m_graphic_lib.size()))
-        m_cursor_tile.y_coord++;
+    if (m_state == MenuState::SELECT_LIB) {
+        if (m_cursor_tile.y_coord <
+            CURSOR_BASE_POSITION.y + static_cast<int>(m_graphic_lib.size() - 1))
+            m_cursor_tile.y_coord++;
+    }
+    if (m_state == MenuState::SELECT_GAME) {
+        if (m_cursor_tile.y_coord <
+            CURSOR_BASE_POSITION.y + static_cast<int>(m_game_lib.size() - 1))
+            m_cursor_tile.y_coord++;
+    }
 }
 
 void arc::Menu::enter_info()
 {
     if (m_state == MenuState::SELECT_GAME) {
+        m_player_selection.index_lib_game = m_cursor_tile.y_coord - CURSOR_BASE_POSITION.y;
         m_state = MenuState::SELECT_LIB;
         m_cursor_tile.x_coord = CURSOR_BASE_POSITION.x;
         m_cursor_tile.y_coord = CURSOR_BASE_POSITION.y;
+        std::cout << m_game_lib[m_player_selection.index_lib_game];
+        return;
     }
-    if (m_state == MenuState::SELECT_GAME) {
-        m_state = MenuState::SELECT_LIB;
+    if (m_state == MenuState::SELECT_LIB) {
+        m_player_selection.index_lib_grah = m_cursor_tile.y_coord - CURSOR_BASE_POSITION.y;
+        m_state = MenuState::SELECT_GAME;
         m_cursor_tile.x_coord = GAME_POSITION.x - 1;
         m_cursor_tile.y_coord = CURSOR_BASE_POSITION.y;
+        std::cout << m_graphic_lib[m_player_selection.index_lib_grah];
     }
 }
 
 void arc::Menu::select_nom(const arc::Event &event)
 {
-    std::cout << m_name << '\n';
     if (event == arc::Event::ENTER) {
         m_state = MenuState::SELECT_LIB;
         return;

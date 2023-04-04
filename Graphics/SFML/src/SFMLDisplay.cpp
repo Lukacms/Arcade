@@ -37,6 +37,7 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
     m_event_list.push_back(EventLink{arc::Event::RESTART, sf::Keyboard::R});
     m_event_list.push_back(EventLink{arc::Event::BACK_MENU, sf::Keyboard::Q});
+    m_event_list.push_back(EventLink{arc::Event::BACKSPACE, sf::Keyboard::BackSpace});
     m_event_list.push_back(EventLink{arc::Event::A, sf::Keyboard::A});
     m_event_list.push_back(EventLink{arc::Event::B, sf::Keyboard::B});
     m_event_list.push_back(EventLink{arc::Event::C, sf::Keyboard::C});
@@ -86,10 +87,13 @@ arc::Event SFMLDisplay::GetEvent()
 
     if (nwin == nullptr)
         throw;
-    if (nwin->GetWindow().pollEvent(m_event)) {
+    while (nwin->GetWindow().pollEvent(m_event)) {
         if (sf::Event::Closed)
             return arc::Event::QUIT;
+        if (m_event.type != sf::Event::EventType::KeyPressed)
+            return arc::Event::NONE;
         tmp = analyse_key_pressed();
+        std::cout << "test: " << static_cast<int>(tmp) << '\n';
         if (tmp != arc::Event::NONE)
             return tmp;
     }

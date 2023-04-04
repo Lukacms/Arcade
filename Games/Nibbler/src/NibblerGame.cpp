@@ -218,10 +218,14 @@ void NibblerGame::check_colision()
     int size = snake.size();
 
     for (auto &fruit : m_fruits) {
+        // std::cout << "Snake: " << snake[0].coord.x << " " << snake[0].coord.y << '\n';
+        // std::cout << "Fruits: " << fruit.coord.x << " " << fruit.coord.y << '\n';
         if (snake[0].coord.x == fruit.coord.x && snake[0].coord.y == fruit.coord.y) {
+            //  std::cout << "done\n";
+            fruit.coord.x = -2;
+            fruit.coord.y = -2;
             this->m_snake.expand_snake(0, 0, Orient::NONE);
-            fruit.coord.x = -1;
-            fruit.coord.y = -1;
+            //   std::cout << "Fruits after: " << fruit.coord.x << " " << fruit.coord.y << '\n';
             m_score.current_score += SCORE_WHEN_APPLE_EAT;
             return;
         }
@@ -249,7 +253,7 @@ static std::string state_to_char(GameState stae)
 void NibblerGame::PlayGame()
 {
     auto lambda = [](Tile tile) -> bool {
-        return tile.coord.x == -1 && tile.coord.y == -1;
+        return tile.coord.x == -2 && tile.coord.y == -2;
     };
     if (std::all_of(m_fruits.begin(), m_fruits.end(), lambda)) {
         m_level_index++;
@@ -293,12 +297,15 @@ void NibblerGame::DisplayGame(arc::IWindow &window)
     for (int iterator = 0; iterator < 2; iterator += 1) {
         m_text->setTextPosition(m_texts[iterator].coord.x, m_texts[iterator].coord.y);
         m_text->setTextColor(TEXT_COLOR.red, TEXT_COLOR.green, TEXT_COLOR.blue);
-        text = std::to_string(m_score.current_score);
+        if (iterator == 0)
+            text = std::to_string(m_score.current_score);
+        if (iterator == 1)
+            text = std::to_string(m_score.highscore);
         text.insert(0, 9 - text.size(), '0');
         if (iterator == 0)
-            m_text->setText(std::to_string(m_score.current_score) + text);
+            m_text->setText(text);
         if (iterator == 1)
-            m_text->setText(std::to_string(m_score.highscore) + text);
+            m_text->setText(text);
         m_text->drawText(window);
     }
     if (m_state == GameState::GameOver) {

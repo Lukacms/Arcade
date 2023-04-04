@@ -70,20 +70,21 @@ std::vector<Tile> NibblerGame::get_file(const std::string &filepath, int fruit_i
         }
         count++;
     }
-
-    //    if (!check_file(parsed_file))
-    //        throw Error{"file: " + filepath + " is badly written"};
     return parsed_file;
 }
 
 void NibblerGame::init_level()
 {
-    m_fruits_level.emplace_back();
-    m_fruits_level.emplace_back();
-    m_fruits_level.emplace_back();
-    m_level.emplace_back(get_file("./assets/map/map1", 0));
-    m_level.emplace_back(get_file("./assets/map/map2", 1));
-    m_level.emplace_back(get_file("./assets/map/map3", 2));
+    if (m_fruits_level.empty()) {
+        m_fruits_level.emplace_back();
+        m_fruits_level.emplace_back();
+        m_fruits_level.emplace_back();
+    }
+    if (m_level.empty()) {
+        m_level.emplace_back(get_file("./assets/map/map1", 0));
+        m_level.emplace_back(get_file("./assets/map/map2", 1));
+        m_level.emplace_back(get_file("./assets/map/map3", 2));
+    }
 }
 
 void NibblerGame::get_highscore()

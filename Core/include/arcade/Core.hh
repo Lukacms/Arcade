@@ -70,6 +70,9 @@ namespace arc
             void handDisplay();
             void handEvents(arc::Event graphic_event);
 
+            // methods that look what the player decide to play in menu and set them
+            void set_menu_desicion();
+
             // should be the main loop and other methods associated
             void mainGameLoop();
             void getEvents();
@@ -105,5 +108,8 @@ namespace arc
             arc::CoreClock clock{};
             void *handle_display{nullptr};
             void *handle_game{nullptr};
+
+            // small method to load menu
+            void loadMenu();
     };
 } // namespace arc

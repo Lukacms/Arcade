@@ -70,14 +70,15 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {'q', arc::Event::BACK_MENU}};
     SDL_Event event;
 
-    SDL_PollEvent(&event);
-    if (event.type != SDL_KEYDOWN)
-        return arc::Event::NONE;
-    if (event.type == SDL_QUIT)
-        return arc::Event::QUIT;
-    for (auto iterator : events) {
-        if (event.key.keysym.sym == iterator.first)
-            return iterator.second;
+    while (SDL_PollEvent(&event)) {
+        if (event.type != SDL_KEYDOWN)
+            return arc::Event::NONE;
+        if (event.type == SDL_QUIT)
+            return arc::Event::QUIT;
+        for (auto iterator : events) {
+            if (event.key.keysym.sym == iterator.first)
+                return iterator.second;
+        }
     }
     return arc::Event::NONE;
 }

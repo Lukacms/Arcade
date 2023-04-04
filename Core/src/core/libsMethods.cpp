@@ -85,6 +85,8 @@ void arc::Core::changeDisplay(const std::string &filepath)
         this->game->SetSprite(this->getIDisplay().get());
         this->game->SetText(this->getIDisplay().get());
     }
+    this->menu.SetSprite(this->getIDisplay().get());
+    this->menu.SetText(this->getIDisplay().get());
 }
 
 // NOTE if well understood, release the ownership of the pointer, so call the destructor

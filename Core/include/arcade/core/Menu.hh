@@ -35,8 +35,8 @@ namespace arc
     };
 
     struct MenuResult {
-            size_t index_lib_grah{0};
-            size_t index_lib_game{0};
+            int index_lib_grah{-1};
+            int index_lib_game{-1};
     };
 
     class Menu : public IGame
