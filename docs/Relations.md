@@ -13,7 +13,7 @@ flowchart TB
     subgraph games
     IG(IGames) -->|heritage| G(Game)
     end
-    ID -->|give display infos| C
-    C -->|transmit window and filtered events| IG
-    IG -->|heritage| M
 ```
+ID -->|give display infos| C
+C -->|transmit window and filtered events| IG
+IG -->|heritage| M
