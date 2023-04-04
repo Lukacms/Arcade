@@ -5,6 +5,7 @@
 ** optTest
 */
 
+#include "arcade/Core.hh"
 #include <arcade/Opts.hh>
 #include <catch2/catch.hpp>
 
@@ -15,6 +16,6 @@ TEST_CASE("Basic testing for Opts", "oui")
     try {
         opts.getOpts();
     } catch (arc::Opts::OptsException &e) {
-        REQUIRE(e.what() == CORE_NOLIBS);
+        REQUIRE(e.what() == LIB_FORMAT_ERR);
     }
 }
