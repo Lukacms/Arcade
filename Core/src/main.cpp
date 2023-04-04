@@ -27,7 +27,6 @@ static int launch(std::string filepath)
         std::cout << e.what() << "\n";
         return EPITECH_FAILURE;
     }
-    core.mainGameLoop();
     return EPITECH_SUCCESS;
 }
 

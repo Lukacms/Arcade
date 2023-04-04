@@ -289,6 +289,7 @@ void NibblerGame::DisplayGame(arc::IWindow &window)
         m_sprite->setSpriteColor(FRUIT_COLOR.red, FRUIT_COLOR.green, FRUIT_COLOR.blue);
         m_sprite->drawSprite(window);
     }
+    m_text->setFont("./assets/font/arcade.ttf");
     for (int iterator = 0; iterator < 2; iterator += 1) {
         m_text->setTextPosition(m_texts[iterator].coord.x, m_texts[iterator].coord.y);
         m_text->setTextColor(TEXT_COLOR.red, TEXT_COLOR.green, TEXT_COLOR.blue);

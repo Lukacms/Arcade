@@ -7,9 +7,9 @@
 
 #pragma once
 
+#include "arcade/core/Menu.hh"
 #include <algorithm>
 #include <arcade/core/CoreClock.hh>
-#include <arcade/core/Menu.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>
@@ -101,7 +101,7 @@ namespace arc
             // check loop, and what to display for the Core
             arc::CoreMode mode{CoreMode::Menu};
             arc::Menu menu{};
-            // clock
+            //  clock
             arc::CoreClock clock{};
             void *handle_display{nullptr};
             void *handle_game{nullptr};

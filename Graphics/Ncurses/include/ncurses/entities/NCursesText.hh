@@ -11,16 +11,17 @@
 #include <arcade/interfaces/IText.hh>
 #include <arcade/interfaces/IWindow.hh>
 
-namespace arc {
+namespace arc
+{
 
-    class NCursesText : public IText {
+    class NCursesText : public IText
+    {
         public:
             NCursesText() = default;
-            NCursesText(const NCursesText&) = default;
+            NCursesText(const NCursesText &) = default;
             NCursesText(NCursesText &&) = delete;
             ~NCursesText() override = default;
-    
-            NCursesText &operator=(const NCursesText&) = default;
+            NCursesText &operator=(const NCursesText &) = default;
             NCursesText &operator=(NCursesText &&) = delete;
 
             void setText(std::string str) final;
@@ -36,4 +37,4 @@ namespace arc {
             int pos_x;
             int pos_y;
     };
-}
+} // namespace arc

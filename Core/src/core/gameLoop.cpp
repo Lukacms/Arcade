@@ -25,11 +25,14 @@ void arc::Core::mainGameLoop()
     this->changeGame("./lib/arcade_snake.so");
     this->game->SetSprite(this->getIDisplay().get());
     this->game->SetText(this->getIDisplay().get());
+    this->menu.set_lib_game(this->shared_games);
+    this->menu.set_lib_graph(this->shared_displays);
+    this->menu.SetText(*this->display);
+    this->menu.SetSprite(*this->display);
     while (this->mode != CoreMode::Quit) {
         if (this->clock.getElapsedTimeInS() > arc::CLOCK_UPDATE_TIME) {
             this->handDisplay();
             this->getEvents();
-            this->game->PlayGame();
             this->clock.reset();
         }
     }

@@ -5,16 +5,16 @@
 ** SFMLDisplay
 */
 
+#include <SFML/Graphics/Font.hpp>
 #include <SFML/SFMLDisplay.hh>
 #include <SFML/SFMLWindow.hh>
+#include <SFML/Window/Keyboard.hpp>
 #include <SFML/entities/SFMLSprite.hh>
 #include <SFML/entities/SFMLText.hh>
-#include <arcade/interfaces/ISprite.hh>
-#include <SFML/Graphics/Font.hpp>
-#include <arcade/interfaces/IWindow.hh>
-#include <SFML/Window/Keyboard.hpp>
 #include <algorithm>
 #include <arcade/Opts.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IWindow.hh>
 #include <exception>
 #include <iostream>
 #include <memory>
@@ -37,6 +37,32 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::CHANGE_LIB_R, sf::Keyboard::F4});
     m_event_list.push_back(EventLink{arc::Event::RESTART, sf::Keyboard::R});
     m_event_list.push_back(EventLink{arc::Event::BACK_MENU, sf::Keyboard::Q});
+    m_event_list.push_back(EventLink{arc::Event::A, sf::Keyboard::A});
+    m_event_list.push_back(EventLink{arc::Event::B, sf::Keyboard::B});
+    m_event_list.push_back(EventLink{arc::Event::C, sf::Keyboard::C});
+    m_event_list.push_back(EventLink{arc::Event::D, sf::Keyboard::D});
+    m_event_list.push_back(EventLink{arc::Event::E, sf::Keyboard::E});
+    m_event_list.push_back(EventLink{arc::Event::F, sf::Keyboard::F});
+    m_event_list.push_back(EventLink{arc::Event::G, sf::Keyboard::G});
+    m_event_list.push_back(EventLink{arc::Event::H, sf::Keyboard::H});
+    m_event_list.push_back(EventLink{arc::Event::I, sf::Keyboard::I});
+    m_event_list.push_back(EventLink{arc::Event::J, sf::Keyboard::J});
+    m_event_list.push_back(EventLink{arc::Event::K, sf::Keyboard::K});
+    m_event_list.push_back(EventLink{arc::Event::L, sf::Keyboard::L});
+    m_event_list.push_back(EventLink{arc::Event::M, sf::Keyboard::M});
+    m_event_list.push_back(EventLink{arc::Event::N, sf::Keyboard::N});
+    m_event_list.push_back(EventLink{arc::Event::O, sf::Keyboard::O});
+    m_event_list.push_back(EventLink{arc::Event::P, sf::Keyboard::P});
+    m_event_list.push_back(EventLink{arc::Event::Q, sf::Keyboard::Q});
+    m_event_list.push_back(EventLink{arc::Event::R, sf::Keyboard::R});
+    m_event_list.push_back(EventLink{arc::Event::S, sf::Keyboard::S});
+    m_event_list.push_back(EventLink{arc::Event::T, sf::Keyboard::T});
+    m_event_list.push_back(EventLink{arc::Event::U, sf::Keyboard::U});
+    m_event_list.push_back(EventLink{arc::Event::V, sf::Keyboard::V});
+    m_event_list.push_back(EventLink{arc::Event::W, sf::Keyboard::W});
+    m_event_list.push_back(EventLink{arc::Event::X, sf::Keyboard::X});
+    m_event_list.push_back(EventLink{arc::Event::Y, sf::Keyboard::Y});
+    m_event_list.push_back(EventLink{arc::Event::Z, sf::Keyboard::Z});
     this->m_window = std::make_unique<SFMLWindow>(800, 600, "Arcade");
 }
 
