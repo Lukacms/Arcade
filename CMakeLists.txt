@@ -15,11 +15,11 @@ project(arcade)
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
-# set option to build tests
-option(ARCADE_BUILD_TESTS "Build the tests" ON)
-
 # for library compilation => shared libraries of games and graphics
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+# set option to build tests
+option(ARCADE_BUILD_TESTS "Build the tests" ON)
 
 # include directories
 include_directories(Core/include/)
@@ -78,15 +78,11 @@ set(CMAKE_BUILD_TYPE
     ${CMAKE_BUILD_TYPE}
     CACHE
       STRING
-      "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel tsan"
+      "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel"
       FORCE)
 
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb3")
-endif()
-# execute tests
-if (CMAKE_BUILD_TYPE MATCHES "Test")
-    add_subdirectory(tests)
 endif()
 
 # Clang-tidy
@@ -117,6 +113,8 @@ else()
   error("${CMAKE_CXX_COMPILER_ID}: Unsupported compiler.")
 endif()
 
+message("Warning flags: ${WARNING_FLAGS}")
+
 add_library(arcade-interface INTERFACE)
 
 # link shared libraries and compile them
@@ -124,11 +122,10 @@ add_library(arcade-interface INTERFACE)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
 
-# adding executables
-add_executable(
-    arcade
+add_library(
+    arcade-core
+    SHARED
     Core/src/ADisplay.cpp
-    Core/src/main.cpp
     Core/src/opts/Opts.cpp
     Core/src/opts/libFactory.cpp
     Core/src/core/Core.cpp
@@ -138,13 +135,29 @@ add_executable(
     Core/src/core/libsMethods.cpp
     Core/src/core/menu/Menu.cpp
     )
+target_compile_options(arcade-core PRIVATE ${WARNING_FLAGS})
+target_include_directories(arcade-core PUBLIC include)
+set_property(TARGET arcade-core PROPERTY CXX_STANDARD 20)
+set_property(TARGET arcade-core PROPERTY CXX_STANDARD_REQUIRED ON)
+
+# adding executables
+add_executable(
+    arcade
+    Core/src/main.cpp
+    )
 
 # rules for arcade project
 target_link_libraries(
     arcade
+    arcade-core
     arcade-interface
     )
 target_link_options(arcade PRIVATE -rdynamic)
 target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
+
+# execute tests
+if (ARCADE_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()

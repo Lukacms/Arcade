@@ -35,6 +35,8 @@
 # specific to project
 build/
 /arcade
+tests-arcade
+
 # CMake
 CMakeLists.txt.user
 CMakeCache.txt
