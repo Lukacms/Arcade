@@ -34,7 +34,7 @@ CMake is used to build the project, and the `compile.sh` file is used to make it
 * [Louis Bassagal](https://github.com/LouisBassagal)
 * [Samuel Florentin](https://github.com/SamuelFlorentin)
 
-### Group
+### Group with which we collaborated
 * [Édouard](https://github.com/EdouardPradie)
 * [Léandre](https://github.com/Leandre17)
 * [Johanna](https://github.com/Johannabureau)
