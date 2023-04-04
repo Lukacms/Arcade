@@ -18,7 +18,7 @@ You also have to make an `entryPoint` method, which will allow the `Core` to loa
 ```c++
 extern "C" {
 
-    std::unique_ptr<arc::IGame> entryPoint() { // NOLINT
+    std::unique_ptr<arc::IGame> entryPoint() {
         std::unique_ptr<arc::IGame> game = std::make_unique<arc::Game>();
 
         game->InitGame();
