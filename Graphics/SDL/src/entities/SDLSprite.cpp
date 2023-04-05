@@ -9,6 +9,7 @@
 #include <SDL/entities/SDLSprite.hh>
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_render.h>
+#include <arcade/RuntimeExecption.hh>
 
 /* Constructor && Destructor */
 
@@ -47,7 +48,7 @@ void arc::SDLSprite::drawSprite(IWindow &window)
     SDL_Renderer *renderer;
 
     if (nwin == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     renderer = nwin->GetRenderer();
     SDL_SetRenderDrawColor(renderer, this->m_color.red, this->m_color.green, this->m_color.blue,
                            SDL_ALPHA_OPAQUE);

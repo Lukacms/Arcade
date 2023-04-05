@@ -9,6 +9,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/SFMLWindow.hh>
 #include <SFML/entities/SFMLText.hh>
+#include <arcade/RuntimeExecption.hh>
 #include <iostream>
 
 /* Constructor && Destructor */
@@ -23,7 +24,7 @@ void arc::SFMLText::setText(std::string str)
 void arc::SFMLText::setFont(const std::string &font)
 {
     if (!this->m_font.loadFromFile(font))
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     this->m_text.setFont(this->m_font);
 }
 
@@ -45,7 +46,7 @@ void arc::SFMLText::drawText(arc::IWindow &window)
     SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(&window);
 
     if (nwin == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     this->m_text.setCharacterSize(12);
     this->m_text.setFont(this->m_font);
     this->m_text.setFillColor(sf::Color::White);

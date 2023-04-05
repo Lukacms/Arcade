@@ -5,6 +5,7 @@
 ** NCursesText
 */
 
+#include <arcade/RuntimeExecption.hh>
 #include <ncurses/NCursesWindow.hh>
 #include <ncurses/entities/NCursesText.hh>
 
@@ -37,8 +38,8 @@ void arc::NCursesText::drawText(IWindow &window)
     NCursesWindow *nwin = dynamic_cast<NCursesWindow *>(&window);
 
     if (nwin == nullptr)
-        throw;
-    mvwprintw(nwin->GetWindow(), this->pos_y * 2, this->pos_x * 4,"%s", this->m_text.c_str());
+        throw arc::RuntimeExecption{"ERROR"};
+    mvwprintw(nwin->GetWindow(), this->pos_y * 2, this->pos_x * 4, "%s", this->m_text.c_str());
 }
 
 arc::IText &arc::NCursesText::getText()

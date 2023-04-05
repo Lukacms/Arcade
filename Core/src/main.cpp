@@ -8,9 +8,16 @@
 #include <algorithm>
 #include <arcade/Core.hh>
 #include <arcade/Opts.hh>
+#include <arcade/RuntimeExecption.hh>
 #include <arcade/arcade.hh>
 #include <iostream>
 #include <string>
+
+static void check_env()
+{
+    if (std::getenv("DISPLAY") == nullptr)
+        throw arc::RuntimeExecption{"Arcade: No DISPLAY env variable"};
+}
 
 static int launch(std::string filepath)
 {
@@ -18,6 +25,7 @@ static int launch(std::string filepath)
     arc::Core core{};
 
     try {
+        check_env();
         core = opts.getOpts();
         core.mainGameLoop();
     } catch (arc::Opts::OptsException &e) {
@@ -25,6 +33,9 @@ static int launch(std::string filepath)
         return EPITECH_FAILURE;
     } catch (arc::Core::CoreException &e) {
         std::cout << e.what() << "\n";
+        return EPITECH_FAILURE;
+    } catch (arc::RuntimeExecption &e) {
+        std::cout << e.what() << '\n';
         return EPITECH_FAILURE;
     }
     return EPITECH_SUCCESS;

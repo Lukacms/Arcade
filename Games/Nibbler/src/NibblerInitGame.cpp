@@ -5,9 +5,9 @@
 */
 
 #include "Nibbler/Nibbler.hh"
-#include <Nibbler/Error.hh>
 #include <Nibbler/NibblerGame.hh>
 #include <arcade/Opts.hh>
+#include <arcade/RuntimeExecption.hh>
 #include <exception>
 #include <fstream>
 #include <memory>
@@ -24,7 +24,7 @@ static std::vector<std::string> get_save_info(std::ifstream &save)
     // highest m_score
     // name of player
     if (info_save.size() != 2)
-        throw Error{"save have a problem or was edited"};
+        throw arc::RuntimeExecption{"ERROR"};
     return info_save;
 }
 
@@ -60,7 +60,7 @@ std::vector<Tile> NibblerGame::get_file(const std::string &filepath, int fruit_i
     int count{0};
 
     if (!filestream.is_open())
-        throw Error{"Cant find: " + filepath};
+        throw arc::RuntimeExecption{"ERROR"};
     while (std::getline(filestream, buff)) {
         for (int i = 0; i < buff.size(); i++) {
             if (buff[i] == 'x')

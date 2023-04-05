@@ -11,6 +11,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
 #include <SFML/entities/SFMLSprite.hh>
+#include <arcade/RuntimeExecption.hh>
 
 /* Constructor && Destructor */
 
@@ -38,7 +39,7 @@ void arc::SFMLSprite::drawSprite(IWindow &window)
     SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(&window);
 
     if (nwin == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     this->m_sprite.setSize(sf::Vector2f{40, 30});
     nwin->GetWindow().draw(this->m_sprite);
 }

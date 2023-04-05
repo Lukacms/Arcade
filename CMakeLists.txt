@@ -132,6 +132,7 @@ add_executable(
     Core/src/core/coreHandingInfos.cpp
     Core/src/core/libsMethods.cpp
     Core/src/core/menu/Menu.cpp
+    Core/src/core/RuntimeException.cpp
     )
 
 # rules for arcade project

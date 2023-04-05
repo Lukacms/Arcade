@@ -6,7 +6,6 @@ add_library(
   arcade_nibbler SHARED
   src/Nibbler.cpp
   src/EntryPoint.cpp
-  src/Error.cpp
   src/NibblerGame.cpp
   src/NibblerInitGame.cpp
   src/ClockNibbler.cpp

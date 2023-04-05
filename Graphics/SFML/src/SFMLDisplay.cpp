@@ -13,6 +13,7 @@
 #include <SFML/entities/SFMLText.hh>
 #include <algorithm>
 #include <arcade/Opts.hh>
+#include <arcade/RuntimeExecption.hh>
 #include <arcade/interfaces/ISprite.hh>
 #include <arcade/interfaces/IWindow.hh>
 #include <exception>
@@ -64,6 +65,8 @@ SFMLDisplay::SFMLDisplay()
     m_event_list.push_back(EventLink{arc::Event::Y, sf::Keyboard::Y});
     m_event_list.push_back(EventLink{arc::Event::Z, sf::Keyboard::Z});
     this->m_window = std::make_unique<SFMLWindow>(800, 600, "Arcade");
+    if (!this->m_window)
+        throw arc::RuntimeExecption{"ERROR"};
 }
 
 /* Methods */
@@ -85,7 +88,7 @@ arc::Event SFMLDisplay::GetEvent()
     SFMLWindow *nwin = dynamic_cast<SFMLWindow *>(m_window.get());
 
     if (nwin == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     while (nwin->GetWindow().pollEvent(m_event)) {
         if (sf::Event::Closed)
             return arc::Event::QUIT;

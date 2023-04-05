@@ -6,10 +6,11 @@
 */
 
 #include "arcade/interfaces/ISprite.hh"
+#include <arcade/RuntimeExecption.hh>
+#include <cmath>
 #include <curses.h>
 #include <ncurses/NCursesWindow.hh>
 #include <ncurses/entities/NCursesSprite.hh>
-#include <cmath>
 
 /* Constructor && Destructor */
 
@@ -42,13 +43,15 @@ void arc::NCursesSprite::drawSprite(IWindow &window)
     float color_id = round((this->m_color.red + this->m_color.green + this->m_color.blue) / 3);
 
     if (nwin == nullptr)
-        throw;
-    init_color(color_id, this->m_color.red * 1000 / 255, this->m_color.green * 1000 / 255, this->m_color.blue * 1000 / 255);
+        throw arc::RuntimeExecption{"ERROR"};
+    init_color(color_id, this->m_color.red * 1000 / 255, this->m_color.green * 1000 / 255,
+               this->m_color.blue * 1000 / 255);
     init_pair(color_id, color_id, color_id);
     wattron(nwin->GetWindow(), COLOR_PAIR(color_id));
     for (int offset_y = 0; offset_y < 2; offset_y += 1) {
         for (int offset_x = 0; offset_x < 4; offset_x += 1) {
-            mvwprintw(nwin->GetWindow(), (this->m_y * 2) + offset_y, (this->m_x * 4) + offset_x, "%c", this->m_sprite);
+            mvwprintw(nwin->GetWindow(), (this->m_y * 2) + offset_y, (this->m_x * 4) + offset_x,
+                      "%c", this->m_sprite);
         }
     }
     wattroff(nwin->GetWindow(), COLOR_PAIR(1));

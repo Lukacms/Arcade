@@ -10,6 +10,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_ttf.h>
+#include <arcade/RuntimeExecption.hh>
 
 /* Constructor && Destructor */
 
@@ -30,7 +31,7 @@ void arc::SDLText::setFont(const std::string &font)
 {
     this->m_font = TTF_OpenFont(font.c_str(), 12);
     if (this->m_font == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
 }
 
 void arc::SDLText::setTextColor(int red, int green, int blue)
@@ -58,7 +59,7 @@ void arc::SDLText::drawText(IWindow &window)
     SDL_Rect rect;
 
     if (nwin == nullptr)
-        throw;
+        throw arc::RuntimeExecption{"ERROR"};
     renderer = nwin->GetRenderer();
     TTF_SizeText(this->m_font, this->m_text.c_str(), &rect.w, &rect.h);
     rect.x = this->pos_x * 40;
