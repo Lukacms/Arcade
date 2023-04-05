@@ -6,7 +6,6 @@
 */
 
 #include <arcade/core/Menu.hh>
-#include <string>
 
 void arc::Menu::EventAnalisys(const arc::Event &event)
 {

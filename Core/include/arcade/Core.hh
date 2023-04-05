@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include "arcade/core/Menu.hh"
 #include <algorithm>
 #include <arcade/core/CoreClock.hh>
+#include <arcade/core/Menu.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <arcade/interfaces/IGame.hh>

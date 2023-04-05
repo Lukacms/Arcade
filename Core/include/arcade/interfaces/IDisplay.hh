@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include "arcade/interfaces/ISprite.hh"
-#include "arcade/interfaces/IText.hh"
 #include <arcade/enum/EventEnum.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IText.hh>
 #include <arcade/interfaces/IWindow.hh>
 #include <functional>
 #include <memory>
@@ -28,8 +28,7 @@ namespace arc
             IDisplay &operator=(IDisplay &&to_move) = default;
             virtual std::unique_ptr<arc::ISprite> createSprite() = 0;
             virtual std::unique_ptr<arc::IText> createText() = 0;
-            [[nodiscard]] virtual std::reference_wrapper<arc::IWindow>
-            GetWindow() = 0;
+            [[nodiscard]] virtual std::reference_wrapper<arc::IWindow> GetWindow() = 0;
             [[nodiscard]] virtual arc::Event GetEvent() = 0;
     };
 } // namespace arc

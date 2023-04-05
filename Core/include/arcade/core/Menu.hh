@@ -7,10 +7,10 @@
 
 #pragma once
 
-#include "arcade/Geometry.hh"
-#include "arcade/interfaces/IGame.hh"
-#include "arcade/interfaces/ISprite.hh"
-#include "arcade/interfaces/IText.hh"
+#include <arcade/Geometry.hh>
+#include <arcade/interfaces/IGame.hh>
+#include <arcade/interfaces/ISprite.hh>
+#include <arcade/interfaces/IText.hh>
 #include <arcade/interfaces/IWindow.hh>
 
 namespace arc
