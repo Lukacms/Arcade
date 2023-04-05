@@ -36,7 +36,7 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {SDLK_LEFT, arc::Event::LEFT},
                                                   {SDLK_RIGHT, arc::Event::RIGHT},
                                                   {SDLK_ESCAPE, arc::Event::QUIT},
-                                                  {SDLK_KP_ENTER, arc::Event::ENTER},
+                                                  {SDLK_RETURN, arc::Event::ENTER},
                                                   {SDLK_F1, arc::Event::CHANGE_GAME_L},
                                                   {SDLK_F2, arc::Event::CHANGE_GAME_R},
                                                   {SDLK_F3, arc::Event::CHANGE_LIB_L},
@@ -67,7 +67,8 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {'x', arc::Event::X},
                                                   {'y', arc::Event::Y},
                                                   {'z', arc::Event::Z},
-                                                  {'q', arc::Event::BACK_MENU}};
+                                                  {'q', arc::Event::BACK_MENU},
+                                                  {SDLK_BACKSPACE, arc::Event::BACKSPACE}};
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {
