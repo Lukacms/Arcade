@@ -19,7 +19,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # set option to build tests
-option(ARCADE_BUILD_TESTS "Build the tests" ON)
+option(ARCADE_BUILD_TESTS "Build the tests" OFF)
 
 # include directories
 include_directories(Core/include/)
@@ -122,6 +122,8 @@ add_library(arcade-interface INTERFACE)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade-interface PROPERTY CXX_STANDARD_REQUIRED ON)
 
+# for library compilation => shared libraries of games and graphics
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 add_library(
     arcade-core
     SHARED
@@ -145,6 +147,8 @@ add_executable(
     arcade
     Core/src/main.cpp
     )
+# for library compilation => shared libraries of games and graphics
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # rules for arcade project
 target_link_libraries(
@@ -157,6 +161,8 @@ target_compile_options(arcade PRIVATE ${WARNING_FLAGS})
 set_property(TARGET arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET arcade PROPERTY CXX_STANDARD_REQUIRED ON)
 
+# for library compilation => shared libraries of games and graphics
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 # execute tests
 if (ARCADE_BUILD_TESTS)
     add_subdirectory(tests)

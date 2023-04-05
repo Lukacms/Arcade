@@ -4,6 +4,8 @@
 
 cmake_minimum_required(VERSION 3.6)
 
+message("Loading catch2 lib")
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -29,3 +31,7 @@ target_include_directories(tests-arcade PRIVATE ${PROJECT_SOURCE_DIR}/Core/inclu
 target_link_libraries(tests-arcade arcade-core Catch2)
 set_property(TARGET tests-arcade PROPERTY CXX_STANDARD 20)
 set_property(TARGET tests-arcade PROPERTY CXX_STANDARD_REQUIRED ON)
+
+#[[ execute_process(COMMAND "./tests-arcade"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    ) ]]
