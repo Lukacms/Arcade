@@ -10,6 +10,8 @@
 #include <dlfcn.h>
 #include <filesystem>
 #include <iostream>
+#include <string>
+#include <vector>
 
 void arc::Opts::loadLibs()
 {
@@ -26,9 +28,21 @@ void arc::Opts::loadLibs()
 
 void arc::Opts::loadStartingDisplay()
 {
+    std::vector<std::string> displays = this->core.getSharedDisplays();
+
+    if (!this->checkDisplay(displays))
+        throw arc::Opts::OptsException(OPTS_WRONG_LIB.data());
     try {
         this->core.changeDisplay(this->starting_display);
     } catch (arc::Core::CoreException &e) {
         throw arc::Opts::OptsException(e.what());
     }
+}
+
+bool arc::Opts::checkDisplay(const std::vector<std::string> &displays)
+{
+    for (std::string display : displays)
+        if (display == this->starting_display)
+            return true;
+    return false;
 }

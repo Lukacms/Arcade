@@ -12,11 +12,13 @@
 #include <string>
 #include <string_view>
 #include <utility>
+#include <vector>
 
 // utils
 constexpr std::string_view LIBS_PATHS{"./lib"};
 
 // error messages
+constexpr std::string_view OPTS_WRONG_LIB{"Lib given not a display"};
 constexpr std::string_view CORE_NOLIBS{"No shared libraries found"};
 constexpr std::string_view CORE_LIB_NOT_LOADING{
     "Libary given in argument not loading. Check the given path."};
@@ -63,5 +65,7 @@ namespace arc
         private:
             std::string starting_display{};
             arc::Core core{};
+
+            bool checkDisplay(const std::vector<std::string> &displays);
     };
 } // namespace arc
