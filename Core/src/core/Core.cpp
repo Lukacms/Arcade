@@ -9,7 +9,6 @@
 #include <arcade/Core.hh>
 #include <arcade/interfaces/IDisplay.hh>
 #include <functional>
-#include <iostream>
 #include <string>
 #include <vector>
 

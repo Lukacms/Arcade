@@ -19,10 +19,9 @@ namespace arc
         public:
             NCursesSprite() = default;
             NCursesSprite(char sprite);
-            NCursesSprite(const NCursesSprite &);
+            NCursesSprite(const NCursesSprite &) = default;
             ~NCursesSprite() override = default;
-
-            NCursesSprite &operator=(const NCursesSprite &);
+            NCursesSprite &operator=(const NCursesSprite &) = default;
 
             void setSpriteColor(int red, int green, int blue) final;
             void moveSpritePosition(int pos_x, int pos_y) final;
@@ -36,5 +35,4 @@ namespace arc
             int m_y;
             arc::Color m_color = {0, 0, 0};
     };
-
 } // namespace arc

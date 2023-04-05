@@ -10,8 +10,9 @@
 
 extern "C" {
 
-    std::unique_ptr<arc::IDisplay> entryPoint() { // NOLINT
-        std::unique_ptr<arc::SDLDisplay> display = std::make_unique<arc::SDLDisplay>();
-        return display;
-    }
+std::unique_ptr<arc::IDisplay> entryPoint()
+{ // NOLINT
+    std::unique_ptr<arc::SDLDisplay> display = std::make_unique<arc::SDLDisplay>();
+    return display;
+}
 }

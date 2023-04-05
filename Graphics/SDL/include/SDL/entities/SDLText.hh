@@ -25,7 +25,7 @@ namespace arc
             ~SDLText() override;
 
             SDLText &operator=(const SDLText &) = default;
-            SDLText &operator=(SDLText &&);
+            SDLText &operator=(SDLText &&) = delete;
 
             void setText(std::string str) final;
             void setFont(const std::string &font) final;

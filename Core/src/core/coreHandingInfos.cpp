@@ -8,7 +8,6 @@
 #include <arcade/Core.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <functional>
-#include <iostream>
 #include <map>
 
 static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_MAP = {
@@ -48,8 +47,9 @@ void arc::Core::handDisplay()
     if (this->mode == CoreMode::Game) {
         this->game->DisplayGame(this->display->GetWindow().get());
         this->game->PlayGame();
-    } else
-        this->menu.display(this->display->GetWindow());
+    } else {
+        this->menu.DisplayGame(this->display->GetWindow().get());
+    }
 }
 
 // this method should analyse if an event should change library, quit or be analysed by the game
@@ -61,5 +61,9 @@ void arc::Core::handEvents(arc::Event graphic_event)
             return;
         }
     }
-    this->game->EventAnalisys(graphic_event);
+    if (this->mode == CoreMode::Game) {
+        this->game->EventAnalisys(graphic_event);
+    } else {
+        this->menu.EventAnalisys(graphic_event);
+    }
 }

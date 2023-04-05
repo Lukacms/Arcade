@@ -6,8 +6,8 @@
 */
 
 #include <SFML/Config.hpp>
-#include <SFML/SFMLWindow.hh>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/SFMLWindow.hh>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Window.hpp>
 #include <SFML/entities/SFMLSprite.hh>
@@ -28,7 +28,8 @@ void arc::SFMLSprite::moveSpritePosition(int pos_x, int pos_y)
 
 void arc::SFMLSprite::setSpriteColor(int red, int green, int blue)
 {
-    sf::Color color{static_cast<sf::Uint8>(red), static_cast<sf::Uint8>(green), static_cast<sf::Uint8>(blue)};
+    sf::Color color{static_cast<sf::Uint8>(red), static_cast<sf::Uint8>(green),
+                    static_cast<sf::Uint8>(blue)};
     this->m_sprite.setFillColor(color);
 }
 

@@ -42,17 +42,43 @@ arc::Event arc::SDLDisplay::GetEvent()
                                                   {SDLK_F3, arc::Event::CHANGE_LIB_L},
                                                   {SDLK_F4, arc::Event::CHANGE_LIB_R},
                                                   {'r', arc::Event::RESTART},
+                                                  {'a', arc::Event::A},
+                                                  {'b', arc::Event::B},
+                                                  {'c', arc::Event::C},
+                                                  {'d', arc::Event::D},
+                                                  {'e', arc::Event::E},
+                                                  {'f', arc::Event::F},
+                                                  {'g', arc::Event::G},
+                                                  {'h', arc::Event::H},
+                                                  {'i', arc::Event::I},
+                                                  {'j', arc::Event::J},
+                                                  {'k', arc::Event::K},
+                                                  {'l', arc::Event::L},
+                                                  {'m', arc::Event::M},
+                                                  {'n', arc::Event::N},
+                                                  {'o', arc::Event::O},
+                                                  {'p', arc::Event::P},
+                                                  {'r', arc::Event::R},
+                                                  {'s', arc::Event::S},
+                                                  {'t', arc::Event::T},
+                                                  {'u', arc::Event::U},
+                                                  {'v', arc::Event::V},
+                                                  {'w', arc::Event::W},
+                                                  {'x', arc::Event::X},
+                                                  {'y', arc::Event::Y},
+                                                  {'z', arc::Event::Z},
                                                   {'q', arc::Event::BACK_MENU}};
     SDL_Event event;
 
-    SDL_PollEvent(&event);
-    if (event.type != SDL_KEYDOWN)
-        return arc::Event::NONE;
-    if (event.type == SDL_QUIT)
-        return arc::Event::QUIT;
-    for (auto iterator : events) {
-        if (event.key.keysym.sym == iterator.first)
-            return iterator.second;
+    while (SDL_PollEvent(&event)) {
+        if (event.type != SDL_KEYDOWN)
+            return arc::Event::NONE;
+        if (event.type == SDL_QUIT)
+            return arc::Event::QUIT;
+        for (auto iterator : events) {
+            if (event.key.keysym.sym == iterator.first)
+                return iterator.second;
+        }
     }
     return arc::Event::NONE;
 }

@@ -2,8 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** Arcade
 ** File description:
-** SnakeGame
-*/
+** SnakeGame */
 
 #include <Snake/Snake.hh>
 #include <Snake/SnakeGame.hh>
@@ -109,7 +108,8 @@ void arc::SnakeGame::DisplayGame(IWindow &window)
     }
     if (this->m_state == GameState::GameOver) {
         this->m_text->setText("Press R to restart");
-        this->m_text->setTextColor(this->m_game_over.color.red, this->m_game_over.color.green, this->m_game_over.color.blue);
+        this->m_text->setTextColor(this->m_game_over.color.red, this->m_game_over.color.green,
+                                   this->m_game_over.color.blue);
         this->m_text->setTextPosition(this->m_game_over.coord.x, this->m_game_over.coord.y);
         this->m_text->drawText(window);
     }
@@ -166,7 +166,7 @@ void arc::SnakeGame::MoveSnake()
 void arc::SnakeGame::CheckCollisions()
 {
     std::vector<Tile> snake = this->m_snake.getSnakeTiles();
-    int size = snake.size();
+    int size = snake.size() - 1;
 
     for (auto iterator : m_map) {
         if (iterator.coord.x == snake[0].coord.x && iterator.coord.y == snake[0].coord.y) {
