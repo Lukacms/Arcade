@@ -16,7 +16,6 @@
 #include <arcade/interfaces/ISprite.hh>
 #include <arcade/interfaces/IWindow.hh>
 #include <exception>
-#include <iostream>
 #include <memory>
 
 /* Constructor && Destructor */
@@ -93,7 +92,6 @@ arc::Event SFMLDisplay::GetEvent()
         if (m_event.type != sf::Event::EventType::KeyPressed)
             return arc::Event::NONE;
         tmp = analyse_key_pressed();
-        std::cout << "test: " << static_cast<int>(tmp) << '\n';
         if (tmp != arc::Event::NONE)
             return tmp;
     }

@@ -6,7 +6,6 @@
 */
 
 #include <arcade/core/Menu.hh>
-#include <iostream>
 #include <string>
 
 void arc::Menu::EventAnalisys(const arc::Event &event)
@@ -21,7 +20,6 @@ void arc::Menu::EventAnalisys(const arc::Event &event)
         move_down();
     if (event == Event::ENTER) {
         enter_info();
-        std::cout << "enter" << '\n';
     }
 }
 
@@ -88,8 +86,6 @@ void arc::Menu::SetText(arc::IDisplay &display)
 {
     if (m_player_selection.index_lib_grah == -1)
         return {};
-    std::cout << m_graphic_lib[static_cast<size_t>(m_player_selection.index_lib_grah)]
-              << "getter\n";
     return m_graphic_lib[static_cast<size_t>(m_player_selection.index_lib_grah)];
 }
 
@@ -127,7 +123,6 @@ void arc::Menu::enter_info()
         m_state = MenuState::SELECT_LIB;
         m_cursor_tile.x_coord = CURSOR_BASE_POSITION.x;
         m_cursor_tile.y_coord = CURSOR_BASE_POSITION.y;
-        std::cout << m_game_lib[m_player_selection.index_lib_game];
         return;
     }
     if (m_state == MenuState::SELECT_LIB) {
@@ -135,7 +130,6 @@ void arc::Menu::enter_info()
         m_state = MenuState::SELECT_GAME;
         m_cursor_tile.x_coord = GAME_POSITION.x - 1;
         m_cursor_tile.y_coord = CURSOR_BASE_POSITION.y;
-        std::cout << m_graphic_lib[m_player_selection.index_lib_grah];
     }
 }
 

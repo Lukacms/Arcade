@@ -8,7 +8,6 @@
 #include <arcade/Core.hh>
 #include <arcade/core/CoreClock.hh>
 #include <arcade/enum/EventEnum.hh>
-#include <iostream>
 
 void arc::Core::getEvents()
 {
@@ -23,7 +22,6 @@ void arc::Core::set_menu_desicion()
     if (this->menu.get_lib_game().empty() || this->menu.get_lib_graph().empty())
         return;
     arc::Core::changeDisplay(this->menu.get_lib_graph());
-    std::cout << this->menu.get_lib_graph() << '\n';
     arc::Core::changeGame(this->menu.get_lib_game());
     this->mode = CoreMode::Game;
 }

@@ -8,7 +8,6 @@
 #include <arcade/Core.hh>
 #include <arcade/enum/EventEnum.hh>
 #include <functional>
-#include <iostream>
 #include <map>
 
 static const std::map<const arc::Event, std::function<void(arc::Core &)>> EVENT_MAP = {

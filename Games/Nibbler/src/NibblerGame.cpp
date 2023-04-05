@@ -10,7 +10,6 @@
 #include <Nibbler/NibblerGame.hh>
 #include <algorithm>
 #include <fstream>
-#include <iostream>
 #include <string>
 
 void NibblerGame::ResetGame()
@@ -218,14 +217,10 @@ void NibblerGame::check_colision()
     int size = snake.size();
 
     for (auto &fruit : m_fruits) {
-        // std::cout << "Snake: " << snake[0].coord.x << " " << snake[0].coord.y << '\n';
-        // std::cout << "Fruits: " << fruit.coord.x << " " << fruit.coord.y << '\n';
         if (snake[0].coord.x == fruit.coord.x && snake[0].coord.y == fruit.coord.y) {
-            //  std::cout << "done\n";
             fruit.coord.x = -2;
             fruit.coord.y = -2;
             this->m_snake.expand_snake(0, 0, Orient::NONE);
-            //   std::cout << "Fruits after: " << fruit.coord.x << " " << fruit.coord.y << '\n';
             m_score.current_score += SCORE_WHEN_APPLE_EAT;
             return;
         }
